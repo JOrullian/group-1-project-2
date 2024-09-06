@@ -20,7 +20,7 @@ User.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
-    name: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -31,6 +31,10 @@ User.init(
       validate: {
         isEmail: true,
       },
+      friends: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
     },
     password: {
       type: DataTypes.STRING,

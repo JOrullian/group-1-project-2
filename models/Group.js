@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Event extends Model {}
+class Group extends Model {}
 
-Event.init(
+Group.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,16 +11,12 @@ Event.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     createdBy: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   },
@@ -29,7 +25,7 @@ Event.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'event',
+    modelName: 'group',
   }
 );
 
