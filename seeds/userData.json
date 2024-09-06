@@ -1,0 +1,20 @@
+[
+    {
+        "username": "Bowling_Fella",
+        "name": "Barney",
+        "email": "bowlarama@springfield.com",
+        "password": "Simpsons555!"
+    },
+    {
+        "username": "PickleballPerry",
+        "name": "Henry",
+        "email": "pickletown@pickles.com",
+        "password": "NoTennis@0Love"
+    },
+    {
+        "username": "Freddy_Football",
+        "name": "Fred",
+        "email": "freddyfootballfan55@nfl.gov",
+        "password": "GoBears85!"
+    }
+]
