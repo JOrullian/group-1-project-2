@@ -1,0 +1,85 @@
+
+
+.main-container {
+    width: 100svw;
+    height: 100svh;
+    display: flex;
+}
+
+.navbar-container {
+    width: 13%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    overflow: auto;
+}
+
+.navbar {
+    margin-left: 2rem;
+    height: 70%;
+    width: 4rem;
+    background-color: rgb(78, 76, 76);
+    border-radius: 1rem;
+    transition: .4s ease;
+    position: relative;
+}
+
+.navbar-selections-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-evenly;
+}
+
+.nav-selection {
+    height: 3rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: .5rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.nav-icon {
+    height: 100%;
+}
+
+#nav-explore-icon {
+    height: 80%;
+    margin-left: .3rem;
+    margin-right: .3rem;
+}
+
+#nav-profile-icon {
+    height: 80%;
+    margin-left: .3rem;
+    margin-right: .3rem;
+}
+
+.nav-title {
+    font-family: 'Poppins';
+    color: #dedede;
+    font-size: 130%;
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.nav-title:hover {
+    color: rgb(255, 255, 255);
+}
+
+.navbar:hover {
+    width: 12rem;
+}
+
+.dashboard-page {
+    height: 100%;
+    width: 87%;
+    background-color: aqua;
+}
