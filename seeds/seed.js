@@ -9,6 +9,7 @@ const seedDatabase = async () => {
 
   const users = await User.bulkCreate(userData);
 
+
   process.exit(0);
 };
 

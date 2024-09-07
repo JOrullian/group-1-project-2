@@ -30,20 +30,19 @@ User.init(
       unique: true,
       validate: {
         isEmail: true,
-      },
-      friends: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      }
-    },
-    password: {
+      }},
+    friends: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
+      allowNull: true,
       },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [8],
+        },
     },
-  },
+  },  
   {
     hooks: {
       beforeCreate: async (newUserData) => {

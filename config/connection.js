@@ -17,4 +17,4 @@ if (process.env.DB_URL) {
     );
 }
 
-module.export = sequelize;
+module.exports = sequelize;

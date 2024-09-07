@@ -23,7 +23,7 @@ Event.init(
       allowNull: false,
     },
     createdBy: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     }
   },
   {
