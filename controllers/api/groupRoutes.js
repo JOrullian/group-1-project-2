@@ -1,26 +1,24 @@
 const router = require('express').Router();
 
-const { Event } = require('../../models');
+const { Group } = require('../../models');
 
 router.post('/', async (req, res) => {
-    // Create a new event
+    // Create a new group
   try {
-    const eventData = await Event.create(req.body, {
+    const groupData = await Group.create(req.body, {
       user_id: req.session.user_id,}
     );
-    res.status(200).json(eventData);
+    res.status(200).json(groupData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
 router.put('/:id', async (req, res) => {
-    // Update event location, time and/or name
+    // Update group name
     try {
-        const eventData = await Event.update(
+        const groupData = await Group.update(
             {
-                location: req.body.location,
-                time: req.body.time,
                 name: req.body.name,
             },
             {
@@ -35,19 +33,19 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-    // Delete event
+    // Delete group
   try {
-    const eventData = await Event.destroy({
+    const groupData = await Group.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
     if (!eventData) {
-      res.status(404).json({ message: 'No events found!' });
+      res.status(404).json({ message: 'No group found with that ID!' });
       return;
     }
-    res.status(200).json(eventData);
+    res.status(200).json(groupData);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -15,13 +15,15 @@ Event.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
+    time: {
+      type: DataTypes.STRING,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     createdBy: {
       type: DataType.STRING,
-      allowNull: false,
     }
   },
   {
