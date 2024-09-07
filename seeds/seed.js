@@ -1,21 +1,15 @@
-const Sequelize = require('sequelize');
+const sequelize = require('../config/connection');
+const { User, Event } = require('../models');
 
-require('dotenv').config();
+const userData = require('./userData.json');
+const eventData = require('./eventData.json');
 
-let sequelize;
+const seedDatabase = async () => {
+  await sequelize.sync({ force: true });
 
-if (process.env.DB_URL) {
-  sequelize = new Sequelize(process.env.DB_URL);
-} else {
-  sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-      host: 'localhost',
-      dialect: 'postgres'
-    }
-  );
-}
+  const users = await User.bulkCreate(userData);
 
-module.exports = sequelize;
+  process.exit(0);
+};
+
+seedDatabase();
