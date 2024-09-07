@@ -1,5 +1,5 @@
 const User = require('./User');
-const Event = require('./Project');
+const Event = require('./Event');
 const EventListing = require('./EventListing')
 
 User.belongsToMany(Event, {
