@@ -53,14 +53,6 @@ router.post('/login', async (req, res) => {
 router.post('/set-geolocation', (req, res) => {
   const { latitude, longitude } = req.body;
 
-  if (req.session) {
-    req.session.geolocation = { latitude, longitude };
-    res.status(200).json({ message: 'Geolocation data set in session cookie' });
-  } else {
-    res.status(400).json({ message: 'Session not available' });
-  }
-});
-
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -69,6 +61,7 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
+})
 });
 
 module.exports = router;
