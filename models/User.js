@@ -30,11 +30,11 @@ User.init(
       unique: true,
       validate: {
         isEmail: true,
-      },
-      friends: {
-        type: DataTypes.STRING,
-        allowNull: true,
       }
+    },
+    friends: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     password: {
       type: DataTypes.STRING,
