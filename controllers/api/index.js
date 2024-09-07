@@ -8,4 +8,5 @@ router.use('/users', userRoutes);
 router.use('/events', eventRoutes);
 router.use('/groups', groupRoutes);
 
+
 module.exports = router;
