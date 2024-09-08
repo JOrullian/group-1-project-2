@@ -20,7 +20,7 @@
     margin-left: 2rem;
     height: 70%;
     width: 4rem;
-    background-color: rgb(78, 76, 76);
+    background-color: #4e4c4c;
     border-radius: 1rem;
     transition: .4s ease;
     position: relative;
@@ -78,8 +78,138 @@
     width: 12rem;
 }
 
-.dashboard-page {
+.dashboard-container {
     height: 100%;
     width: 87%;
-    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: 'Poppins';
+}
+
+.dashboard-events-container {
+    height: 90%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.saved-events-container {
+    height: 35%;
+    width: 95%;
+    border-radius: 2rem;
+    box-shadow: -4px 4px 7px #cfcfcfc0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.saved-events-header {
+    height: 15%;
+    width: 100%;
+    font-size: 150%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.events-title {
+    margin-left: 3rem;
+    font-family: 'Poppins';
+    color: #273043;
+}
+
+.division-bar {
+    height: 2px;
+    width: 90%;
+    background-color: #f3f3f3;
+}
+
+.saved-events-list {
+    height: 75%;
+    width: 90%;
+}
+
+.local-events-container {
+    height: 63%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.local-events-header {
+    height: 10%;
+    width: 100%;
+    font-size: 150%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.local-events-list {
+    height: 85%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.local-events-list::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.local-events-division-bar {
+    height: 2px;
+    width: 95%;
+    background-color: #6e6e6e;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.event-container {
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.event-icon-container {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-icon {
+    height: 70%;
+}
+
+.event-info-container {
+    height: 100%;
+    width: 80%;
+    background-color: #f0f0f0;
+    border-radius: 2rem;
+}
+
+.map-container {
+    height: 90%;
+    width: 45%;
+    background-color: #dedede;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.map {
+    height: 100%;
 }
