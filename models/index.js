@@ -1,8 +1,7 @@
-const User = require('./User');
-const Event = require('./Event');
-const EventListing = require('./EventListing');
-const Group = require('./Group');
-
+const User = require("./User");
+const Event = require("./Event");
+const EventListing = require("./EventListing");
+const Group = require("./Group");
 
 User.belongsToMany(Event, {
   through: {

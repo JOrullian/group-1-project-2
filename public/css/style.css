@@ -1,215 +1,212 @@
-
-
 .main-container {
-    width: 100svw;
-    height: 100svh;
-    display: flex;
+  width: 100svw;
+  height: 100svh;
+  display: flex;
 }
 
 .navbar-container {
-    width: 13%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    overflow: auto;
+  width: 13%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  overflow: auto;
 }
 
 .navbar {
-    margin-left: 2rem;
-    height: 70%;
-    width: 4rem;
-    background-color: #4e4c4c;
-    border-radius: 1rem;
-    transition: .4s ease;
-    position: relative;
+  margin-left: 2rem;
+  height: 70%;
+  width: 4rem;
+  background-color: #4e4c4c;
+  border-radius: 1rem;
+  transition: 0.4s ease;
+  position: relative;
 }
 
 .navbar-selections-container {
-    height: 50%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: space-evenly;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-evenly;
 }
 
 .nav-selection {
-    height: 3rem;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    margin-left: .5rem;
-    overflow: hidden;
-    cursor: pointer;
+  height: 3rem;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-left: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .nav-icon {
-    height: 100%;
+  height: 100%;
 }
 
 #nav-explore-icon {
-    height: 80%;
-    margin-left: .3rem;
-    margin-right: .3rem;
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 #nav-profile-icon {
-    height: 80%;
-    margin-left: .3rem;
-    margin-right: .3rem;
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 .nav-title {
-    font-family: 'Poppins';
-    color: #dedede;
-    font-size: 130%;
-    opacity: 0;
-    transition: 0.4s ease;
+  font-family: "Poppins";
+  color: #dedede;
+  font-size: 130%;
+  opacity: 0;
+  transition: 0.4s ease;
 }
 
 .nav-title:hover {
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .navbar:hover {
-    width: 12rem;
+  width: 12rem;
 }
 
 .dashboard-container {
-    height: 100%;
-    width: 87%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-family: 'Poppins';
+  height: 100%;
+  width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Poppins";
 }
 
 .dashboard-events-container {
-    height: 90%;
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  height: 90%;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .saved-events-container {
-    height: 35%;
-    width: 95%;
-    border-radius: 2rem;
-    box-shadow: -4px 4px 7px #cfcfcfc0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  height: 35%;
+  width: 95%;
+  border-radius: 2rem;
+  box-shadow: -4px 4px 7px #cfcfcfc0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .saved-events-header {
-    height: 15%;
-    width: 100%;
-    font-size: 150%;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+  height: 15%;
+  width: 100%;
+  font-size: 150%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .events-title {
-    margin-left: 3rem;
-    font-family: 'Poppins';
-    color: #273043;
+  margin-left: 3rem;
+  font-family: "Poppins";
+  color: #273043;
 }
 
 .division-bar {
-    height: 2px;
-    width: 90%;
-    background-color: #f3f3f3;
+  height: 2px;
+  width: 90%;
+  background-color: #f3f3f3;
 }
 
 .saved-events-list {
-    height: 75%;
-    width: 90%;
+  height: 75%;
+  width: 90%;
 }
 
 .local-events-container {
-    height: 63%;
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  height: 63%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-
 .local-events-header {
-    height: 10%;
-    width: 100%;
-    font-size: 150%;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+  height: 10%;
+  width: 100%;
+  font-size: 150%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .local-events-list {
-    height: 85%;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: scroll;
+  height: 85%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
 
-.local-events-list::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+.local-events-list::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .local-events-division-bar {
-    height: 2px;
-    width: 95%;
-    background-color: #6e6e6e;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+  height: 2px;
+  width: 95%;
+  background-color: #6e6e6e;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .event-container {
-    height: 6rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .event-icon-container {
-    height: 100%;
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .event-icon {
-    height: 70%;
+  height: 70%;
 }
 
 .event-info-container {
-    height: 100%;
-    width: 80%;
-    background-color: #f0f0f0;
-    border-radius: 2rem;
+  height: 100%;
+  width: 80%;
+  background-color: #f0f0f0;
+  border-radius: 2rem;
 }
 
 .map-container {
-    height: 90%;
-    width: 45%;
-    background-color: #dedede;
-    border-radius: 2rem;
-    overflow: hidden;
+  height: 90%;
+  width: 45%;
+  background-color: #dedede;
+  border-radius: 2rem;
+  overflow: hidden;
 }
 
 .map {
-    height: 100%;
+  height: 100%;
 }
