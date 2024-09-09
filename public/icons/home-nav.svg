@@ -2,7 +2,7 @@
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier"> 
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.50091 10.9673V15.6123C5.45843 17.4397 6.90451 18.9561 8.73191 19.0003H16.2699C18.0973 18.9561 19.5434 17.4397 19.5009 15.6123V10.9673C19.503 9.59674 18.8636 8.30422 17.7729 7.47427L14.7129 5.61927C13.3535 4.79358 11.6474 4.79358 10.2879 5.61927L7.22891 7.47427C6.13826 8.30422 5.49884 9.59674 5.50091 10.9673Z" stroke="#dedede" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M14.6549 15.1832C14.15 15.8667 13.3507 16.27 12.5009 16.27C11.6512 16.27 10.8518 15.8667 10.3469 15.1832" stroke="#dedede" stroke-width="1.5" stroke-linecap="round"></path> 
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.50091 10.9673V15.6123C5.45843 17.4397 6.90451 18.9561 8.73191 19.0003H16.2699C18.0973 18.9561 19.5434 17.4397 19.5009 15.6123V10.9673C19.503 9.59674 18.8636 8.30422 17.7729 7.47427L14.7129 5.61927C13.3535 4.79358 11.6474 4.79358 10.2879 5.61927L7.22891 7.47427C6.13826 8.30422 5.49884 9.59674 5.50091 10.9673Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M14.6549 15.1832C14.15 15.8667 13.3507 16.27 12.5009 16.27C11.6512 16.27 10.8518 15.8667 10.3469 15.1832" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> 
     </g>
 </svg>

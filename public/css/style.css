@@ -20,7 +20,7 @@
     margin-left: 2rem;
     height: 70%;
     width: 4rem;
-    background-color: #4e4c4c;
+    background-color: #4285f4;
     border-radius: 1rem;
     transition: .4s ease;
     position: relative;
@@ -64,14 +64,15 @@
 
 .nav-title {
     font-family: 'Poppins';
-    color: #dedede;
+    color: #ffffff;
     font-size: 130%;
+    font-weight: 500;
     opacity: 0;
     transition: 0.4s ease;
 }
 
 .nav-title:hover {
-    color: rgb(255, 255, 255);
+    color: #cccccc;
 }
 
 .navbar:hover {
@@ -110,7 +111,7 @@
 .saved-events-header {
     height: 15%;
     width: 100%;
-    font-size: 150%;
+    font-size: 160%;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -157,22 +158,11 @@
 .local-events-list {
     height: 85%;
     width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     overflow-y: scroll;
 }
 
 .local-events-list::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
-}
-
-.local-events-division-bar {
-    height: 2px;
-    width: 95%;
-    background-color: #6e6e6e;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
 }
 
 .event-container {
@@ -181,6 +171,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: 1rem;
 }
 
 .event-icon-container {
@@ -198,8 +189,61 @@
 .event-info-container {
     height: 100%;
     width: 80%;
-    background-color: #f0f0f0;
+    background-color: #fafafa;
     border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+
+.event-info-title-container {
+    height: 100%;
+    width: 30%;
+    background:linear-gradient(-90deg,#fafafa,white );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-info-title {
+    font-size: 150%;
+    font-weight: 500;
+}
+
+.event-info-separator-container {
+    width: 5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-info-separator {
+    height: 80%;
+    width: 2px;
+    background-color: #dfdfdf;
+}
+
+.event-location-info-container {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.event-date-time-container {
+    background-color: white;
+    height: 70%;
+    width: 30%;
+}
+
+.event-open-spots-container {
+    background-color: white;
+    height: 70%;
+    width: 30%;
 }
 
 .map-container {
