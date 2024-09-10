@@ -9,6 +9,13 @@ const seedDatabase = async () => {
 
   const users = await User.bulkCreate(userData);
 
+  for (const event of eventData) {
+    await Event.create({
+      ...event,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
+
   process.exit(0);
 };
 
