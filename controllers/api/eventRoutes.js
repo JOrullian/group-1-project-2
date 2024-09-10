@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const geolib = require('geolib');
 
 const { Event } = require('../../models');
 
@@ -11,6 +12,28 @@ router.post('/', async (req, res) => {
     res.status(200).json(eventData);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+router.post('/nearby', async (req, res) => {
+  try {
+    const { latitude, longitude } = req.body;
+
+    // Get all events (in a real app, you'd optimize this to only return events in the user's area)
+    const allEvents = await Event.findAll();
+
+    // Filter events that are within a certain radius (e.g., 10 km)
+    const nearbyEvents = allEvents.filter(event => {
+      const distance = geolib.getDistance(
+        { latitude, longitude }, // user's location
+        { latitude: event.latitude, longitude: event.longitude } // event location
+      );
+      return distance <= 10000; // 10 kilometers radius
+    });
+
+    res.json(nearbyEvents);
+  } catch (err) {
+    res.status(500).json({ message: "Error finding nearby events", error: err });
   }
 });
 
