@@ -50,6 +50,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/check-login", (req, res) => {
+  if (req.session.logged_in) {
+    res.status(200).json({ logged_in: true });
+  } else {
+    res.status(200).json({ logged_in: false });
+  }
+});
+
 router.post("/set-geolocation", (req, res) => {
   // Set users location
   const { latitude, longitude } = req.body;
