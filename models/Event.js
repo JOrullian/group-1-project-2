@@ -25,6 +25,11 @@ Event.init(
     createdBy: {
       type: DataTypes.STRING,
     },
+    participants: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull: false,
+      defaultValue: []
+    }
   },
   {
     sequelize,
