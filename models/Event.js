@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 class Event extends Model {}
 
@@ -12,8 +12,8 @@ Event.init(
       autoIncrement: true,
     },
     location: {
-      type: DataTypes.STRING,
-      allowNull: false,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     time: {
       type: DataTypes.STRING,
@@ -24,14 +24,14 @@ Event.init(
     },
     createdBy: {
       type: DataTypes.STRING,
-    },
+    }
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "event",
+    modelName: 'event',
   }
 );
 

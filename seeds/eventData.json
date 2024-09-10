@@ -1,14 +1,20 @@
 [
   {
     "name": "Basketball 5v5",
-    "location": "Bill Nye Park"
+    "location": "Bill Nye Park",
+    "createdBy": "Bowling_Fella",
+    "time": "5 Pm"
   },
   {
     "name": "Pickleball Friendly Tournament",
-    "location": "Chicken 'n Pickle"
+    "location": "Chicken 'n Pickle",
+    "createdBy": "Bowling_Fella",
+    "time": "5 Pm"
   },
   {
     "name": "Flag Football 4v4",
-    "location": "Clyde Warren Park"
+    "location": "Clyde Warren Park",    
+    "createdBy": "Bowling_Fella",
+    "time": "5 Pm"
   }
 ]
