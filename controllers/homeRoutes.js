@@ -7,12 +7,11 @@ router.get('/', async (req, res) => {
     const eventList = await Event.findAll();
 
     const events = eventList.map((event) => event.get({ plain: true }));
-    res.status(200)
-    res.json(events)
+    res.status(200).json(events);
 
-    // res.render('dashboard', { 
-    //   events
-    // });
+    console.log(events);
+
+    // res.render('dashboard', { events });
   } catch (err) {
     res.status(500).json(err);
   }
