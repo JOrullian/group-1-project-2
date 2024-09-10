@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="../../public/css/reset.css">
         <link rel="stylesheet" href="../../public/css/jass.css">
         <link rel="stylesheet" href="../../public/css/style.css">
+<!--                                    ADD GOOGLE API KEY HERE \/-->
+        <script src="https://maps.googleapis.com/maps/api/js?key="></script>
         <script src="../../public/js/dashboard-map.js"></script>
     </head>
     <body data-logged-in="{{logged_in}"}>
@@ -64,10 +66,14 @@
                                     </div>
                                     <div class="event-location-info-container">
                                         <div class="event-date-time-container">
-
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">5:00pm</h4>
                                         </div>
                                         <div class="event-open-spots-container">
-
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">6</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
                                         </div>
                                         <div class="event-more-info-container">
                                             <button class="more-info-btn">More Info</button>
@@ -80,7 +86,28 @@
                                     <img src="../../public/icons/volleyball-icon.svg" class="event-icon">
                                 </div>
                                 <div class="event-info-container">
-
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Volleyball</h3>
+                                        <h4>7v7</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">4:30pm</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">9</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="event-container">
@@ -88,7 +115,28 @@
                                     <img src="../../public/icons/pickleball-icon.svg" class="event-icon">
                                 </div>
                                 <div class="event-info-container">
-
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Pickleball</h3>
+                                        <h4>Open Play</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">7:30am</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">Open Play</h3>
+                                                <!-- <h4 class="event-slots-title">Open Slots</h4> -->
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="event-container">
@@ -96,15 +144,28 @@
                                     <img src="../../public/icons/soccerball-icon.svg" class="event-icon">
                                 </div>
                                 <div class="event-info-container">
-
-                                </div>
-                            </div>
-                            <div class="event-container">
-                                <div class="event-icon-container">
-                                    <img src="../../public/icons/basketball-icon.svg" class="event-icon">
-                                </div>
-                                <div class="event-info-container">
-
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Soccer</h3>
+                                        <h4>9v9</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">6:00pm</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">10</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +173,13 @@
                     </div>
                 </div>
                 <div class="map-container">
-                    <img class="map" src="../../public/images/google-map-test.png">
+                    <!-- <img class="map" src="../../public/images/google-map-test.png"> -->
+                     <div id="map"></div>
+                    <!-- <div class="selection-info-container">
+                        <div class="selection-window">
+                            <img class="selection-info-close-btn" src="../../public/icons/close-btn-icon.svg">
+                        </div>
+                    </div> -->
                 </div>
             </section>
         </main>
