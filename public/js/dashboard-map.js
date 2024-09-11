@@ -1,5 +1,6 @@
-function getLocation(event) {
-    event.preventDefault();
+// const init = require("connect-session-sequelize");
+
+function getLocation() {
 
     if (navigator.geolocation) {
       // Get the current position of the user
@@ -12,21 +13,31 @@ function getLocation(event) {
             console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
             console.log("Location found!");
 
-            // Send location to backend to get nearby events
-            fetch(`/api/events/nearby`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ latitude, longitude })
-            })
-            .then(response => response.json())
-            .then(events => {
-                console.log("Events nearby:", events);
-                // Now that we have the events, show them on the map
-                displayEventsOnMap(events);
-            })
-            .catch(error => {
-                console.error('Error fetching nearby events:', error);
-            });
+            function initMap() {
+                // The location for the center of the map (latitude and longitude)
+                let location = { lat: latitude, lng: longitude };
+                
+                // The map, centered at the location
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: location,
+                    disableDefaultUI: true,
+                });
+                
+                // The circle, positioned at the location
+                const cityCircle = new google.maps.Circle({
+                    strokeColor: "#4285f4",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "#4285f4",
+                    fillOpacity: 0.35,
+                    map,
+                    center: location,
+                    radius: 10000,
+                  });
+            };
+
+            initMap();
         },
         (error) => {
           // Handle any errors that occur
@@ -52,23 +63,25 @@ function getLocation(event) {
     }
 };
 
-function initMap() {
-    // The location for the center of the map (latitude and longitude)
-    let location = { lat: 33.0050, lng: -96.5698 };
-    
-    // The map, centered at the location
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: location,
-        disableDefaultUI: true,
-    });
-    
-    // The marker, positioned at the location
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-    });
-};
+// getLocation();
 
-// Load the map once the page has fully loaded
-window.onload = initMap;
+// function initMap() {
+//     // The location for the center of the map (latitude and longitude)
+//     let location = { lat: 33.0050, lng: -96.5698 };
+    
+//     // The map, centered at the location
+//     const map = new google.maps.Map(document.getElementById('map'), {
+//         zoom: 16,
+//         center: location,
+//         disableDefaultUI: true,
+//     });
+    
+//     // The marker, positioned at the location
+//     const marker = new google.maps.Marker({
+//         position: location,
+//         map: map,
+//     });
+// };
+
+// // Load the map once the page has fully loaded
+// window.onload = initMap;
