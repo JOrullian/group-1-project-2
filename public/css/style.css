@@ -5,6 +5,14 @@
     --stopRed: #f44242;
 }
 
+.left-corner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height auto;
+}
+
 .main-container {
   width: 100svw;
   height: 100svh;
