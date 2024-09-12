@@ -24,6 +24,10 @@ Event.init(
     },
     createdBy: {
       type: DataTypes.STRING,
+      references: {
+        model: 'user',
+        key: 'id',
+      }
     },
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
