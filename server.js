@@ -5,7 +5,6 @@ const exphbs = require("express-handlebars");
 const helmet = require("helmet");
 const routes = require("./controllers");
 const helpers = require('./utils/helpers');
-const helpers = require("./utils/helpers");
 require("dotenv").config();
 
 const sequelize = require("./config/connection");
