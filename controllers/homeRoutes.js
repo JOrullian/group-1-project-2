@@ -1,6 +1,13 @@
 const router = require('express').Router();
 const { User, Event, Group } = require('../models');
 const withAuth = require('../utils/auth');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+router.get('/api-key', (req, res) => {
+  res.json({ apiKey: process.env.GOOGLE_API_KEY });
+});
 
 // Pull list of events for dashboard
 router.get('/', withAuth, async (req, res) => {
