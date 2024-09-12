@@ -2,30 +2,44 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    console.log("Fetching API key...");
+
     // Fetch the API key from your server
     const response = await fetch("/api-key");
     const data = await response.json();
     const apiKey = data.apiKey;
+
+    console.log(apiKey);
 
     // Initialize the Google Maps API with the fetched API key
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
     document.head.appendChild(script);
 
-    console.log(document.head);
-
     script.onload = () => {
-      function getLocation() {
+      async function getLocation() {
         if (navigator.geolocation) {
           // Get the current position of the user
           navigator.geolocation.getCurrentPosition(
-            (position) => {
+            async (position) => {
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
 
               // Display the coordinates
               console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
               console.log("Location found!");
+
+              const eventsResponse = await fetch("/api/events/nearby", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ latitude, longitude }),
+              });
+
+              const events = await eventsResponse.json();
+
+              console.log("Nearby events:", events);
 
               function initMap() {
                 // The location for the center of the map (latitude and longitude)
@@ -52,6 +66,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   center: location,
                   radius: 10000,
                 });
+
+                displayEventsOnMap(map, events);
               }
 
               initMap();
@@ -85,6 +101,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to load API key", error);
   }
 });
+
+function displayEventsOnMap(map, events) {
+  events.forEach((event) => {
+    const marker = new google.maps.Marker({
+      position: { lat: event.latitude, lng: event.longitude },
+      map: map,
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: `<h3>${event.name}</h3><p>${event.description}</p>`,
+    });
+
+    marker.addListner("click", () => {
+      infoWindow.open(map, marker);
+    });
+  });
+}
 
 // getLocation();
 
