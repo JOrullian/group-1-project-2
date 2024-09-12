@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { User, Event, Group, EventListing } = require('../models');
+const { User, Event, Group } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Pull list of events for dashboard
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const eventList = await Event.findAll({
     });
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
     console.log(events);
 
-    // res.render('dashboard', { events });
+    // res.render('dashboard', { events, logged_in: req.session.logged_in });
 
   } catch (err) {
     res.status(500).json(err);
@@ -22,16 +22,17 @@ router.get('/', async (req, res) => {
 });
 
 // Pull specific event that user selects
-router.get('/event/:id', async (req, res) => {
+router.get('/event/:id', withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id);
 
-    const events = await eventData.get({ plain: true });
+    if (!eventData) {
+      res.status(404).json({ message: 'Event not found!' });
+    }
+    const event = await eventData.get({ plain: true });
 
-    res.json(events)
-    //     {
-    //   logged_in: req.session.logged_in
-    // });
+    // res.render('event', { event, logged_in: req.session.logged_in });
+
   } catch (err) {
     res.status(500).json(err);
   }

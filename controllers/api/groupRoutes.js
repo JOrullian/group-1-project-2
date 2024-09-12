@@ -5,9 +5,7 @@ const { Group } = require("../../models");
 router.post("/", async (req, res) => {
   // Create a new group
   try {
-    const groupData = await Group.create(req.body, {
-      user_id: req.session.user_id,
-    });
+    const groupData = await Group.create({ ...req.body });
     res.status(200).json(groupData);
   } catch (err) {
     res.status(400).json(err);
@@ -27,6 +25,12 @@ router.put("/:id", async (req, res) => {
         },
       }
     );
+
+    if (!groupData[0]) {
+      return res.status(404).json({ message: 'No group found with this ID!' });
+    }
+
+    res.status(200).json({ message: 'Group name updated successfully!' })
   } catch (err) {
     res.status(400).json(err);
   }
@@ -41,7 +45,7 @@ router.delete("/:id", async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-    if (!eventData) {
+    if (!groupData) {
       res.status(404).json({ message: "No group found with that ID!" });
       return;
     }
