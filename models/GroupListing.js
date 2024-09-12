@@ -32,12 +32,12 @@ GroupListing.init(
     freezeTableName: true,
     underscored: true,
     modelName: "group_listing",
-    indexes: [
-      {
-        unique: true,
-        fields: ["userId", "groupId"],
-      },
-    ],
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ["userId", "groupId"],
+    //   },
+    // ],
   }
 );
 
