@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   // Log the user in
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const userData = await User.findOne({ where: { username: req.body.username } });
 
     if (!userData) {
       res
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json({ message: "Login failed due to server error", error: err });
   }
 });
 
@@ -62,7 +62,7 @@ router.post("/set-geolocation", (req, res) => {
   // Set users location
   const { latitude, longitude } = req.body;
 
-  if (req.session) {
+  if (req.session && req.session.logged_in) {
     req.session.geolocation = { latitude, longitude };
     res.status(200).json({ message: "Geolocation data set in session cookie" });
   } else {
