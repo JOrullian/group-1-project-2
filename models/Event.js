@@ -23,7 +23,7 @@ Event.init(
       allowNull: false,
     },
     createdBy: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       references: {
         model: "user",
         key: "id",

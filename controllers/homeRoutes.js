@@ -12,8 +12,7 @@ router.get('/api-key', (req, res) => {
 // Pull list of events for dashboard
 router.get('/', withAuth, async (req, res) => {
   try {
-    const eventList = await Event.findAll({
-    });
+    const eventList = await Event.findAll();
 
     const events = eventList.map((event) => event.get({ plain: true }));
 
