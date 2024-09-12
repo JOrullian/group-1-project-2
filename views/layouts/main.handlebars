@@ -3,18 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quick Match</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../public/css/css/jass.css">
     <link rel="stylesheet" href="../../public/css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script src="../../public/js/dashboard-map.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body>
-    <main class="main-container">
-        <nav class="navbar">
 
-        </nav>
-        <section class="">
-{{{body}}}
-        </section>
-    </main>
+<body>
+    <header>
+        <img src="/public/images/Sport Players.jpg" alt="sport players" class="left-corner-image"/>
+    </header>
+    <body data-logged-in="{{logged_in}"}>
+        <main id="main-container" class="main-container">
+            <div class="navbar-container">
+                <nav class="navbar">
+                    <div class="navbar-selections-container">
+                        <div id="nav-home" class="nav-selection">
+                            <img id="nav-home-icon" class="nav-icon" src="../../public/icons/home-nav.svg">
+                            <h1 id="nav-home-title" class="nav-title">Dashboard</h1>
+                        </div>
+                        <div id="nav-explore" class="nav-selection">
+                            <img id="nav-explore-icon" class="nav-icon" src="../../public/icons/explore-nav.svg">
+                            <h1 id="nav-explore-title" class="nav-title">Explore</h1>
+                        </div>
+                        <div id="nav-profile" class="nav-selection">
+                            <img id="nav-profile-icon" class="nav-icon" src="../../public/icons/profile-nav.svg">
+                            <h1 id="nav-profile-title" class="nav-title">Profile</h1>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <section class="dashboard-container">
+                <div class="dashboard-events-container">
+                    <div class="saved-events-container">
+                        <div class="saved-events-header">
+                            <h2 class="events-title">Your Events</h2>
+                        </div>
+                        <div class="division-bar"></div>
+                        <div class="saved-events-list">
+
+                        </div>
+                    </div>
+                    <div class="local-events-container">
+                        <div class="local-events-header">
+                            <h2 class="events-title">Local Events</h2>
+                        </div>
+                        <div class="division-bar"></div>
+                        <div class="local-events-list">
+                            <div class="event-container">
+                                <div class="event-icon-container">
+                                    <img src="../../public/icons/basketball-icon.svg" class="event-icon">
+                                </div>
+                                <div class="event-info-container">
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Basketball</h3>
+                                        <h4>3v3</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">5:00pm</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">6</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button id="more-info-btn" class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-container">
+                                <div class="event-icon-container">
+                                    <img src="../../public/icons/volleyball-icon.svg" class="event-icon">
+                                </div>
+                                <div class="event-info-container">
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Volleyball</h3>
+                                        <h4>7v7</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">4:30pm</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">9</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button id="more-info-btn" class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-container">
+                                <div class="event-icon-container">
+                                    <img src="../../public/icons/pickleball-icon.svg" class="event-icon">
+                                </div>
+                                <div class="event-info-container">
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Pickleball</h3>
+                                        <h4>Open Play</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">7:30am</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">Open Play</h3>
+                                                <!-- <h4 class="event-slots-title">Open Slots</h4> -->
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button id="more-info-btn" class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-container">
+                                <div class="event-icon-container">
+                                    <img src="../../public/icons/soccerball-icon.svg" class="event-icon">
+                                </div>
+                                <div class="event-info-container">
+                                    <div class="event-info-title-container">
+                                        <h3 class="event-info-title">Soccer</h3>
+                                        <h4>9v9</h4>
+                                    </div>
+                                    <div class="event-info-separator-container">
+                                        <div class="event-info-separator"></div>
+                                    </div>
+                                    <div class="event-location-info-container">
+                                        <div class="event-date-time-container">
+                                            <h3 class="event-time-title">Start Time</h3>
+                                            <h4 class="event-time">6:00pm</h4>
+                                        </div>
+                                        <div class="event-open-spots-container">
+                                            <div class="event-open-slots-board">
+                                                <h3 class="event-slots">10</h3>
+                                                <h4 class="event-slots-title">Open Slots</h4>
+                                            </div>
+                                        </div>
+                                        <div class="event-more-info-container">
+                                            <button id="more-info-btn" class="more-info-btn">More Info</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        <footer>
+            <h4>Follow Us</h4>
+            <div class='social-icon'>
+                <a href="#"><i class="ph ph-instagram-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-pinterest-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-linkedin-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-youtube-logo" style="font-size: 20px"></i></a>
+            </div>
+        </footer>
+                <div>
+                {{{ body }}}
+                </div>
+                <div class="map-container">
+                    <!-- <img class="map" src="../../public/images/google-map-test.png"> -->
+                     <div id="map"></div>
+                    <!-- <div class="selection-info-container">
+                        <div class="selection-window">
+                            <img class="selection-info-close-btn" src="../../public/icons/close-btn-icon.svg">
+                        </div>
+                    </div> -->
+                </div>
+                </div>
+            </section>
+        {{#if logged_in}}
+        <script src="/js/logout.js"></script>
+        {{/if}}
 </body>
+
 </html>
