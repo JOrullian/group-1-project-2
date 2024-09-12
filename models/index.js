@@ -4,6 +4,7 @@ const EventListing = require("./EventListing");
 const Group = require("./Group");
 const GroupListing = require("./GroupListing");
 
+
 User.belongsToMany(Event, {
   through: {
     model: EventListing,
