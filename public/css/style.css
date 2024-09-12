@@ -21,6 +21,15 @@
   display: flex;
 }
 
+.body-window {
+  height: 100%;
+  width: 87%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Poppins";
+}
+
 .navbar-container {
   width: 13%;
   height: 100%;
@@ -95,7 +104,7 @@
 
 .dashboard-container {
   height: 100%;
-  width: 87%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -625,7 +634,7 @@
   justify-content: space-evenly;
 }
 
-footer {
+/* footer {
   background-color: var(--primary);
   color: white;
   font-family: 'Poppins';
@@ -644,4 +653,4 @@ footer {
   text-decoration: none;
   margin-bottom: 20%;
   padding: 15%;
-}
+} */
