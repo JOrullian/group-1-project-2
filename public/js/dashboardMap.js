@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch the API key from your server
-    const response = await fetch("/api/api-key");
+    const response = await fetch("/api-key");
     const data = await response.json();
     const apiKey = data.apiKey;
 
@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
     document.head.appendChild(script);
+
+    console.log(document.head);
 
     script.onload = () => {
       function getLocation() {
@@ -77,6 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log("Geolocation is not supported by this browser.");
         }
       }
+      getLocation();
     };
   } catch (error) {
     console.error("Failed to load API key", error);
