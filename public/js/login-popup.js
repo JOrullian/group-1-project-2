@@ -1,7 +1,7 @@
 const moreInfoBtn = document.getElementById('more-info-btn');
 const mainContainer = $('#main-container');
 
-let userLoggedIn = true
+let userLoggedIn = false
 
 moreInfoBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -26,7 +26,9 @@ moreInfoBtn.addEventListener('click', (event) => {
                 <div class="popup-signup-side">
                     <div class="signup-window">
                         <h1 class="signup-form-title">Need an account?</h1>
-                        <button id="signup-button" class="signup-button">Sign Up!</button>                    
+                        <a href="../signup-walkthrough.html">
+                            <button id="signup-button" class="signup-button">Sign Up!</button>
+                        </a>                    
                     </div>
                 </div>
             </div>

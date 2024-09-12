@@ -12,7 +12,7 @@
   top: 0;
   left: 0;
   width: 150px;
-  height auto;
+  height: 5rem;
 }
 
 .main-container {
@@ -505,4 +505,122 @@
 
 .signup-button:hover {
   background-color: var(--lightBlue);
+}
+
+/* Signup Walkthrough Screens */
+
+.signup-main-container {
+  height: 100svh;
+  width: 100svw;
+  overflow: hidden;
+  font-family: 'Poppins';
+}
+
+.signup-pages {
+  width: 600%;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.signup-page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  transition: all .7s ease;
+}
+
+.signup-page-window {
+  height: 50%;
+  width: 20%;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -2px 2px 7px #b9b9b9;
+}
+
+.signup-player-icon {
+  height: 10rem;
+  margin-bottom: 3rem;
+}
+
+.signup-walkthrough-title {
+  color: var(--darkBlue);
+  font-size: 200%;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.signup-walkthrough-btn {
+  background-color: var(--primary);
+  font-family: 'Poppins';
+  font-size: 120%;
+  color: white;
+  border: none;
+  width: 7rem;
+  height: 2.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.signup-walkthrough-btn:hover {
+  background-color: var(--lightBlue);
+}
+
+.signup-walkthrough-inputs {
+  font-family: 'Poppins';
+  height: 2rem;
+  width: 50%;
+  border: none;
+  border-bottom: 2px solid #e7e7e7;
+}
+
+.signup-walkthrough-inputs:focus {
+  outline: none;
+  color: var(--darkBlue);
+}
+
+.special-you-style {
+  font-size: 120%;
+  color: #FD8469;
+}
+
+.dont-worry {
+  color: #bdbbbb;
+  font-size: 80%;
+  margin-top: .5rem;
+}
+
+.signup-selection-cointainer{
+  height: 2rem;
+  font-family: 'Poppins';
+  width: 10rem;
+  border: none;
+  border-bottom: 2px solid #e7e7e7;
+  color: var(--darkBlue);
+  margin-top: 2rem;
+}
+
+.signup-creds-container {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.signup-btn-container {
+  height: 10%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
