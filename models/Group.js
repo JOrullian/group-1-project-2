@@ -29,4 +29,4 @@ Group.init(
   }
 );
 
-module.exports = Event;
+module.exports = Group;

@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class EventListing extends Model {}
+class GroupListing extends Model {}
 
-EventListing.init(
+GroupListing.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -18,10 +18,10 @@ EventListing.init(
         key: "id",
       },
     },
-    eventId: {
+    groupId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "event",
+        model: "group",
         key: "id",
       },
     },
@@ -31,14 +31,14 @@ EventListing.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "event_listing",
+    modelName: "group_listing",
     indexes: [
       {
         unique: true,
-        fields: ["userId", "eventId"],
+        fields: ["userId", "groupId"],
       },
     ],
   }
 );
 
-module.exports = EventListing;
+module.exports = GroupListing;
