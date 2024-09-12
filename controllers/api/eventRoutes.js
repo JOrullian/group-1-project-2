@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
     const newEvent = eventData.get({ plain: true })
 
-    res.render('create-event', {newEvent})
+    res.status(200).json(newEvent)
     }
    catch (err) {
     res.status(400).json(err);
