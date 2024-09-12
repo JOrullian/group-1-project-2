@@ -32,12 +32,12 @@ EventListing.init(
     freezeTableName: true,
     underscored: true,
     modelName: "event_listing",
-    indexes: [
-      {
-        unique: true,
-        fields: ["userId", "eventId"],
-      },
-    ],
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ["userId", "eventId"],
+    //   },
+    // ],
   }
 );
 
