@@ -32,8 +32,7 @@ Event.init(
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull: false,
-      defaultValue: []
-
+      defaultValue: [],
     }
   },
   {
