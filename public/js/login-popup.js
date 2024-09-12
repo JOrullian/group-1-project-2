@@ -1,7 +1,7 @@
 const moreInfoBtn = document.getElementById('more-info-btn');
 const mainContainer = $('#main-container');
 
-let userLoggedIn = true
+let userLoggedIn = false
 
 moreInfoBtn.addEventListener('click', (event) => {
     event.preventDefault();

@@ -3,18 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quick Match</title>
     <link rel="stylesheet" href="../../public/css/css/jass.css">
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
+
 <body>
     <main class="main-container">
-        <nav class="navbar">
+<div class="navbar-container"></div>
+                <nav class="navbar">
+                        {{#if logged_in}}
+                        <a href="/profile">profile</a>
+                        {{else}}
+                        <a href="/login">login</a>
+                </nav>
+                    <div class="navbar-selections-container">
+                        <div id="nav-home" class="nav-selection">
+                            <img id="nav-home-icon" class="nav-icon" src="../../public/icons/home-nav.svg">
+                            <h1 id="nav-home-title" class="nav-title">Dashboard</h1>
+                        </div>
+                        <div id="nav-explore" class="nav-selection">
+                            <img id="nav-explore-icon" class="nav-icon" src="../../public/icons/explore-nav.svg">
+                            <h1 id="nav-explore-title" class="nav-title">Explore</h1>
+                        </div>
+                        <div id="nav-profile" class="nav-selection">
+                            <img id="nav-profile-icon" class="nav-icon" src="../../public/icons/profile-nav.svg">
+                            <h1 id="nav-profile-title" class="nav-title">Profile</h1>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        <section class="dashboard-container">
+            <div class="dashboard-events-container">
+                <div class="saved-events-container">
+                    <div class="saved-events-header">
+                        <h2 class="events-title">Your Events</h2>
+                    </div>
+                    <div class="division-bar"></div>
+                    <div class="saved-events-list"></div>
 
-        </nav>
-        <section class="">
+                </div>
+            </div>
+
+            {{{ body }}}
 
         </section>
     </main>
+            <footer>
+            <h4>Follow Us</h4>
+            <div class='social-icon'>
+                <a href="#"><i class="ph ph-instagram-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-pinterest-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-linkedin-logo" style="font-size: 20px"></i></a>
+                <a href="#"><i class="ph ph-youtube-logo" style="font-size: 20px"></i></a>
+            </div>
+        </footer>
+        {{#if logged_in}}
+        <script src="/js/logout.js"></script>
+        {{/if}}
 </body>
+
 </html>
