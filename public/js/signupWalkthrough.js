@@ -1,3 +1,4 @@
+
 const signupPages = document.querySelectorAll('.signup-page');
 const translateAmount = 100;
 let translate = 0;

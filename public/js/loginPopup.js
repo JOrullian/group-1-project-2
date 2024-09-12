@@ -13,7 +13,7 @@ moreInfoBtn.addEventListener('click', (event) => {
         `<div id="login-popup-container" class="login-popup-container">
             <div class="login-popup-window">
                 <div class="popup-login-side">
-                    <img id="login-close-btn" class="login-close-btn" src="../../public/icons/close-btn-icon.svg">
+                    <img id="login-close-btn" class="login-close-btn" src="icons/close-btn-icon.svg">
                     <div class="login-window">
                         <h1 class="login-form-title">Welcome to<br/><span class="login-brand-name">QuickMatch</span></h1>
                         <form id="login-form" class="login-form">
