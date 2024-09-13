@@ -20,15 +20,6 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
 
-  <header>
-    <a href="/dashboard">
-      <img
-        src="/public/images/Sport Players.jpg"
-        alt="sport players"
-        class="left-corner-image"
-      />
-    </a>
-  </header>
   <body data-logged-in="{{logged_in}}">
     <main id="main-container" class="main-container">
       <div class="navbar-container">
@@ -90,10 +81,10 @@
     <script>
       function goToDashboard() { window.location.href = '/dashboard'; }
     </script>
+    <script src="js/showLocalEventsList.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/signupWalkthrough.js"></script>
     <script src="js/dashboardMap.js"></script>
-    <script src="js/displayEvents.js"></script>
     <script src="js/loginPopup.js"></script>
     <script src="js/createEvent.js"></script>
   </body>

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Fetch the API key from your server
     const response = await fetch("/api-key");
+    if (!response.ok) throw new Error("Failed to fetch API key");
     const data = await response.json();
     const apiKey = data.apiKey;
 
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Initialize the Google Maps API with the fetched API key
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
 
     script.onload = () => {
@@ -37,6 +40,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               const events = await eventsResponse.json();
               console.log("Nearby events:", events);
+
+              // Store events in local storage
+              localStorage.setItem('nearbyEvents', JSON.stringify(events));
 
               function initMap() {
                 // The location for the center of the map (latitude and longitude)
