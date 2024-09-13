@@ -526,15 +526,19 @@
 
 .signup-main-container {
   height: 100svh;
-  width: 100svw;
+  width: 100%;
   overflow: hidden;
   font-family: 'Poppins';
+  background-color: #454a53d2;
+  backdrop-filter: blur( 7px );
+  -webkit-backdrop-filter: blur( 7px );
+  position: absolute;
 }
 
 .signup-pages {
   width: 600%;
   display: flex;
-  box-sizing: border-box;
+  transition: transform .7s ease;
 }
 
 .signup-page {
@@ -556,6 +560,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: white;
   box-shadow: -2px 2px 7px #b9b9b9;
 }
 
