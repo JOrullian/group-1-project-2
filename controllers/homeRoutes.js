@@ -9,6 +9,14 @@ router.get('/api-key', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_API_KEY });
 });
 
+router.get('/dashboard', async (req, res) => {
+  try {
+    res.render('dashboard', { logged_in: req.session.logged_in });
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
+
 // Pull list of events for dashboard
 router.get('/', async (req, res) => {
   try {
@@ -44,7 +52,7 @@ router.get('/event/:id', async (req, res) => {
   }
 });
 
-router.get('/create-event', withAuth, (req, res) => {
+router.get('/createEvent', (req, res) => {
   // Render the 'createEvent' view
   res.render('createEvent', { logged_in: req.session.logged_in });
 });

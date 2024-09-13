@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const createEventButton = document.querySelector("#create-event-btn");
+
+  if (createEventButton) {
+    createEventButton.addEventListener("click", () => {
+      // Redirect to the create event page
+      window.location.href = "/createEvent";
+    });
+  }
+});
+
 const eventFormHandler = async (event) => {
   event.preventDefault();
 
@@ -23,12 +34,12 @@ const eventFormHandler = async (event) => {
         // Send the event details, along with latitude and longitude, to your server
         const response = await fetch("/api/events", {
           method: "POST",
-          body: JSON.stringify({ location, latitude, longitude, time, name, }),
+          body: JSON.stringify({ location: eventLocation, latitude, longitude, time: eventTime, name: eventName }),
           headers: { "Content-Type": "application/json" },
         });
 
         if (response.ok) {
-          document.location.replace('/');
+          document.location.replace('/'); // Redirect to the homepage or desired page
         } else {
           alert(response.statusText);
         }
