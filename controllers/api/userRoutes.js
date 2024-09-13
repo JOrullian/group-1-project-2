@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.json({ user: userData, message: "You are now logged in!" });
+      res.json({ message: "You are now logged in!" });
     });
   } catch (err) {
     res.status(500).json({ message: "Login failed due to server error", error: err });
@@ -51,10 +51,10 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/check-login", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.logged_in === true) {
     res.status(200).json({ logged_in: true });
   } else {
-    res.status(200).json({ logged_in: false });
+    res.status(401).json({ logged_in: false });
   }
 });
 

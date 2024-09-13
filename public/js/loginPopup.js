@@ -1,14 +1,15 @@
 const moreInfoBtn = document.getElementById('more-info-btn');
 const mainContainer = $('#main-container');
+const logoutBtn = document.querySelector('#nav-logout-title')
 
-let userLoggedIn = false
-
-moreInfoBtn.addEventListener('click', (event) => {
+moreInfoBtn.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    if(userLoggedIn === true) {
-        console.log('User logged in!')
-    } else if(userLoggedIn === false) {
+    const response = await fetch('/api/users/check-login', {
+        method: 'GET',
+    });
+
+    if(response.status===400) {
         mainContainer.append(
         `<div id="login-popup-container" class="login-popup-container">
             <div class="login-popup-window">
@@ -17,8 +18,8 @@ moreInfoBtn.addEventListener('click', (event) => {
                     <div class="login-window">
                         <h1 class="login-form-title">Welcome to<br/><span class="login-brand-name">QuickMatch</span></h1>
                         <form id="login-form" class="login-form">
-                            <input class="login-inputs" type="text" placeholder="Username" required>
-                            <input class="login-inputs" type="password" placeholder="Password" required>
+                            <input class="login-inputs" type="text" placeholder="Username" id="username-input" required>
+                            <input class="login-inputs" type="password" placeholder="Password" id="password-input" required>
                             <button id="login-button" class="login-button">Login</button>
                         </form>                            
                     </div>
@@ -76,3 +77,20 @@ moreInfoBtn.addEventListener('click', (event) => {
         });
     }
 });
+
+
+logoutBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+        const response = await fetch('/api/users/logout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
+      
+        if (response.ok) {
+          document.location.replace('/')
+          console.log('You are now logged out');
+        } else {
+          alert(response.statusText);
+        }
+      })
