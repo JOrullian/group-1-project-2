@@ -12,11 +12,16 @@ router.post("/", async (req, res) => {
 
   // Create a new event
   try {
-    const eventData = await Event.create(req.body, {
-      user_id: req.session.user_id,
-    });
+    const { location, latitude, longitude, time, name } = req.body;
 
-    const newEvent = eventData.get({ plain: true })
+    const newEvent = await Event.create({
+      location,
+      latitude,
+      longitude,
+      time,
+      name,
+      user_id: req.session.user_id,
+    })
 
     res.status(200).json(newEvent)
     }

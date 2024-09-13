@@ -15,6 +15,14 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    latitude: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     time: {
       type: DataTypes.STRING,
     },
