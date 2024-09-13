@@ -9,7 +9,7 @@ moreInfoBtn.addEventListener('click', async (event) => {
         method: 'GET',
     });
 
-    if(response.status===400) {
+    if(response.status===401) {
         mainContainer.append(
         `<div id="login-popup-container" class="login-popup-container">
             <div class="login-popup-window">
