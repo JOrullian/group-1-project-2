@@ -23,7 +23,7 @@ const eventFormHandler = async (event) => {
         // Send the event details, along with latitude and longitude, to your server
         const response = await fetch("/api/events", {
           method: "POST",
-          body: JSON.stringify({ eventName, eventTime, eventLocation, latitude, longitude }),
+          body: JSON.stringify({ location, latitude, longitude, time, name, }),
           headers: { "Content-Type": "application/json" },
         });
 
