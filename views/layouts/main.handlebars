@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/jass.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://maps.googleapis.com/maps/api/js?key="></script>
-    {{!-- <script src="../../public/js/dashboard-map.js"></script> --}}
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
@@ -30,9 +29,9 @@
                             <h1 id="nav-home-title" class="nav-title">Dashboard</h1>
                         </div>
                         <a href="/createEvent">
-                            <div id="nav-home" class="nav-selection">
-                                <img id="nav-home-icon" class="nav-icon" src="icons/home-nav.svg">
-                                <h1 id="nav-home-title" class="nav-title">Create Event</h1>
+                            <div id="nav-event" class="nav-selection">
+                                <img id="nav-event-icon" class="nav-icon" src="icons/create-event-nav.svg">
+                                <h1 id="nav-event-title" class="nav-title">Create Event</h1>
                             </div>
                         </a>
 <!-- added here, but not sure if we want to make this a modal or separate page -->
@@ -61,6 +60,7 @@
         <script src="js/dashboardMap.js"></script>
         <script src="js/displayEvents.js"></script>
         <script src="js/loginPopup.js"></script>
+        <script src="js/createEvent.js"></script>
     </body>
 
 </html>
