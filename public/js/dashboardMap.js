@@ -1,11 +1,10 @@
-// const init = require("connect-session-sequelize");
-
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     console.log("Fetching API key...");
 
     // Fetch the API key from your server
     const response = await fetch("/api-key");
+    if (!response.ok) throw new Error("Failed to fetch API key");
     const data = await response.json();
     const apiKey = data.apiKey;
 
@@ -14,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Initialize the Google Maps API with the fetched API key
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
 
     script.onload = () => {
@@ -38,9 +39,10 @@ document.addEventListener("DOMContentLoaded", async () => {
               });
 
               const events = await eventsResponse.json();
-              const eventsArray = events.data || [];
-
               console.log("Nearby events:", events);
+
+              // Store events in local storage
+              localStorage.setItem('nearbyEvents', JSON.stringify(events));
 
               function initMap() {
                 // The location for the center of the map (latitude and longitude)
@@ -56,7 +58,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   }
                 );
 
-                // The circle, positioned at the location
                 const cityCircle = new google.maps.Circle({
                   strokeColor: "#4285f4",
                   strokeOpacity: 0.8,
@@ -104,11 +105,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function displayEventsOnMap(map, events) {
-
   if (!Array.isArray(events)) {
     console.error("Events data is not an array:", events);
     return;
-  };
+  }
 
   events.forEach((event) => {
     const marker = new google.maps.Marker({
@@ -117,34 +117,11 @@ function displayEventsOnMap(map, events) {
     });
 
     const infoWindow = new google.maps.InfoWindow({
-      content: `<h3>${event.name}</h3><p>${event.description}</p>`,
+      content: `<h3>${event.name}</h3><p>${event.time}</p>`,
     });
 
-    marker.addEventListener("click", () => {
+    marker.addListener("click", () => {
       infoWindow.open(map, marker);
     });
   });
 }
-
-// getLocation();
-
-// function initMap() {
-//     // The location for the center of the map (latitude and longitude)
-//     let location = { lat: 33.0050, lng: -96.5698 };
-
-//     // The map, centered at the location
-//     const map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 16,
-//         center: location,
-//         disableDefaultUI: true,
-//     });
-
-//     // The marker, positioned at the location
-//     const marker = new google.maps.Marker({
-//         position: location,
-//         map: map,
-//     });
-// };
-
-// // Load the map once the page has fully loaded
-// window.onload = initMap;

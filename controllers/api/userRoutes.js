@@ -70,6 +70,15 @@ router.post("/set-geolocation", (req, res) => {
   }
 });
 
+router.get("/geolocation", async (req, res) => {
+  if (req.session && req.session.geolocation) {
+    res.status(200).json(req.session.geolocation);
+    console.log(req.session);
+  } else {
+    res.status(404).json({ message: "Geolocation not found in session" });
+  }
+});
+
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
