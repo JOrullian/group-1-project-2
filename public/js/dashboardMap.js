@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               });
 
               const events = await eventsResponse.json();
+              const eventsArray = events.data || [];
 
               console.log("Nearby events:", events);
 
@@ -103,6 +104,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function displayEventsOnMap(map, events) {
+
+  if (!Array.isArray(events)) {
+    console.error("Events data is not an array:", events);
+    return;
+  };
+
   events.forEach((event) => {
     const marker = new google.maps.Marker({
       position: { lat: event.latitude, lng: event.longitude },
@@ -113,7 +120,7 @@ function displayEventsOnMap(map, events) {
       content: `<h3>${event.name}</h3><p>${event.description}</p>`,
     });
 
-    marker.addListner("click", () => {
+    marker.addEventListener("click", () => {
       infoWindow.open(map, marker);
     });
   });

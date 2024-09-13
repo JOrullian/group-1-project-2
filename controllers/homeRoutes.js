@@ -44,6 +44,11 @@ router.get('/event/:id', async (req, res) => {
   }
 });
 
+router.get('/create-event', withAuth, (req, res) => {
+  // Render the 'createEvent' view
+  res.render('createEvent', { logged_in: req.session.logged_in });
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {

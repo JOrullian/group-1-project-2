@@ -2,16 +2,43 @@
   {
     "name": "Basketball 5v5",
     "location": "Bill Nye Park",
-    "time": "5 Pm"
+    "time": "5 Pm",
+    "latitude": "33.102081",
+    "longitude": "-96.931959"
   },
   {
     "name": "Pickleball Friendly Tournament",
     "location": "Chicken 'n Pickle",
-    "time": "5 Pm"
+    "time": "5 Pm",
+    "latitude": "32.701553",
+    "longitude": "-97.026181"
   },
   {
     "name": "Flag Football 4v4",
     "location": "Clyde Warren Park",    
-    "time": "5 Pm"
+    "time": "5 Pm",
+    "latitude": "32.790284",
+    "longitude": "-96.802332"
+  },
+  {
+    "name": "Soccer Tourney",
+    "location": "Waxahachie Sports Complex",
+    "time": "12:00 PM",
+    "latitude": "32.406205",
+    "longitude": "-96.818484"
+  },
+  {
+    "name": "Quidditch",
+    "location": "Waxahachie High School",
+    "time": "8:00 AM",
+    "latitude": "32.426118",
+    "longitude": "-96.891322"
+  },
+  {
+    "name": "7 v 7 Football",
+    "location": "Matthews Park",
+    "time": "12:00 PM",
+    "latitude": "32.418443",
+    "longitude": "-96.810790"
   }
 ]
