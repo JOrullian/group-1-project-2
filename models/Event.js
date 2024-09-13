@@ -13,17 +13,18 @@ Event.init(
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     latitude: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      // allowNull: false,
     },
     longitude: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      // allowNull: false,
     },
     time: {
+      // Change STRING data type to DATE
       type: DataTypes.STRING,
     },
     name: {
@@ -39,7 +40,7 @@ Event.init(
     },
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: false,
+      // allowNull: false,
       defaultValue: [],
     },
   },
