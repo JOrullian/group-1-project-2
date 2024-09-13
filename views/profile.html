@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/reset.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+    <body class="create-event-body">
+        <div class="create-event-container">
+            <div class="create-event-window">
+                <h1 class="create-event-title">Create a new event!</h1>
+                <div class="create-event-divider"></div>
+                <form class="create-event-form">
+                    <div class="create-event-input-line">
+                        <h2 class="create-event-titles">Event name:</h2>
+                        <input class="create-event-inputs" type="text" placeholder="Enter name" required>
+                    </div>
+                    <div class="create-event-input-line">
+                        <h2 class="create-event-titles">Location:</h2>
+                        <input class="create-event-inputs" type="text" placeholder="Enter address or location" required>
+                    </div>
+                    <div class="create-event-input-line">
+                        <h2 class="create-event-titles">Start time:</h2>
+                        <input class="create-event-inputs" type="datetime-local" required>
+                    </div>
+                    <div class="create-event-input-line">
+                        <h2 class="create-event-titles">Sport:</h2>
+                        <select class="create-event-selection-container" required>
+                            <option value="" disabled selected>Pick a sport!</option>
+                            <option value="basketball">Basketball</option>
+                            <option value="soccer">Soccer</option>
+                            <option value="football">Football</option>
+                            <option value="pickleball">Pickleball</option>
+                            <option value="tennis">Tennis</option>
+                            <option value="raquetball">Raquetball</option>
+                            <option value="baseball">Baseball</option>
+                            <option value="volleyball">Volleyball</option>
+                            <option value="lacrosse">Lacrosse</option>
+                            <option value="hockey">Hockey</option>
+                        </select>
+                    </div>
+                    <div class="create-event-input-line">
+                        <h2 class="create-event-titles">Number of players:</h2>
+                        <input class="create-event-inputs" type="number" placeholder="Select a number" required>
+                    </div>
+                    <button class="create-event-btn">Create event</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
