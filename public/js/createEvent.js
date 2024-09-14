@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const createEventButton = document.querySelector("#create-event-btn");
+  const createEventBtn = document.querySelector(".nav-create-event")
 
-  if (createEventButton) {
-    createEventButton.addEventListener("click", () => {
+  if (createEventBtn) {
+    createEventBtn.addEventListener("click", () => {
       // Redirect to the create event page
       window.location.href = "/createEvent";
     });
@@ -55,7 +56,7 @@ const eventFormHandler = async (event) => {
         });
 
         if (response.ok) {
-          document.location.replace("/"); // Redirect to the homepage or desired page
+          document.location.replace("/dashboard"); // Redirect to the homepage or desired page
         } else {
           alert(response.statusText);
         }

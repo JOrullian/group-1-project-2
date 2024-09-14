@@ -9,9 +9,19 @@ router.get('/api-key', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_API_KEY });
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    res.render('dashboard', { logged_in: req.session.logged_in });
+    res.render('dashboard');
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
+
+router.get('/signup-walkthrough', async (req, res) => {
+  try {
+    res.render('signup-walkthrough',
+      // { logged_in: req.session.logged_in }
+    );
   } catch (error) {
     res.status(500).json(error)
   }
@@ -52,9 +62,11 @@ router.get('/event/:id', async (req, res) => {
   }
 });
 
-router.get('/createEvent', (req, res) => {
+router.get('/createEvent', withAuth, (req, res) => {
   // Render the 'createEvent' view
-  res.render('createEvent', { logged_in: req.session.logged_in });
+  res.render('createEvent',
+    // { logged_in: req.session.logged_in }
+  );
 });
 
 router.get('/login', (req, res) => {

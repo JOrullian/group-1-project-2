@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 router.post("/", async (req, res) => {
   // Create new user
@@ -43,7 +44,7 @@ router.post("/login", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.json({ user: userData, message: "You are now logged in!" });
+      res.json({ message: "You are now logged in!" });
     });
   } catch (err) {
     res.status(500).json({ message: "Login failed due to server error", error: err });
@@ -51,10 +52,10 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/check-login", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.logged_in === true) {
     res.status(200).json({ logged_in: true });
   } else {
-    res.status(200).json({ logged_in: false });
+    res.status(401).json({ logged_in: false });
   }
 });
 
@@ -79,13 +80,14 @@ router.get("/geolocation", async (req, res) => {
   }
 });
 
-router.post("/logout", (req, res) => {
+router.delete("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+
+      res.status(204).send();
     });
   } else {
-    res.status(404).end();
+    res.status(404).send();
   }
 });
 
