@@ -47,12 +47,12 @@ loginForm.addEventListener('submit', async (event) => {
 
 
 
-signupBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+// signupBtn.addEventListener('click', (event) => {
+//     event.preventDefault();
 
-    loginPopUpCont.remove();
-    document.location.replace("/signup-walkthrough")
-})
+//     loginPopUpCont.remove();
+//     document.location.replace("/signup-walkthrough")
+// })
 //     let currentPageIndex = 0; // Track the current page
 //     const translateAmount = 16.66666667; // Assuming you want to slide 100% per page
 //     const signupPagesContainer = document.querySelector('.signup-pages'); // Container of all pages
