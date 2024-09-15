@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="event-info-container">
           <div class="event-info-title-container">
             <h3 class="event-info-title">${event.name}</h3>
-            <h4>${event.type}</h4> <!-- Adjust according to your event data -->
+            <h4>${event.type}</h4>
           </div>
           <div class="event-info-separator-container">
             <div class="event-info-separator"></div>
@@ -42,7 +42,33 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
+      // Append each event to the container
       eventsContainer.appendChild(eventElement);
+
+      // Add event listener for the "More Info" button
+      const moreInfoBtn = eventElement.querySelector('.more-info-btn');
+
+      moreInfoBtn.addEventListener('click', () => {
+        // Check if the details div already exists, if so, remove it
+        let eventDetails = eventElement.querySelector('.event-details');
+        if (eventDetails) {
+          eventDetails.remove(); // Remove existing details if present
+          moreInfoBtn.textContent = "More Info"; // Reset button text
+        } else {
+          // Create and append the event details dynamically
+          eventDetails = document.createElement('div');
+          eventDetails.classList.add('event-details');
+          eventDetails.innerHTML = `
+            <div>
+              <p><strong>Location:</strong> ${event.location}</p>
+              <p><strong>Description:</strong> ${event.description || 'No description available.'}</p>
+              <p><strong>Participants:</strong> ${event.participants || 'No participants yet.'}</p>
+            </div>
+          `;
+          eventElement.appendChild(eventDetails); // Append details to the event container
+          moreInfoBtn.textContent = "Less Info"; // Change button text
+        }
+      });
     });
   } else {
     console.log("No nearby events data found in local storage.");
