@@ -31,6 +31,9 @@ Event.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    sportType: {
+      type: DataTypes.STRING,
+    },
     createdBy: {
       type: DataTypes.INTEGER,
       references: {
