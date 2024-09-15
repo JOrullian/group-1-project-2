@@ -744,7 +744,6 @@
   background-color: var(--lightBlue);
 }
 
-<<<<<<< HEAD
 /* Profile Page Styling */
 
 .profile-container {
@@ -760,7 +759,8 @@
   height: 60%;
   width: 30%;
   background-color: #243b6d;
-=======
+}
+
 .profile-title {
   font-size: 36px;
 }
@@ -782,5 +782,4 @@
   font-family: 'Poppins';
   font-size: 90%;
   cursor: pointer;
->>>>>>> 380bb6fdbfde0a9af045f2105a0d1aa857032a5f
 }
