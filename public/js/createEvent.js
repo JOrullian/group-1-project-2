@@ -22,55 +22,58 @@ const eventFormHandler = async (event) => {
 
   const eventName = document.querySelector("#event-name").value.trim();
   const eventTime = document.querySelector("#start-time").value.trim();
-  const eventLocation = document.querySelector("#event-location").value.trim();
+  const placeName = document.querySelector("#event-location").value.trim(); // This is the name of the place
 
-  const response = await fetch("/api-key");
-  if (!response.ok) throw new Error("Failed to fetch API key");
-  const data = await response.json();
-  const apiKey = data.apiKey;
+  if (!eventName || !eventTime || !placeName || placeName.length < 3) {
+    alert("Please fill in all fields with valid information.");
+    return;
+  }
 
-  if (eventName && eventTime && eventLocation) {
-    try {
-      // Fetch the latitude and longitude using the Geocoding API
-      const geoResponse = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-          eventLocation
-        )}&key=${apiKey}`
-      );
-      const geoData = await geoResponse.json();
+  try {
+    // Fetch the Google API key from your server
+    const response = await fetch("/api-key");
+    if (!response.ok) throw new Error("Failed to fetch API key");
+    const data = await response.json();
+    const apiKey = data.apiKey;
 
-      if (geoData.results && geoData.results.length > 0) {
-        const location = geoData.results[0].geometry.location;
-        const latitude = location.lat;
-        const longitude = location.lng;
+    // Fetch latitude and longitude using the Google Places API
+    const placesResponse = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(placeName)}&key=${apiKey}`
+    );
 
-        console.log("Geocoded coordinates:", latitude, longitude);
+    const placesData = await placesResponse.json();
+    console.log("Places API response:", placesData);
 
-        // Send the event details, along with latitude and longitude, to your server
-        const response = await fetch("/api/events", {
-          method: "POST",
-          body: JSON.stringify({
-            location: eventLocation,
-            latitude,
-            longitude,
-            time: eventTime,
-            name: eventName,
-          }),
-          headers: { "Content-Type": "application/json" },
-        });
+    if (placesData.results && placesData.results.length > 0) {
+      const location = placesData.results[0].geometry.location;
+      const latitude = location.lat;
+      const longitude = location.lng;
 
-        if (response.ok) {
-          document.location.replace("/dashboard"); // Redirect to the homepage or desired page
-          document.window.reload;
-        } else {
-          alert(response.statusText);
-        }
+      console.log("Coordinates from place name:", latitude, longitude);
+
+      // Now use the coordinates as the event location in your geocoding request (or skip to event creation)
+      const createResponse = await fetch("/api/events", {
+        method: "POST",
+        body: JSON.stringify({
+          location: placeName, // Store the place name as location
+          latitude,
+          longitude,
+          time: eventTime,
+          name: eventName,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (createResponse.ok) {
+        document.location.replace("/dashboard"); // Redirect to the dashboard
       } else {
-        alert("Failed to get location coordinates.");
+        alert("Failed to create event: " + createResponse.statusText);
       }
-    } catch (err) {
-      console.error("Error fetching geocoding data", err);
-      alert("Error fetching geocoding data");
+    } else {
+      alert("Place not found. Please try a more specific name.");
     }
+  } catch (err) {
+    console.error("Error fetching place data:", err);
+    alert("Error fetching place data: " + err.message);
   }
 };
