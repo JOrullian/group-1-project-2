@@ -59,7 +59,7 @@
               />
               <h1 id="nav-explore-title" class="nav-title">Explore</h1>
             </div>
-            <div id="nav-profile" class="nav-selection">
+            <div id="nav-profile" class="nav-selection" onclick="goToProfile()">
               <img
                 id="nav-profile-icon"
                 class="nav-icon"
@@ -80,6 +80,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
       function goToDashboard() { window.location.href = '/dashboard'; }
+      function goToProfile() { window.location.href = '/profile'; }
     </script>
     <script src="js/showLocalEventsList.js"></script>
     <script src="js/navbar.js"></script>
