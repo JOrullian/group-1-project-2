@@ -14,6 +14,8 @@ router.post("/", async (req, res) => {
   try {
     const { location, latitude, longitude, time, name } = req.body;
 
+    console.log(req.body)
+
     const newEvent = await Event.create({
       location,
       latitude,
@@ -24,8 +26,8 @@ router.post("/", async (req, res) => {
     })
 
     res.status(200).json(newEvent)
-    }
-   catch (err) {
+  }
+  catch (err) {
     res.status(400).json(err);
   }
 });

@@ -35,7 +35,7 @@
           </a>
           <!-- added here, but not sure if we want to make this a modal or separate page -->
 
-          <div id="nav-explore" class="nav-selection nav-create-event">
+          <div id="nav-explore" class="nav-selection nav-create-event" onclick="goToExplore()">
             <img id="nav-explore-icon" class="nav-icon" src="icons/explore-nav.svg" />
             <h1 id="nav-explore-title" class="nav-title">Explore</h1>
           </div>
@@ -63,6 +63,7 @@
   <script>
     function goToHomepage() { window.location.href = '/'; }
     function goToDashboard() { window.location.href = '/dashboard'; }
+    function goToExplore() { window.location.href = '/explore'; }
   </script>
   <script src="js/showLocalEventsList.js"></script>
   <script src="js/navbar.js"></script>

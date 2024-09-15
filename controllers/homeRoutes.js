@@ -27,6 +27,14 @@ router.get('/signup-walkthrough', async (req, res) => {
   }
 });
 
+router.get('/explore', withAuth, async (req, res) => {
+  try {
+    res.render('explore');
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
+
 // Pull list of events for dashboard
 router.get('/', async (req, res) => {
   try {

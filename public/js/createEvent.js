@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const createEventButton = document.querySelector("#create-event-btn");
   const createEventBtn = document.querySelector(".nav-create-event")
 
   if (createEventBtn) {
@@ -22,8 +21,13 @@ const eventFormHandler = async (event) => {
   event.preventDefault();
 
   const eventName = document.querySelector("#event-name").value.trim();
-  const eventTime = document.querySelector("#event-time").value.trim();
+  const eventTime = document.querySelector("#start-time").value.trim();
   const eventLocation = document.querySelector("#event-location").value.trim();
+
+  const response = await fetch("/api-key");
+  if (!response.ok) throw new Error("Failed to fetch API key");
+  const data = await response.json();
+  const apiKey = data.apiKey;
 
   if (eventName && eventTime && eventLocation) {
     try {
@@ -31,7 +35,7 @@ const eventFormHandler = async (event) => {
       const geoResponse = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
           eventLocation
-        )}&key=YOUR_GOOGLE_MAPS_API_KEY`
+        )}&key=${apiKey}`
       );
       const geoData = await geoResponse.json();
 
