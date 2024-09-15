@@ -18,7 +18,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
-<body>
+<body data-logged-in="{{logged_in}}">
   <main id="main-container" class="main-container">
     <div class="navbar-container">
       <nav class="navbar">
@@ -39,16 +39,16 @@
             <img id="nav-explore-icon" class="nav-icon" src="icons/explore-nav.svg" />
             <h1 id="nav-explore-title" class="nav-title">Explore</h1>
           </div>
-          <div id="nav-profile" class="nav-selection">
+          <div id="nav-profile" class="nav-selection" onclick="goToProfile()">
             <img id="nav-profile-icon" class="nav-icon" src="icons/profile-nav.svg" />
             <h1 id="nav-profile-title" class="nav-title">Profile</h1>
           </div>
-          {{#if logged_in}}
+          {{!--
           <div id="nav-logout" class="nav-selection nav-logout">
             <img id="nav-logout-icon" class="nav-icon" src="icons/profile-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-          </div>
-          {{/if}}
+          </div> --}}
+
         </div>
       </nav>
     </div>
@@ -64,6 +64,7 @@
     function goToHomepage() { window.location.href = '/'; }
     function goToDashboard() { window.location.href = '/dashboard'; }
     function goToExplore() { window.location.href = '/explore'; }
+    function goToProfile() { window.location.href = '/profile'; }
   </script>
   <script src="js/showLocalEventsList.js"></script>
   <script src="js/navbar.js"></script>

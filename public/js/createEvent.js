@@ -61,6 +61,7 @@ const eventFormHandler = async (event) => {
 
         if (response.ok) {
           document.location.replace("/dashboard"); // Redirect to the homepage or desired page
+          document.window.reload;
         } else {
           alert(response.statusText);
         }
