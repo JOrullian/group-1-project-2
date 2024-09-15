@@ -95,6 +95,11 @@ router.get('/createEvent', withAuth, (req, res) => {
   );
 });
 
+router.get('/profile', (req, res) => {
+  // Render the profile' view
+  res.render('profile', { logged_in: req.session.logged_in });
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {

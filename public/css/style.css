@@ -744,6 +744,23 @@
   background-color: var(--lightBlue);
 }
 
+/* Profile Page Styling */
+
+.profile-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Poppins";
+}
+
+.profile-info-window {
+  height: 60%;
+  width: 30%;
+  background-color: #243b6d;
+}
+
 .profile-title {
   font-size: 36px;
 }
