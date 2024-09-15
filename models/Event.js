@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Event extends Model {}
+class Event extends Model { }
 
 Event.init(
   {
@@ -25,7 +25,7 @@ Event.init(
     },
     time: {
       // Change STRING data type to DATE
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
     },
     name: {
       type: DataTypes.STRING,
