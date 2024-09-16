@@ -1,35 +1,34 @@
-{{!-- <section class="profile-container">
+<section class="profile-container">
     <div class="profile-info-window">
-
-    </div>
-</section> --}}
-<div class="saved-events-container">
-    <div class="saved-events-header">
-        <h1 class="profile-title">User Profile</h1>
-
-    </div>
-    <div class="division-bar"></div>
-    <div class="saved-events-list">
-        <p class="profile-information" id="profile-username">UserName: {{username}}</p>
-        </br>
-        </br>
-        <p class="profile-information" id="profile-email">Email: {{email}}</p>
-        </br>
-        </br>
-        <p class="profile-information" id="profile-firstname">First Name: {{firstname}}</p>
-        </br>
-        </br>
-        <p class="profile-information" id="profile-location">Preferred Location: {{location}}</p>
-        </br>
-        </br>
-        <p class="profile-information" id="profile-preferred-sport">Preferred Sport: {{preferred_sport}}</p>
-        </br>
-        </br>
-        <p class="profile-information" id="profile-play_frequency">How often do you play?: {{play_frequency}}</p>
-        </br>
-        </br>
-        <div class="profile-logout"></div>
-        <button id="logout-btn" class="logout-btn">Logout</button>
+        <div class="profile-picture-container">
+            <img class="profile-picture" src="/icons/signup-player-icon.svg">
+            <div class="profile-personal-info-container">
+                <h1 class="personal-info-name">{{firstname}}</h1>
+                <h2 class="personal-info-location">{{location}}</h2>
+            </div>
+        </div>
+        <div class="profile-header-art"></div>
+        <div class="profile-info-container">
+            <div class="contact-info-container">
+                <div class="contact-info-line">
+                    <h4 class="contact-info-line-title">Sport:</h4>
+                    <h4 class="contact-info-line-data">{{preferred-sport}}</h4>
+                </div>
+                <div class="contact-info-line">
+                    <h4 class="contact-info-line-title">Avaiable to play:</h4>
+                    <h4 class="contact-info-line-data">{{play_frequency}}</h4>
+                </div>
+                <div class="contact-info-line">
+                    <h4 class="contact-info-line-title">Username:</h4>
+                    <h4 class="contact-info-line-data">{{username}}</h4>
+                </div>
+                <div class="contact-info-line">
+                    <h4 class="contact-info-line-title">Email:</h4>
+                    <h4 class="contact-info-line-data">{{email}}</h4>
+                </div>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</div>
+</section>
