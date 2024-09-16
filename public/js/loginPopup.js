@@ -166,44 +166,58 @@ const showLoginPopup = () => {
     loginExitBtn.on('click', () => {
         loginPopUpCont.remove();
     });
-
-    loginExitBtn.on('click', (event) => {
-        event.preventDefault();
-        loginPopUpCont.remove();
-    });
-
+    
     loginForm.on('submit', async (event) => {
         event.preventDefault();
 
         const usernameInput = $('.username-input').val();
         const passwordInput = $('.password-input').val();
 
-        try {
-            // Send a POST request to the login endpoint
+        if (usernameInput && passwordInput) {
             const response = await fetch('/api/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: usernameInput, password: passwordInput })
             });
 
-            const data = await response.json();
-            console.log(response)
             if (response.ok) {
-                // If login is successful
-                userLoggedIn = true;
-                console.log('User logged in:', data);
-
-                loginPopUpCont.remove();
-                document.location.replace("/dashboard")
+                document.location.replace('/dashboard')
             } else {
-                // If login fails, show an error message
-                console.error('Login failed:', data.message);
-                alert('Login failed: ' + data.message);
+                alert(response.statusText)
             }
-        } catch (error) {
-            console.error('Error during login:', error);
-            alert('An error occurred during login. Please try again.');
         }
+
+        // try {
+        //     // Send a POST request to the login endpoint
+        //     const response = await fetch('/api/users/login', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify({ username: usernameInput, password: passwordInput })
+        //     });
+
+        //     const data = await response.json();
+
+        //     console.log(response);
+        //     console.log(data);
+
+        //     if (response.ok) {
+        //         // If login is successful
+        //         // userLoggedIn = true;
+        //         console.alert('User logged in:', data);
+
+        //         localStorage.setItem('loggedInUserId', data.user.id);
+    
+        //         loginPopUpCont.remove();
+        //         document.location.replace("/dashboard")
+        //     } else {
+        //         // If login fails, show an error message
+        //         console.error('Login failed:', data.message);
+        //         alert('Login failed: ' + data.message);
+        //     }
+        // } catch (error) {
+        //     console.error('Error during login:', error);
+        //     alert('An error occurred during login. Please try again.');
+        // }
     });
 
     // const signupSubmit = $('#signup-submit-btn'); // Last button to submit
