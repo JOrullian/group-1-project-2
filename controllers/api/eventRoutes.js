@@ -91,30 +91,37 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// PUT route to add user to event participants
-router.put('/:id/join', async (req, res) => {
+router.put("/:id/join", async (req, res) => {
   try {
+    // Find the event by ID
     const event = await Event.findByPk(req.params.id);
+    console.log(event);
 
     if (!event) {
-      return res.status(404).json({ message: 'Event not found' });
+      res.status(404).json({ message: "Event not found!" });
+      return;
     }
 
-    // Add the current user's ID to the participants array if not already added
-    const participants = event.participants || [];
-    if (!participants.includes(req.session.user_id)) {
-      participants.push(req.session.user_id);
-    } else {
-      return res.status(400).json({ message: 'You have already joined this event' });
+    if (!event.participants) {
+      event.participants = [];
     }
 
-    // Update the event's participants
-    await event.update({ participants });
+    // Check if the user is already part of the event
+    if (event.participants.includes(req.session.user_id)) {
+      res.status(400).json({ message: "You have already joined this event!" });
+      return;
+    }
 
-    res.status(200).json({ message: 'Successfully joined the event' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error joining the event', error });
+    // Add the user to the participants list
+    const currentParticipants = event.participants;
+    event.set({ participants: [...currentParticipants, req.session.user_id] });
+    await event.save();
+
+    res
+      .status(200)
+      .json({ message: "You have successfully joined the event!" });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
