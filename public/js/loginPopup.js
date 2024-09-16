@@ -43,7 +43,7 @@ const showLoginPopup = () => {
 
         mainContainer.append(
             `<main class="signup-main-container">
-                <div class="signup-pages">
+                    <div class="signup-pages">
                     <div class="signup-page">
                         <div class="signup-page-window">
                             <img class="signup-player-icon" src="icons/signup-player-icon.svg">
@@ -56,7 +56,7 @@ const showLoginPopup = () => {
                     <div class="signup-page">
                         <div class="signup-page-window">
                             <h1 class="signup-walkthrough-title">What's your name?</h1>
-                            <input placeholder="First name only" class="signup-walkthrough-inputs" type="text" required>
+                            <input placeholder="First name only" class="signup-walkthrough-inputs" id="signup-firstname" type="text" required>
                             <div class="signup-btn-container">
                                 <button class="signup-walkthrough-btn" data-direction="back">Back</button>
                                 <button class="signup-walkthrough-btn" data-direction="next">Next</button>
@@ -66,7 +66,7 @@ const showLoginPopup = () => {
                     <div class="signup-page">
                         <div class="signup-page-window">
                             <h1 class="signup-walkthrough-title">What city are you from?</h1>
-                            <input placeholder="Ex. Dallas, TX" class="signup-walkthrough-inputs" type="text" required>
+                            <input placeholder="Ex. Dallas, TX" class="signup-walkthrough-inputs" id="signup-location" type="text" required>
                             <div class="signup-btn-container">
                                 <button class="signup-walkthrough-btn" data-direction="back">Back</button>
                                 <button class="signup-walkthrough-btn" data-direction="next">Next</button>
@@ -77,7 +77,7 @@ const showLoginPopup = () => {
                         <div class="signup-page-window">
                             <h1 class="signup-walkthrough-title">Which sport do you enjoy most?</h1>
                             <p class="dont-worry">Don't worry, you'll see other games as well :)</p>
-                            <select class="signup-selection-container" required>
+                            <select class="signup-selection-container" id="signup-sportstype" required>
                                 <option value="" disabled selected>Pick a sport!</option>
                                 <option value="basketball">Basketball</option>
                                 <option value="soccer">Soccer</option>
@@ -100,7 +100,7 @@ const showLoginPopup = () => {
                         <div class="signup-page-window">
                             <h1 class="signup-walkthrough-title">How often do<br/> you play?</h1>
                             <div>
-                                <select class="signup-selection-container" required>
+                                <select class="signup-selection-container" id="signup-play-frequency" required>
                                     <option value="" disabled selected>Please select</option>
                                     <option value="monthly">Monthly</option>
                                     <option value="weekly">Weekly</option>
@@ -118,16 +118,15 @@ const showLoginPopup = () => {
                         <div class="signup-page-window">
                             <h1 class="signup-walkthrough-title">Create a username and password</h1>
                             <div class="signup-creds-container">
-                                <input class="signup-walkthrough-inputs" placeholder="Username" type="text" required>
-                                <input class="signup-walkthrough-inputs" placeholder="Password" type="password" required>
-                                <input class="signup-walkthrough-inputs" placeholder="Confirm password" type="password" required>
+                                <input class="signup-walkthrough-inputs" id="signup-email" placeholder="Email" type="Email" required>
+                                <input class="signup-walkthrough-inputs" id="signup-username" placeholder="Username" type="text" required>
+                                <input class="signup-walkthrough-inputs" id="signup-password" placeholder="Password" type="password" required>
+                                <input class="signup-walkthrough-inputs" id="signup-password-confirm" placeholder="Confirm password" type="password" required>
                             </div>
-                            <a href="/dashboard">
-                                <button class="signup-walkthrough-btn">Let's play!</button>
+                                <button class="signup-walkthrough-btn" id="signup-submit-btn">Let's play!</button>
                             </a>
                         </div>
                     </div>
-                </div>
             </main>`
         );
 
@@ -143,7 +142,7 @@ const showLoginPopup = () => {
             } else if (direction === "back" && currentPageIndex > 0) {
                 currentPageIndex--;
             }
-            
+
             // Calculate the translate value based on the current page index
             const translate = -currentPageIndex * translateAmount;
 
@@ -172,7 +171,7 @@ const showLoginPopup = () => {
         event.preventDefault();
         loginPopUpCont.remove();
     });
-    
+
     loginForm.on('submit', async (event) => {
         event.preventDefault();
 
@@ -186,14 +185,14 @@ const showLoginPopup = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: usernameInput, password: passwordInput })
             });
-    
+
             const data = await response.json();
             console.log(response)
             if (response.ok) {
                 // If login is successful
                 userLoggedIn = true;
                 console.log('User logged in:', data);
-    
+
                 loginPopUpCont.remove();
                 document.location.replace("/dashboard")
             } else {
@@ -204,6 +203,62 @@ const showLoginPopup = () => {
         } catch (error) {
             console.error('Error during login:', error);
             alert('An error occurred during login. Please try again.');
+        }
+    });
+
+    // const signupSubmit = $('#signup-submit-btn'); // Last button to submit
+
+    $(document).on('click', '#signup-submit-btn', async (event) => {
+        event.preventDefault();
+
+        const firstnameInput = $('#signup-firstname').val();
+        const locationInput = $('#signup-location').val();
+        const sportsTypeInput = $('#signup-sportstype :selected').val();
+        const playFrequencyInput = $('#signup-play-frequency :selected').val();
+        const usernameInput = $('#signup-username').val();
+        const emailInput = $('#signup-email').val();
+        const passwordInput = $('#signup-password').val();
+        const passwordConfirmInput = $('#signup-password-confirm').val();
+
+        console.log(playFrequencyInput, sportsTypeInput)
+
+        if (passwordInput === passwordConfirmInput) {
+            try {
+                // Send a POST request to the login endpoint
+                const response = await fetch('/api/users', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username: usernameInput,
+                        firstname: firstnameInput,
+                        location: locationInput,
+                        preferredSport: sportsTypeInput,
+                        playFrequency: playFrequencyInput,
+                        password: passwordInput,
+                        email: emailInput
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await response.json();
+                console.log(response)
+                if (response.ok) {
+                    // If login is successful
+                    userLoggedIn = true;
+                    console.log('User logged in:', data);
+
+                    loginPopUpCont.remove();
+                    document.location.replace("/dashboard")
+                } else {
+                    // If login fails, show an error message
+                    console.error('Setup failed:', data.message);
+                    alert('Setup failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error during setup:', error);
+                alert('An error occurred during setup. Please try again.');
+            }
+        } else {
+            alert('Please verify password matches.');
         }
     });
 }

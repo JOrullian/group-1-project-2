@@ -767,9 +767,7 @@
   font-size: 36px;
 }
 
-#profile-username,
-#profile-email,
-#profile-firstname {
+.profile-information {
   font-family: "Poppins";
   font-size: 36px;
 }
@@ -784,7 +782,6 @@
   font-family: "Poppins";
   font-size: 90%;
   cursor: pointer;
-}
 
 /* Map event details window */
 
@@ -828,5 +825,4 @@
   left: 0.5rem;
   height: 2.5rem;
   cursor: pointer;
-
 }
