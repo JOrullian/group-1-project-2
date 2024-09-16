@@ -47,6 +47,7 @@
   background-color: var(--primary);
   border-radius: 1rem;
   transition: .4s ease;
+  overflow: hidden;
 }
 
 .navbar-selections-container {
@@ -60,13 +61,14 @@
 
 .nav-selection {
   height: 3rem;
-  width: 90%;
+  width: 8rem;
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-left: 0.5rem;
-  overflow: hidden;
+  margin-left: .25rem;
   cursor: pointer;
+  background-color: var(--primary);
+  border: none;
 }
 
 .nav-icon {

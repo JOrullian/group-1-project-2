@@ -4,6 +4,11 @@ const { format_date } = require('../../utils/helpers');
 
 const { Event } = require("../../models");
 
+router.get("/", async (req, res) => {
+    const allEvents = await Event.findAll();
+    res.json(allEvents);
+});
+
 router.post("/", async (req, res) => {
   if (!req.session.user_id) {
     return res
