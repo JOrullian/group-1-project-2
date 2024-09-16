@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const geolib = require("geolib");
+const { format_date } = require('../../utils/helpers');
 
 const { Event } = require("../../models");
 
@@ -41,7 +42,6 @@ router.post("/nearby", async (req, res) => {
   try {
     const { latitude, longitude } = req.body;
 
-    // Get all events (in a real app, you'd optimize this to only return events in the user's area)
     const allEvents = await Event.findAll();
 
     // Filter events that are within a certain radius (e.g., 10 km)
@@ -53,7 +53,13 @@ router.post("/nearby", async (req, res) => {
       return distance <= 10000; // 10 kilometers radius
     });
 
-    res.json(nearbyEvents);
+    // Format event dates and times before sending the response
+    const formattedEvents = nearbyEvents.map(event => ({
+      ...event.dataValues,
+      time: format_date(new Date(event.time)) // Ensure event.time is a Date object
+    }));
+
+    res.json(formattedEvents);
   } catch (err) {
     res
       .status(500)
