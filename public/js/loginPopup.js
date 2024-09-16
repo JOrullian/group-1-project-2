@@ -222,8 +222,6 @@ const showLoginPopup = () => {
 
         console.log(playFrequencyInput, sportsTypeInput)
 
-        console.log(passwordConfirmInput, passwordInput)
-
         if (passwordInput === passwordConfirmInput) {
             try {
                 // Send a POST request to the login endpoint
@@ -248,8 +246,8 @@ const showLoginPopup = () => {
                     userLoggedIn = true;
                     console.log('User logged in:', data);
 
-                    // loginPopUpCont.remove();
-                    // document.location.replace("/dashboard")
+                    loginPopUpCont.remove();
+                    document.location.replace("/dashboard")
                 } else {
                     // If login fails, show an error message
                     console.error('Setup failed:', data.message);

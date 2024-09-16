@@ -30,7 +30,6 @@ User.init(
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     preferred_sport: {
       type: DataTypes.STRING,
