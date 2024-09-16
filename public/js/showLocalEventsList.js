@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const eventElement = document.createElement('div');
       eventElement.classList.add('event-container');
 
+      const dateTimeString = event.time;
+      const dateObject = new Date(dateTimeString);
+
+      // Format Date
+      const formattedDate = dateObject.toLocaleDateString();
+      const formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
       eventElement.innerHTML = `
         <div class="event-icon-container">
           <img src="icons/${event.icon || 'default-icon.svg'}" class="event-icon">
@@ -27,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="event-location-info-container">
             <div class="event-date-time-container">
               <h3 class="event-time-title">Start Time</h3>
-              <h4 class="event-time">${event.time}</h4>
+              <h4 class="event-time">${formattedTime}</h4>
             </div>
             <div class="event-open-spots-container">
               <div class="event-open-slots-board">

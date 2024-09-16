@@ -48,7 +48,7 @@ router.post("/nearby", async (req, res) => {
       return distance <= 10000; // 10 kilometers radius
     });
 
-    // Format event dates before sending the response
+    // Format event dates and times before sending the response
     const formattedEvents = nearbyEvents.map(event => ({
       ...event.dataValues,
       time: format_date(new Date(event.time)) // Ensure event.time is a Date object
