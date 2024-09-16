@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Event extends Model { }
+class Event extends Model {}
 
 Event.init(
   {
@@ -13,18 +13,17 @@ Event.init(
     },
     location: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     latitude: {
       type: DataTypes.FLOAT,
-      // allowNull: false,
+      allowNull: false,
     },
     longitude: {
       type: DataTypes.FLOAT,
-      // allowNull: false,
+      allowNull: false,
     },
     time: {
-      // Change STRING data type to DATE
       type: DataTypes.DATE,
     },
     name: {
@@ -34,7 +33,7 @@ Event.init(
     sportType: {
       type: DataTypes.STRING,
     },
-    createdBy: {
+    created_by: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
@@ -43,7 +42,6 @@ Event.init(
     },
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      // allowNull: false,
       defaultValue: [],
     },
   },

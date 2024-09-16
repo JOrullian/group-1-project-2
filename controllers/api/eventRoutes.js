@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const geolib = require("geolib");
-const { format_date } = require('../../utils/helpers');
+const { format_date } = require("../../utils/helpers");
 
 const { Event } = require("../../models");
 
@@ -18,9 +18,9 @@ router.post("/", async (req, res) => {
 
   // Create a new event
   try {
-    const { location, latitude, longitude, time, name } = req.body;
+    const { location, latitude, longitude, time, name, sportType } = req.body;
 
-    console.log(req.body)
+    console.log(req.body);
 
     const newEvent = await Event.create({
       location,
@@ -29,11 +29,11 @@ router.post("/", async (req, res) => {
       time,
       name,
       user_id: req.session.user_id,
-    })
+      sportType,
+    });
 
-    res.status(200).json(newEvent)
-  }
-  catch (err) {
+    res.status(200).json(newEvent);
+  } catch (err) {
     res.status(400).json(err);
   }
 });
@@ -42,7 +42,16 @@ router.post("/nearby", async (req, res) => {
   try {
     const { latitude, longitude } = req.body;
 
+    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+      return res.status(400).json({ message: "Invalid coordinates" });
+    }
+
     const allEvents = await Event.findAll();
+
+    // Check if events are being retrieved
+    if (!allEvents.length) {
+      return res.status(404).json({ message: "No events found" });
+    }
 
     // Filter events that are within a certain radius (e.g., 10 km)
     const nearbyEvents = allEvents.filter((event) => {
@@ -53,17 +62,21 @@ router.post("/nearby", async (req, res) => {
       return distance <= 10000; // 10 kilometers radius
     });
 
+    // Check if nearbyEvents has been correctly filtered
+    if (!nearbyEvents.length) {
+      return res.status(404).json({ message: "No nearby events found" });
+    }
+
     // Format event dates and times before sending the response
-    const formattedEvents = nearbyEvents.map(event => ({
+    const formattedEvents = nearbyEvents.map((event) => ({
       ...event.dataValues,
-      time: format_date(new Date(event.time)) // Ensure event.time is a Date object
+      time: format_date(new Date(event.time)), // Ensure event.time is a Date object
     }));
 
     res.json(formattedEvents);
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Error finding nearby events", error: err });
+    console.error("Error finding nearby events", err);
+    res.status(500).json({ message: "Error finding nearby events", error: err.message });
   }
 });
 

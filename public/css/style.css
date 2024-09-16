@@ -94,7 +94,7 @@
 }
 
 .nav-title {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   color: #ffffff;
   font-size: 130%;
   font-weight: 500;
@@ -242,7 +242,7 @@
 .event-info-title {
   font-size: 150%;
   font-weight: 500;
-  margin-bottom: .2rem;
+  margin-bottom: 0.2rem;
 }
 
 .event-info-separator-container {
@@ -296,7 +296,7 @@
   height: 90%;
   width: 95%;
   background-color: #fafafa;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -328,7 +328,7 @@
   width: 100%;
   height: 2rem;
   color: white;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 90%;
   cursor: pointer;
 }
@@ -372,8 +372,8 @@
 
 .selection-info-close-btn {
   position: absolute;
-  top: .5rem;
-  left: .5rem;
+  top: 0.5rem;
+  left: 0.5rem;
   height: 2.5rem;
   cursor: pointer;
 }
@@ -414,8 +414,8 @@
 
 .login-close-btn {
   position: absolute;
-  top: .5rem;
-  left: .5rem;
+  top: 0.5rem;
+  left: 0.5rem;
   height: 2.5rem;
   cursor: pointer;
 }
@@ -431,7 +431,7 @@
 }
 
 .login-form-title {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 200%;
   font-weight: 600;
   color: #bdbbbb;
@@ -452,7 +452,7 @@
 }
 
 .login-inputs {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   height: 2rem;
   width: 80%;
   border: none;
@@ -502,7 +502,7 @@
 }
 
 .signup-form-title {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 200%;
   font-weight: 600;
   color: #ffffff;
@@ -532,7 +532,7 @@
   height: 100svh;
   width: 100%;
   overflow: hidden;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   background-color: #454a53d2;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
@@ -542,7 +542,7 @@
 .signup-pages {
   width: 600%;
   display: flex;
-  transition: transform .7s ease;
+  transition: transform 0.7s ease;
 }
 
 .signup-page {
@@ -553,7 +553,7 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  transition: all .7s ease;
+  transition: all 0.7s ease;
 }
 
 .signup-page-window {
@@ -583,7 +583,7 @@
 
 .signup-walkthrough-btn {
   background-color: var(--primary);
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 120%;
   color: white;
   border: none;
@@ -599,7 +599,7 @@
 }
 
 .signup-walkthrough-inputs {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   height: 2rem;
   width: 50%;
   border: none;
@@ -613,18 +613,18 @@
 
 .special-you-style {
   font-size: 120%;
-  color: #FD8469;
+  color: #fd8469;
 }
 
 .dont-worry {
   color: #bdbbbb;
   font-size: 80%;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .signup-selection-container {
   height: 2rem;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   width: 10rem;
   border: none;
   border-bottom: 2px solid #e7e7e7;
@@ -702,7 +702,7 @@
 }
 
 .create-event-inputs {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   height: 2rem;
   width: 40%;
   border: none;
@@ -717,7 +717,7 @@
 
 .create-event-selection-container {
   height: 2rem;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   width: 40%;
   border: none;
   border-bottom: 2px solid #e7e7e7;
@@ -737,7 +737,7 @@
   width: 9rem;
   border-radius: 2rem;
   color: white;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   cursor: pointer;
   font-size: 110%;
 }
@@ -770,7 +770,7 @@
 #profile-username,
 #profile-email,
 #profile-firstname {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 36px;
 }
 
@@ -781,7 +781,7 @@
   width: 100%;
   height: 2rem;
   color: white;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-size: 90%;
   cursor: pointer;
 }

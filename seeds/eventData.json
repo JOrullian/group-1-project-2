@@ -4,48 +4,55 @@
     "location": "Bill Nye Park",
     "time": "2024-01-15T14:30:00Z",
     "latitude": "33.046341",
-    "longitude": "-96.994171"
+    "longitude": "-96.994171",
+    "sportType": "basketball"
   },
   {
     "name": "Pickleball Friendly Tournament",
     "location": "Chicken 'n Pickle",
     "time": "2024-04-08T09:45:00Z",
     "latitude": "32.701553",
-    "longitude": "-97.026181"
+    "longitude": "-97.026181",
+    "sportType": "pickleball"
   },
   {
     "name": "Flag Football 4v4",
-    "location": "Clyde Warren Park",    
+    "location": "Clyde Warren Park",
     "time": "2024-06-22T18:00:00Z",
     "latitude": "32.790284",
-    "longitude": "-96.802332"
+    "longitude": "-96.802332",
+    "sportType": "football"
   },
   {
     "name": "Soccer Tourney",
     "location": "Waxahachie Sports Complex",
     "time": "2024-08-17T12:30:00Z",
     "latitude": "32.406205",
-    "longitude": "-96.818484"
+    "longitude": "-96.818484",
+    "sportType": "soccer"
   },
   {
     "name": "Quidditch",
     "location": "Waxahachie High School",
     "time": "2024-10-05T07:15:00Z",
     "latitude": "32.426118",
-    "longitude": "-96.891322"
+    "longitude": "-96.891322",
+    "sportType": "pickleball"
   },
   {
     "name": "7 v 7 Football",
     "location": "Matthews Park",
     "time": "2024-12-31T23:59:00Z",
     "latitude": "32.418443",
-    "longitude": "-96.810790"
+    "longitude": "-96.810790",
+    "sportType": "football"
   },
   {
     "name": "5 v 5 Soccer",
     "location": "Vitruvian Park",
     "time": "2024-12-31T23:59:00Z",
     "latitude": "32.935684",
-    "longitude": "-96.849698"
+    "longitude": "-96.849698",
+    "sportType": "soccer"
   }
 ]
