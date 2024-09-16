@@ -2,7 +2,7 @@ const signupPages = document.querySelectorAll('.signup-page');
 const signupBtn = document.getElementById('signup-button');
 const letsGoBtn = document.querySelector(".signup-walkthrough-btn")
 
-const translateAmount = 100;
+// const translateAmount = 100;
 let translate = 0;
 
 slide = (direction) => {
@@ -23,10 +23,8 @@ signupBtn.addEventListener('click', (event) => {
     document.location.replace("/signup-walkthrough")
     event.preventDefault();
 
-
-
     let currentPageIndex = 0; // Track the current page
-    const translateAmount = 16.66666667; // Assuming you want to slide 100% per page
+    const translateAmount = 16.66666667;
     const signupPagesContainer = document.querySelector('.signup-pages'); // Container of all pages
     const signupPages = document.querySelectorAll('.signup-page');
     const maxPageIndex = signupPages.length - 1; // Calculate the maximum page index
