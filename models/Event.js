@@ -40,10 +40,21 @@ Event.init(
         key: "id",
       },
     },
+    numberOfPlayers: {
+      type: DataTypes.INTEGER,
+    },
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       defaultValue: [],
     },
+    // openSlots: {
+    //   type: DataTypes.VIRTUAL, // Virtual field for open slots
+    //   get() {
+    //     const numberOfPlayers = this.getDataValue('numberOfPlayers');
+    //     const participants = this.getDataValue('participants') || [];
+    //     return numberOfPlayers - participants.length;
+    //   },
+    // },
   },
   {
     sequelize,
