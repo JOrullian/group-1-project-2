@@ -767,9 +767,7 @@
   font-size: 36px;
 }
 
-#profile-username,
-#profile-email,
-#profile-firstname {
+.profile-information {
   font-family: "Poppins";
   font-size: 36px;
 }

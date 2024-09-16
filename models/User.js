@@ -24,9 +24,19 @@ User.init(
         len: [3, 30], // Example length validation
       },
     },
-    firstName: {
+    firstname: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    preferred_sport: {
+      type: DataTypes.STRING,
+    },
+    play_frequency: {
+      type: DataTypes.STRING,
     },
     email: {
       type: DataTypes.STRING,
