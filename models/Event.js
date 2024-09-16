@@ -40,6 +40,9 @@ Event.init(
         key: "id",
       },
     },
+    numberOfPlayers: {
+      type: DataTypes.INTEGER,
+    },
     participants: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       defaultValue: [],

@@ -48,19 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="event-info-container">
           <div class="event-info-title-container">
             <h3 class="event-info-title">${event.name}</h3>
-            <h4>${event.type}</h4>
+            <h4>${event.sportType}</h4>
           </div>
           <div class="event-info-separator-container">
             <div class="event-info-separator"></div>
           </div>
           <div class="event-location-info-container">
-            <div class="event-date-time-container">
-              <h3 class="event-time-title">Start Time</h3>
-              <h4 class="event-time">${formattedTime}</h4>
-            </div>
             <div class="event-open-spots-container">
               <div class="event-open-slots-board">
-                <h3 class="event-slots">${event.openSlots}</h3>
+                <h3 class="event-slots">${event.numberOfPlayers}</h3>
                 <h4 class="event-slots-title">Open Slots</h4>
               </div>
             </div>
@@ -117,13 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div> `
           )
 
-          const eventDetailsCont = $('#event-details-container')
-          const eventCloseBtn = $('#event-close-btn')
-
-          eventCloseBtn.on('click', () => {
-
-            eventDetailsCont.remove();
-          })
+          $(document).on('click', '#event-close-btn', () => {
+            const eventDetailsCont = $('#event-details-container');
+            eventDetailsCont.remove(); // Close the popup
+          });
         }
       });
     });
