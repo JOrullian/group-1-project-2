@@ -1,19 +1,28 @@
 [
   {
     "username": "Bowling_Fella",
-    "firstName": "Barney",
+    "firstname": "Barney",
+    "location": "Springfield, IL",
+    "preferred_sport": "Bowling",
+    "play_frequency": "every day",
     "email": "bowlarama@springfield.com",
     "password": "Simpsons555!"
   },
   {
     "username": "PickleballPerry",
-    "firstName": "Henry",
+    "firstname": "Henry",
+    "location": "Springfield, IL",
+    "preferred_sport": "Bowling",
+    "play_frequency": "every day",
     "email": "pickletown@pickles.com",
     "password": "NoTennis@0Love"
   },
   {
     "username": "Freddy_Football",
-    "firstName": "Fred",
+    "firstname": "Fred",
+    "location": "Springfield, IL",
+    "preferred_sport": "Bowling",
+    "play_frequency": "every day",
     "email": "freddyfootballfan55@nfl.gov",
     "password": "GoBears85!"
   }
