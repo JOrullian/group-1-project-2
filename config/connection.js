@@ -6,13 +6,13 @@ let sequelize;
 // Initialize database
 if (process.env.DB_URL) {
   sequelize = new Sequelize(process.env.DB_URL, {
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
-    }
+        rejectUnauthorized: false,
+      },
+    },
   });
 } else {
   sequelize = new Sequelize(
@@ -22,7 +22,7 @@ if (process.env.DB_URL) {
     {
       host: "localhost",
       dialect: "postgres",
-      port: 5432
+      port: 5432,
     }
   );
 }

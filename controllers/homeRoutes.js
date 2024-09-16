@@ -1,113 +1,91 @@
-const router = require('express').Router();
-const { User, Event, Group } = require('../models');
-const withAuth = require('../utils/auth');
-const dotenv = require('dotenv');
+const router = require("express").Router();
+const { User, Event, Group } = require("../models");
+const withAuth = require("../utils/auth");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-router.get('/api-key', (req, res) => {
+// Serve Google API key for client-side use
+router.get("/api-key", (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_API_KEY });
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+// Dashboard route (withAuth middleware for protection)
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    res.render('dashboard');
-  } catch (error) {
-    res.status(500).json(error)
-  }
-});
+    // Pull list of events for dashboard
+    const eventList = await Event.findAll();
+    const events = eventList.map((event) => event.get({ plain: true }));
 
-router.get('/signup-walkthrough', async (req, res) => {
-  try {
-    res.render('signup-walkthrough',
-      // { logged_in: req.session.logged_in }
-    );
-  } catch (error) {
-    res.status(500).json(error)
-  }
-});
-
-router.get('/explore', withAuth, async (req, res) => {
-  try {
-    res.render('explore');
-  } catch (error) {
-    res.status(500).json(error)
-  }
-});
-
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
+    res.render("dashboard", { events, logged_in: req.session.logged_in });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// Pull list of events for dashboard
-router.get('/', async (req, res) => {
+// Signup walkthrough route
+router.get("/signup-walkthrough", async (req, res) => {
   try {
-    const eventList = await Event.findAll();
-
-    const events = eventList.map((event) => event.get({ plain: true }));
-
-    // res.status(200).json(events);
-
-    console.log(events);
-
-    res.render('dashboard', { events, logged_in: req.session.logged_in });
-
-  } catch (err) {
-    res.status(500).json(err);
+    res.render("signup-walkthrough");
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 
-// Pull specific event that user selects
-router.get('/event/:id', async (req, res) => {
+// Explore route, protected by withAuth middleware
+router.get("/explore", withAuth, async (req, res) => {
+  try {
+    res.render("explore", { logged_in: req.session.logged_in });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// Profile route
+router.get("/profile", withAuth, async (req, res) => {
+  try {
+    // Find the logged-in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render("profile", { ...user, logged_in: true });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// Fetch and render a specific event by ID
+router.get("/event/:id", async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id);
 
     if (!eventData) {
-      res.status(404).json({ message: 'Event not found!' });
+      return res.status(404).json({ message: "Event not found!" });
     }
-    const event = await eventData.get({ plain: true });
 
-    res.render('event', { ...event, logged_in: req.session.logged_in });
-
+    const event = eventData.get({ plain: true });
+    res.render("event", { ...event, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/createEvent', withAuth, (req, res) => {
-  // Render the 'createEvent' view
-  res.render('createEvent',
-    // { logged_in: req.session.logged_in }
-  );
+// Render the 'createEvent' view (withAuth protection)
+router.get("/createEvent", withAuth, (req, res) => {
+  res.render("createEvent", { logged_in: req.session.logged_in });
 });
 
-router.get('/profile', (req, res) => {
-  // Render the profile' view
-  res.render('profile', { logged_in: req.session.logged_in });
-});
-
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+// Login route
+router.get("/login", (req, res) => {
+  // If the user is already logged in, redirect them to the dashboard
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
+    return res.redirect("/dashboard");
   }
 
-  res.render('login');
-})
+  res.render("login");
+});
 
 module.exports = router;

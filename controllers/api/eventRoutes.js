@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const geolib = require("geolib");
-const { format_date } = require('../../utils/helpers');
+const { format_date } = require("../../utils/helpers");
 
 const { Event } = require("../../models");
 
@@ -13,9 +13,9 @@ router.post("/", async (req, res) => {
 
   // Create a new event
   try {
-    const { location, latitude, longitude, time, name } = req.body;
+    const { location, latitude, longitude, time, name, sportType } = req.body;
 
-    console.log(req.body)
+    console.log(req.body);
 
     const newEvent = await Event.create({
       location,
@@ -24,11 +24,11 @@ router.post("/", async (req, res) => {
       time,
       name,
       user_id: req.session.user_id,
-    })
+      sportType,
+    });
 
-    res.status(200).json(newEvent)
-  }
-  catch (err) {
+    res.status(200).json(newEvent);
+  } catch (err) {
     res.status(400).json(err);
   }
 });
@@ -49,9 +49,9 @@ router.post("/nearby", async (req, res) => {
     });
 
     // Format event dates and times before sending the response
-    const formattedEvents = nearbyEvents.map(event => ({
+    const formattedEvents = nearbyEvents.map((event) => ({
       ...event.dataValues,
-      time: format_date(new Date(event.time)) // Ensure event.time is a Date object
+      time: format_date(new Date(event.time)), // Ensure event.time is a Date object
     }));
 
     res.json(formattedEvents);

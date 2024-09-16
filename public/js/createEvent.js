@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const createEventBtn = document.querySelector(".nav-create-event")
+  const createEventBtn = document.querySelector(".nav-create-event");
 
   if (createEventBtn) {
     createEventBtn.addEventListener("click", () => {
@@ -22,9 +22,12 @@ const eventFormHandler = async (event) => {
 
   const eventName = document.querySelector("#event-name").value.trim();
   const eventTime = document.querySelector("#start-time").value.trim();
-  const placeName = document.querySelector("#event-location").value.trim(); // This is the name of the place
+  const placeName = document.querySelector("#event-location").value.trim();
+  const sportType = document.querySelector("#create-event-selection-container").value.trim();
 
-  if (!eventName || !eventTime || !placeName || placeName.length < 3) {
+  console.log("Sport Type:", sportType);
+
+  if (!eventName || !eventTime || !placeName || placeName.length < 3 || !sportType) {
     alert("Please fill in all fields with valid information.");
     return;
   }
@@ -60,6 +63,7 @@ const eventFormHandler = async (event) => {
           longitude,
           time: eventTime,
           name: eventName,
+          sportType: sportType,
         }),
         headers: { "Content-Type": "application/json" },
       });
