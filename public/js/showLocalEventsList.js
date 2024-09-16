@@ -1,3 +1,5 @@
+const mapCont = $('#map-container');
+
 document.addEventListener("DOMContentLoaded", () => {
   const eventsData = localStorage.getItem('nearbyEvents');
   if (eventsData) {
