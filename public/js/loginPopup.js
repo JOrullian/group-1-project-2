@@ -167,11 +167,6 @@ const showLoginPopup = () => {
     loginExitBtn.on('click', () => {
         loginPopUpCont.remove();
     });
-
-    loginExitBtn.on('click', (event) => {
-        event.preventDefault();
-        loginPopUpCont.remove();
-    });
     
     loginForm.on('submit', async (event) => {
         event.preventDefault();
@@ -193,6 +188,8 @@ const showLoginPopup = () => {
                 // If login is successful
                 userLoggedIn = true;
                 console.log('User logged in:', data);
+
+                localStorage.setItem('loggedInUserId', data.user.id);
     
                 loginPopUpCont.remove();
                 document.location.replace("/dashboard")
