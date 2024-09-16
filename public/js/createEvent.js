@@ -1,13 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const createEventBtn = document.querySelector(".nav-create-event")
-
-  if (createEventBtn) {
-    createEventBtn.addEventListener("click", () => {
-      // Redirect to the create event page
-      window.location.href = "/createEvent";
-    });
-  }
-
   const createEventForm = document.querySelector(".create-event-form");
 
   if (createEventForm) {
