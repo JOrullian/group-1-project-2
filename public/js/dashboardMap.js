@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await response.json();
     const apiKey = data.apiKey;
 
-    console.log(apiKey);
-
     // Initialize the Google Maps API with the fetched API key
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;

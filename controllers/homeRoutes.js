@@ -5,6 +5,10 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+router.get('/', (req, res) => {
+  res.render('dashboard');
+});
+
 // Serve Google API key for client-side use
 router.get("/api-key", (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_API_KEY });

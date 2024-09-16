@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formattedDate = dateObject.toLocaleDateString();
       const formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-      if (event.sportType === '')
+      // if (event.sportType === '')
 
 
       eventElement.innerHTML = `

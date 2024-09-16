@@ -11,14 +11,14 @@ GroupListing.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
         key: "id",
       },
     },
-    groupId: {
+    group_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "group",
@@ -32,12 +32,12 @@ GroupListing.init(
     freezeTableName: true,
     underscored: true,
     modelName: "group_listing",
-    // indexes: [
-    //   {
-    //     unique: true,
-    //     fields: ["userId", "groupId"],
-    //   },
-    // ],
+    indexes: [
+      {
+        unique: true,
+        fields: ["user_id", "group_id"],
+      },
+    ],
   }
 );
 

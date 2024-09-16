@@ -37,7 +37,16 @@ router.post("/nearby", async (req, res) => {
   try {
     const { latitude, longitude } = req.body;
 
+    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+      return res.status(400).json({ message: "Invalid coordinates" });
+    }
+
     const allEvents = await Event.findAll();
+
+    // Check if events are being retrieved
+    if (!allEvents.length) {
+      return res.status(404).json({ message: "No events found" });
+    }
 
     // Filter events that are within a certain radius (e.g., 10 km)
     const nearbyEvents = allEvents.filter((event) => {
@@ -48,6 +57,11 @@ router.post("/nearby", async (req, res) => {
       return distance <= 10000; // 10 kilometers radius
     });
 
+    // Check if nearbyEvents has been correctly filtered
+    if (!nearbyEvents.length) {
+      return res.status(404).json({ message: "No nearby events found" });
+    }
+
     // Format event dates and times before sending the response
     const formattedEvents = nearbyEvents.map((event) => ({
       ...event.dataValues,
@@ -56,9 +70,8 @@ router.post("/nearby", async (req, res) => {
 
     res.json(formattedEvents);
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Error finding nearby events", error: err });
+    console.error("Error finding nearby events", err);
+    res.status(500).json({ message: "Error finding nearby events", error: err.message });
   }
 });
 

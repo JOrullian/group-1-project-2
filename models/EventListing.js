@@ -11,14 +11,14 @@ EventListing.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
         key: "id",
       },
     },
-    eventId: {
+    event_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "event",
@@ -32,12 +32,12 @@ EventListing.init(
     freezeTableName: true,
     underscored: true,
     modelName: "event_listing",
-    // indexes: [
-    //   {
-    //     unique: true,
-    //     fields: ["userId", "eventId"],
-    //   },
-    // ],
+    indexes: [
+      {
+        unique: true,
+        fields: ["user_id", "event_id"],
+      },
+    ],
   }
 );
 

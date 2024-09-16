@@ -19,6 +19,10 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true, // Ensure unique usernames
+      validate: {
+        len: [3, 30], // Example length validation
+      },
     },
     firstName: {
       type: DataTypes.STRING,
@@ -36,7 +40,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: [8], // Ensure password length is at least 8 characters
       },
     },
   },

@@ -14,10 +14,15 @@ Group.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
-    createdBy: {
-      type: DataTypes.STRING,
+    created_by: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {
