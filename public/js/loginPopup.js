@@ -15,8 +15,8 @@ const showLoginPopup = () => {
                     <div class="login-window">
                         <h1 class="login-form-title">Welcome to<br /><span class="login-brand-name">QuickMatch</span></h1>
                         <form id="login-form" class="login-form">
-                            <input class="username-input" type="text" placeholder="Username" required>
-                            <input class="password-input" type="password" placeholder="Password" required>
+                            <input class="username-input login-inputs" type="text" placeholder="Username" required>
+                            <input class="password-input login-inputs" type="password" placeholder="Password" required>
                             <button id="login-button" class="login-button">Login</button>
                         </form>
                     </div>
