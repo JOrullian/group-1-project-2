@@ -53,6 +53,8 @@ router.post("/login", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
+      console.log("Session saved:", req.session);
+
       res.json({ message: "You are now logged in!" });
     });
   } catch (err) {
@@ -64,6 +66,7 @@ router.post("/login", async (req, res) => {
 
 // Check login status
 router.get("/check-login", (req, res) => {
+  console.log(req.session);
   if (req.session.logged_in) {
     res.status(200).json({ logged_in: true });
   } else {

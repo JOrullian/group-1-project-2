@@ -186,7 +186,7 @@ const showLoginPopup = () => {
             if (response.ok) {
                 // If login is successful
                 userLoggedIn = true;
-                console.log('User logged in:', data);
+                console.alert('User logged in:', data);
 
                 localStorage.setItem('loggedInUserId', data.user.id);
     
