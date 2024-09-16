@@ -245,6 +245,11 @@
   margin-bottom: 0.2rem;
 }
 
+.event-info-sport-type {
+  color: #b9b9b9;
+  font-size: 90%;
+}
+
 .event-info-separator-container {
   width: 5%;
   height: 100%;
@@ -285,7 +290,6 @@
 .event-open-spots-container {
   height: 70%;
   width: 30%;
-  background-color: var(--passGreen);
   border-radius: 1rem;
   display: flex;
   align-items: center;

@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const map = new google.maps.Map(
                   document.getElementById("map"),
                   {
-                    zoom: 12,
+                    zoom: 11,
                     center: location,
                     disableDefaultUI: true,
                   }

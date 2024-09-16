@@ -1,5 +1,6 @@
 const mainContainer = $('#main-container');
 const pageContainer = document.querySelector('#page-container');
+const eventTab = document.querySelector(".event-container");
 const homeNavBtn = $('#nav-home');
 const eventNavBtn = $('#nav-event');
 const exploreNavBtn = $('#nav-explore');
