@@ -1,30 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const eventsData = localStorage.getItem('nearbyEvents');
+  const eventsData = localStorage.getItem("nearbyEvents");
   if (eventsData) {
     const events = JSON.parse(eventsData);
     console.log("Retrieved events:", events);
 
+    // Define sport type to icon mappings
+    const sportIcons = {
+      basketball: "basketball-icon.svg",
+      soccer: "soccer-icon.svg",
+      football: "football-icon.svg",
+      pickleball: "pickleball-icon.svg",
+      tennis: "tennis-icon.svg",
+      raquetball: "raquetball-icon.svg",
+      baseball: "baseball-icon.svg",
+      volleyball: "volleyball-icon.svg",
+      lacrosse: "lacrosse-icon.svg",
+      hockey: "hockey-icon.svg"
+    };
+
     // Populate events in the .local-events-list container
     const eventsContainer = document.querySelector(".local-events-list");
-    eventsContainer.innerHTML = ''; // Clear existing events
+    eventsContainer.innerHTML = ""; // Clear existing events
 
-    events.forEach(event => {
-      const eventElement = document.createElement('div');
-      eventElement.classList.add('event-container');
+    events.forEach((event) => {
+      const eventElement = document.createElement("div");
+      eventElement.classList.add("event-container");
 
       const dateTimeString = event.time;
       const dateObject = new Date(dateTimeString);
 
       // Format Date
       const formattedDate = dateObject.toLocaleDateString();
-      const formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const formattedTime = dateObject.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
-      // if (event.sportType === '')
-
+      // Determine the icon based on sportType
+      const iconFileName = sportIcons[event.sportType] || "default-icon.svg"; // Default to 'default-icon.svg' if sportType is not found
 
       eventElement.innerHTML = `
         <div class="event-icon-container">
-          <img src="icons/${event.icon || 'default-icon.svg'}" class="event-icon">
+          <img src="icons/${iconFileName}" class="event-icon">
         </div>
         <div class="event-info-container">
           <div class="event-info-title-container">
@@ -56,23 +73,27 @@ document.addEventListener("DOMContentLoaded", () => {
       eventsContainer.appendChild(eventElement);
 
       // Add event listener for the "More Info" button
-      const moreInfoBtn = eventElement.querySelector('.more-info-btn');
+      const moreInfoBtn = eventElement.querySelector(".more-info-btn");
 
-      moreInfoBtn.addEventListener('click', () => {
+      moreInfoBtn.addEventListener("click", () => {
         // Check if the details div already exists, if so, remove it
-        let eventDetails = eventElement.querySelector('.event-details');
+        let eventDetails = eventElement.querySelector(".event-details");
         if (eventDetails) {
           eventDetails.remove(); // Remove existing details if present
           moreInfoBtn.textContent = "More Info"; // Reset button text
         } else {
           // Create and append the event details dynamically
-          eventDetails = document.createElement('div');
-          eventDetails.classList.add('event-details');
+          eventDetails = document.createElement("div");
+          eventDetails.classList.add("event-details");
           eventDetails.innerHTML = `
             <div>
               <p><strong>Location:</strong> ${event.location}</p>
-              <p><strong>Description:</strong> ${event.description || 'No description available.'}</p>
-              <p><strong>Participants:</strong> ${event.participants || 'No participants yet.'}</p>
+              <p><strong>Description:</strong> ${
+                event.description || "No description available."
+              }</p>
+              <p><strong>Participants:</strong> ${
+                event.participants || "No participants yet."
+              }</p>
             </div>
           `;
           eventElement.appendChild(eventDetails); // Append details to the event container

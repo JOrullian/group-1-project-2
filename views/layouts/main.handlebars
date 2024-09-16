@@ -43,19 +43,16 @@
             <img id="nav-profile-icon" class="nav-icon" src="icons/profile-nav.svg" />
             <h1 id="nav-profile-title" class="nav-title">Profile</h1>
           </div>
-          <div id="nav-logout" class="nav-selection nav-logout">
+          {{!-- <div id="nav-logout" class="nav-selection nav-logout">
             <img id="nav-logout-icon" class="nav-icon" src="icons/profile-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-          </div>
-
+          </div> --}}
         </div>
       </nav>
     </div>
     <section class="body-window">
       {{{body}}}
     </section>
-    <button id="logout-btn">Logout</button>
-    <p>User logged in: {{logged_in}}</p>
   </main>
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
