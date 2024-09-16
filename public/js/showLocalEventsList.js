@@ -1,4 +1,4 @@
-const mapCont = $("#map-container");
+const mapCont = $('#map-container');
 
 document.addEventListener("DOMContentLoaded", () => {
   const eventsData = localStorage.getItem("nearbyEvents");
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       baseball: "baseball-icon.svg",
       volleyball: "volleyball-icon.svg",
       lacrosse: "lacrosse-icon.svg",
-      hockey: "hockey-icon.svg",
+      hockey: "hockey-icon.svg"
     };
 
     // Populate events in the .local-events-list container
@@ -56,6 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="event-info-separator"></div>
           </div>
           <div class="event-location-info-container">
+            <div class="event-date-time-container">
+              <h3 class="event-time-title">Start Time</h3>
+              <h4 class="event-time">${formattedTime}</h4>
+            </div>
             <div class="event-open-spots-container">
               <div class="event-open-slots-board">
                 <h3 class="event-slots">${openSlots}</h3>
@@ -72,34 +76,106 @@ document.addEventListener("DOMContentLoaded", () => {
       // Append each event to the container
       eventsContainer.appendChild(eventElement);
 
-      // Handle the "More Info" and "Join Event" flow
-      const moreInfoBtn = eventElement.querySelector(".more-info-btn");
+      if($(window).width() < 600) {
+        const eventTab = eventsContainer.querySelector(".event-container");
 
-      moreInfoBtn.addEventListener("click", async () => {
-        // Check if the details div already exists, if so, remove it
-        const eventDetails = eventElement.querySelector(
-          ".event-details-container"
-        );
-        if (eventDetails) {
-          eventDetails.remove(); // Remove existing details if present
-        } else {
-          // Create and append the event details dynamically
-          mapCont.append(`
-            <div id="event-details-container" class="event-details-container">
-              <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
-              <div class="event-title-container">
-                <h1 class="event-title">${event.name} - ${event.location}</h1>
-              </div>
-              <div class="event-details-divider"></div>
-              <div class="event-details-info">
-                <div class="event-start-time-container">
-                  <h3 class="event-start-time">Start Time: ${formattedTime}, ${formattedDate}</h3>
+        eventTab.addEventListener("click", async () => {
+
+          const response = await fetch('/api/users/check-login');
+
+          if (response.ok === true) {
+            
+            const eventDetails = eventElement.querySelector(".event-details-container");
+            if (eventDetails) {
+              eventDetails.remove(); // Remove existing details if present
+            } else {
+
+              mapCont.append(
+                `<div id="event-details-container" class="event-details-container">
+                  <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
+                  <div class="event-title-container">
+                    <h1 class="event-title">${event.name} - ${event.location}</h1>
+                  </div>
+                  <div class="event-details-divider"></div>
+                  <div class="event-details-info">
+                    <div class="event-start-time-container">
+                      <h3 class="event-start-time">Start Time: ${formattedTime}, ${formattedDate}</h3>
+                    </div>
+                    <div class="event-join-container">
+                      <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
+                    </div>
+                  </div>
+                </div>`
+              )
+              const eventDetailsCont = $('#event-details-container')
+              const eventCloseBtn = $('#event-close-btn')
+
+              eventCloseBtn.on('click', () => {
+                eventDetailsCont.remove();
+              })
+              $(".join-event-btn").on("click", async function () {
+                const eventId = $(this).data("event-id");
+    
+                try {
+                  const response = await fetch(`/api/events/${eventId}/join`, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
+    
+                  if (response.ok) {
+                    alert("You've successfully joined the event!");
+    
+                    // Update the UI to reflect the new participant count
+                    event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                    const newOpenSlots =
+                      event.numberOfPlayers - event.participants.length;
+                    eventElement.querySelector(".event-slots").textContent =
+                      newOpenSlots;
+                  } else if (response.status === 400) {
+                    alert("You are already part of this event.");
+                  } else if (response.status === 403) {
+                    alert("This event is already full.");
+                  } else {
+                    alert("Failed to join the event.");
+                  }
+                } catch (error) {
+                  console.error("Error joining the event:", error);
+                  alert("An error occurred while joining the event.");
+                }
+              });
+            }
+          } else {
+            showLoginPopup();
+          }
+        });
+      
+      } else {
+        const moreInfoBtn = eventElement.querySelector(".more-info-btn");
+
+        moreInfoBtn.addEventListener("click", async () => {
+          // Check if the details div already exists, if so, remove it
+          const eventDetails = eventElement.querySelector(".event-details-container");
+          if (eventDetails) {
+            eventDetails.remove(); // Remove existing details if present
+          } else {
+            mapCont.append(
+              `<div id="event-details-container" class="event-details-container">
+                <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
+                <div class="event-title-container">
+                  <h1 class="event-title">${event.name} - ${event.location}</h1>
                 </div>
-                <div class="event-join-container">
-                  <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
+                <div class="event-details-divider"></div>
+                <div class="event-details-info">
+                  <div class="event-start-time-container">
+                    <h3 class="event-start-time">Start Time: ${formattedTime}, ${formattedDate}</h3>
+                  </div>
+                  <div class="event-join-container">
+                    <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
+                  </div>
                 </div>
-              </div>
-            </div>
+               </div>
           `);
 
           // Close button functionality
@@ -138,13 +214,10 @@ document.addEventListener("DOMContentLoaded", () => {
               } else {
                 alert("Failed to join the event.");
               }
-            } catch (error) {
-              console.error("Error joining the event:", error);
-              alert("An error occurred while joining the event.");
-            }
-          });
-        }
-      });
+            });
+          }
+        });
+      }
     });
   } else {
     console.log("No nearby events data found in local storage.");
