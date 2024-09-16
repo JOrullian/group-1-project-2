@@ -123,11 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("You've successfully joined the event!");
 
                 // Update the UI to reflect the new participant count
-                event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                event.participants.push("newUser");
                 const newOpenSlots =
                   event.numberOfPlayers - event.participants.length;
                 eventElement.querySelector(".event-slots").textContent =
                   newOpenSlots;
+
+                  console.log(event.participants);
+
               } else if (response.status === 400) {
                 alert("You are already part of this event.");
               } else if (response.status === 403) {
