@@ -77,29 +77,53 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add event listener for the "More Info" button
       const moreInfoBtn = eventElement.querySelector(".more-info-btn");
 
-      moreInfoBtn.addEventListener("click", () => {
+      moreInfoBtn.addEventListener("click", async () => {
         // Check if the details div already exists, if so, remove it
-        let eventDetails = eventElement.querySelector(".event-details");
+        console.log('event', event)
+        const eventDetails = eventElement.querySelector(".event-details-container");
         if (eventDetails) {
           eventDetails.remove(); // Remove existing details if present
-          moreInfoBtn.textContent = "More Info"; // Reset button text
         } else {
           // Create and append the event details dynamically
-          eventDetails = document.createElement("div");
-          eventDetails.classList.add("event-details");
-          eventDetails.innerHTML = `
-            <div>
-              <p><strong>Location:</strong> ${event.location}</p>
-              <p><strong>Description:</strong> ${
-                event.description || "No description available."
-              }</p>
-              <p><strong>Participants:</strong> ${
-                event.participants || "No participants yet."
-              }</p>
-            </div>
-          `;
-          eventElement.appendChild(eventDetails); // Append details to the event container
-          moreInfoBtn.textContent = "Less Info"; // Change button text
+          // const response = await fetch("/api-key");
+          // const data = await response.json();
+          // const apiKey = data.apiKey;
+
+          // const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latitude},${event.longitude}&key=${apiKey}`
+
+          // const getAddress = 
+          // fetch(url)
+          //   .then(response => response.json())
+          //   .then(data => {
+          //     const locationAddress = data.results[0].formatted_address
+          //     return locationAddress;
+          //   })
+
+          mapCont.append(
+            `<div id="event-details-container" class="event-details-container">
+              <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
+              <div class="event-title-container">
+                <h1 class="event-title">${event.name} - ${event.location}</h1>
+              </div>
+              <div class="event-details-divider"></div>
+              <div class="event-details-info">
+                <div class="event-start-time-container">
+                  <h3 class="event-start-time">Start Time: ${formattedTime}, ${formattedDate}</h3>
+                </div>
+                <div class="event-address-container">
+
+                </div>
+              </div>
+            </div> `
+          )
+
+          const eventDetailsCont = $('#event-details-container')
+          const eventCloseBtn = $('#event-close-btn')
+
+          eventCloseBtn.on('click', () => {
+
+            eventDetailsCont.remove();
+          })
         }
       });
     });
