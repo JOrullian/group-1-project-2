@@ -24,10 +24,11 @@ const eventFormHandler = async (event) => {
   const eventTime = document.querySelector("#start-time").value.trim();
   const placeName = document.querySelector("#event-location").value.trim();
   const sportType = document.querySelector("#create-event-selection-container").value.trim();
+  const numberOfPlayers = document.querySelector("#number-of-players").value.trim();
 
   console.log("Sport Type:", sportType);
 
-  if (!eventName || !eventTime || !placeName || placeName.length < 3 || !sportType) {
+  if (!eventName || !eventTime || !placeName || placeName.length < 3 || !sportType || !numberOfPlayers) {
     alert("Please fill in all fields with valid information.");
     return;
   }
@@ -64,6 +65,7 @@ const eventFormHandler = async (event) => {
           time: eventTime,
           name: eventName,
           sportType: sportType,
+          numberOfPlayers: numberOfPlayers,
         }),
         headers: { "Content-Type": "application/json" },
       });

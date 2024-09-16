@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const dateTimeString = event.time;
       const dateObject = new Date(dateTimeString);
 
+     const openSlots = event.numberOfPlayers - event.participants.length;
+    
       // Format Date
       const formattedDate = dateObject.toLocaleDateString();
       const formattedTime = dateObject.toLocaleTimeString([], {
@@ -54,13 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="event-info-separator"></div>
           </div>
           <div class="event-location-info-container">
-            <div class="event-date-time-container">
-              <h3 class="event-time-title">Start Time</h3>
-              <h4 class="event-time">${formattedTime}</h4>
-            </div>
             <div class="event-open-spots-container">
               <div class="event-open-slots-board">
-                <h3 class="event-slots">${event.openSlots}</h3>
+                <h3 class="event-slots">${openSlots}</h3>
                 <h4 class="event-slots-title">Open Slots</h4>
               </div>
             </div>
@@ -168,6 +166,44 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       }
+                <div class="event-address-container"></div>
+                <div class="event-join-container">
+                  <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
+                </div>
+              </div>
+            </div>`
+          );
+          
+          // Handle the click on the join button
+          $(document).on('click', '.join-event-btn', async function () {
+            const eventId = $(this).data('event-id');
+            
+            try {
+              const response = await fetch(`/api/events/${eventId}/join`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+              
+              if (response.ok) {
+                alert("You've successfully joined the event!");
+                // Optionally, update the UI to reflect the new participant count
+              } else {
+                alert("Failed to join the event.");
+              }
+            } catch (error) {
+              console.error("Error joining the event:", error);
+              alert("An error occurred while joining the event.");
+            }
+          });
+
+          $(document).on('click', '#event-close-btn', () => {
+            const eventDetailsCont = $('#event-details-container');
+            eventDetailsCont.remove(); // Close the popup
+          });
+        }
+      });
     });
   } else {
     console.log("No nearby events data found in local storage.");

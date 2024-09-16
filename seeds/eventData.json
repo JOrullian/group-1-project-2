@@ -5,7 +5,8 @@
     "time": "2024-01-15T14:30:00Z",
     "latitude": "33.046341",
     "longitude": "-96.994171",
-    "sportType": "basketball"
+    "sportType": "basketball",
+    "numberOfPlayers": "10"
   },
   {
     "name": "Pickleball Friendly Tournament",
@@ -13,7 +14,8 @@
     "time": "2024-04-08T09:45:00Z",
     "latitude": "32.701553",
     "longitude": "-97.026181",
-    "sportType": "pickleball"
+    "sportType": "pickleball",
+    "numberOfPlayers": "8"
   },
   {
     "name": "Flag Football 4v4",
@@ -21,7 +23,8 @@
     "time": "2024-06-22T18:00:00Z",
     "latitude": "32.790284",
     "longitude": "-96.802332",
-    "sportType": "football"
+    "sportType": "football",
+    "numberOfPlayers": "10"
   },
   {
     "name": "Soccer Tourney",
@@ -29,7 +32,8 @@
     "time": "2024-08-17T12:30:00Z",
     "latitude": "32.406205",
     "longitude": "-96.818484",
-    "sportType": "soccer"
+    "sportType": "soccer",
+    "numberOfPlayers": "12"
   },
   {
     "name": "Quidditch",
@@ -37,7 +41,8 @@
     "time": "2024-10-05T07:15:00Z",
     "latitude": "32.426118",
     "longitude": "-96.891322",
-    "sportType": "pickleball"
+    "sportType": "pickleball",
+    "numberOfPlayers": "4"
   },
   {
     "name": "7 v 7 Football",
@@ -45,7 +50,8 @@
     "time": "2024-12-31T23:59:00Z",
     "latitude": "32.418443",
     "longitude": "-96.810790",
-    "sportType": "football"
+    "sportType": "football",
+    "numberOfPlayers": "16"
   },
   {
     "name": "5 v 5 Soccer",
@@ -53,6 +59,7 @@
     "time": "2024-12-31T23:59:00Z",
     "latitude": "32.935684",
     "longitude": "-96.849698",
-    "sportType": "soccer"
+    "sportType": "soccer",
+    "numberOfPlayers": "12"
   }
 ]
