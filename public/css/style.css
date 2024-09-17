@@ -93,6 +93,18 @@
   margin-right: 0.3rem;
 }
 
+#nav-login-icon {
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+#nav-logout-icon {
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
 .nav-title {
   font-family: "Poppins";
   color: #ffffff;

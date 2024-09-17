@@ -23,7 +23,7 @@
   <main id="main-container" class="main-container">
     <div class="navbar-container">
       <nav class="navbar">
-        <img src="images/sports-players.jpg" alt="sport players" class="left-corner-image"/>
+        <a href="/"><img src="images/sports-players.jpg" alt="sport players" class="left-corner-image" /></a>
         <div class="navbar-selections-container">
           <button id="nav-home" class="nav-selection">
             <img id="nav-home-icon" class="nav-icon" src="icons/home-nav.svg" />
@@ -41,13 +41,20 @@
             <img id="nav-profile-icon" class="nav-icon" src="icons/profile-nav.svg" />
             <h1 id="nav-profile-title" class="nav-title">Profile</h1>
           </button>
-          {{!--
-          <div id="nav-logout" class="nav-selection nav-logout">
-            <img id="nav-logout-icon" class="nav-icon" src="icons/profile-nav.svg">
+          {{#if logged_in}}
+          <button id="nav-logout" class="nav-selection">
+            <img id="nav-logout-icon" class="nav-icon" src="icons/login-logout-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-          </div> --}}
         </div>
-      </nav>
+        {{/if}}
+        {{#unless logged_in}}
+        <button id="nav-login" class="nav-selection">
+          <img id="nav-login-icon" class="nav-icon" src="icons/login-logout-nav.svg">
+          <h1 id="nav-login-title" class="nav-title">Login</h1>
+    </div>
+    {{/unless}}
+    </div>
+    </nav>
     </div>
     <section class="body-window">
       {{{body}}}

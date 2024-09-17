@@ -1,4 +1,4 @@
-const logoutBtn = document.querySelector('#logout-btn')
+const logoutBtn = document.querySelector('#nav-logout')
 
 logoutBtn.addEventListener('click', async (event) => {
   event.preventDefault();
