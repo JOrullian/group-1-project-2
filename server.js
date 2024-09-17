@@ -43,6 +43,8 @@ app.use(routes);
 
 app.use(helmet());
 
-sequelize.sync({ force: true }).then(() => {
+const syncOptions = process.env.NODE_ENV === 'production' ? { alter: true } : { force: false };
+
+sequelize.sync(syncOptions).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });

@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (createEventForm) {
     createEventForm.addEventListener("submit", eventFormHandler);
-  } else {
-    console.warn("Event form not found in the DOM.");
   }
 });
 

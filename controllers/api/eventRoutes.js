@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
   // Create a new event
   try {
-    const { location, latitude, longitude, time, name, sportType } = req.body;
+    const { location, latitude, longitude, time, name, sportType, numberOfPlayers } = req.body;
 
     console.log(req.body);
 
@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
       name,
       user_id: req.session.user_id,
       sportType,
+      numberOfPlayers,
     });
 
     res.status(200).json(newEvent);
