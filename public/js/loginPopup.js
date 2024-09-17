@@ -167,7 +167,7 @@ const showLoginPopup = () => {
     loginExitBtn.on('click', () => {
         loginPopUpCont.remove();
     });
-    
+
     loginForm.on('submit', async (event) => {
         event.preventDefault();
 
@@ -207,7 +207,7 @@ const showLoginPopup = () => {
         //         console.alert('User logged in:', data);
 
         //         localStorage.setItem('loggedInUserId', data.user.id);
-    
+
         //         loginPopUpCont.remove();
         //         document.location.replace("/dashboard")
         //     } else {
@@ -226,14 +226,24 @@ const showLoginPopup = () => {
     $(document).on('click', '#signup-submit-btn', async (event) => {
         event.preventDefault();
 
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        function removeHyphens(string) {
+            return string.replace(/-/g, ' ')
+        }
+
         const firstnameInput = $('#signup-firstname').val();
         const locationInput = $('#signup-location').val();
-        const sportsTypeInput = $('#signup-sportstype :selected').val();
-        const playFrequencyInput = $('#signup-play-frequency :selected').val();
+        const sportsTypeInput = $('#signup-sportstype').val()
+        const playFrequencyInput = $('#signup-play-frequency').val()
         const usernameInput = $('#signup-username').val();
         const emailInput = $('#signup-email').val();
         const passwordInput = $('#signup-password').val();
         const passwordConfirmInput = $('#signup-password-confirm').val();
+
+        const sportsTypeUpdate = capitalizeFirstLetter(sportsTypeInput);
+        const playFrequencyUpdate = capitalizeFirstLetter(removeHyphens(playFrequencyInput))
 
         console.log(playFrequencyInput, sportsTypeInput)
 
@@ -246,8 +256,8 @@ const showLoginPopup = () => {
                         username: usernameInput,
                         firstname: firstnameInput,
                         location: locationInput,
-                        preferredSport: sportsTypeInput,
-                        playFrequency: playFrequencyInput,
+                        preferred_sport: sportsTypeUpdate,
+                        play_frequency: playFrequencyUpdate,
                         password: passwordInput,
                         email: emailInput
                     }),
