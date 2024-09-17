@@ -76,22 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
       // Append each event to the container
       eventsContainer.appendChild(eventElement);
 
-      if($(window).width() < 600) {
+      if ($(window).width() < 600) {
         const eventTab = eventsContainer.querySelector(".event-container");
 
         eventTab.addEventListener("click", async () => {
-
           const response = await fetch('/api/users/check-login');
 
           if (response.ok === true) {
-            
             const eventDetails = eventElement.querySelector(".event-details-container");
             if (eventDetails) {
               eventDetails.remove(); // Remove existing details if present
             } else {
-
-              mapCont.append(
-                `<div id="event-details-container" class="event-details-container">
+              mapCont.append(`
+                <div id="event-details-container" class="event-details-container">
                   <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
                   <div class="event-title-container">
                     <h1 class="event-title">${event.name} - ${event.location}</h1>
@@ -105,17 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
                       <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
                     </div>
                   </div>
-                </div>`
-              )
-              const eventDetailsCont = $('#event-details-container')
-              const eventCloseBtn = $('#event-close-btn')
+                </div>
+              `);
+              const eventDetailsCont = $('#event-details-container');
+              const eventCloseBtn = $('#event-close-btn');
 
               eventCloseBtn.on('click', () => {
                 eventDetailsCont.remove();
-              })
+              });
+
               $(".join-event-btn").on("click", async function () {
                 const eventId = $(this).data("event-id");
-    
+
                 try {
                   const response = await fetch(`/api/events/${eventId}/join`, {
                     method: "PUT",
@@ -123,16 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
                       "Content-Type": "application/json",
                     },
                   });
-    
+
                   if (response.ok) {
                     alert("You've successfully joined the event!");
-    
+
                     // Update the UI to reflect the new participant count
                     event.participants.push("newUser"); // Replace 'newUser' with the actual user data
-                    const newOpenSlots =
-                      event.numberOfPlayers - event.participants.length;
-                    eventElement.querySelector(".event-slots").textContent =
-                      newOpenSlots;
+                    const newOpenSlots = event.numberOfPlayers - event.participants.length;
+                    eventElement.querySelector(".event-slots").textContent = newOpenSlots;
                   } else if (response.status === 400) {
                     alert("You are already part of this event.");
                   } else if (response.status === 403) {
@@ -150,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showLoginPopup();
           }
         });
-      
+
       } else {
         const moreInfoBtn = eventElement.querySelector(".more-info-btn");
 
@@ -160,8 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (eventDetails) {
             eventDetails.remove(); // Remove existing details if present
           } else {
-            mapCont.append(
-              `<div id="event-details-container" class="event-details-container">
+            mapCont.append(`
+              <div id="event-details-container" class="event-details-container">
                 <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
                 <div class="event-title-container">
                   <h1 class="event-title">${event.name} - ${event.location}</h1>
@@ -175,44 +171,46 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
                   </div>
                 </div>
-               </div>
-          `);
+              </div>
+            `);
 
-          // Close button functionality
-          $("#event-close-btn").on("click", () => {
-            $("#event-details-container").remove(); // Close the popup
-          });
+            // Close button functionality
+            $("#event-close-btn").on("click", () => {
+              $("#event-details-container").remove(); // Close the popup
+            });
 
-          // Handle the click on the "Join Event" button
-          $(".join-event-btn").on("click", async function () {
-            const eventId = $(this).data("event-id");
+            // Handle the click on the "Join Event" button
+            $(".join-event-btn").on("click", async function () {
+              const eventId = $(this).data("event-id");
 
-            try {
-              const response = await fetch(`/api/events/${eventId}/join`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
+              try {
+                const response = await fetch(`/api/events/${eventId}/join`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
 
-              if (response.ok) {
-                alert("You've successfully joined the event!");
+                if (response.ok) {
+                  alert("You've successfully joined the event!");
 
-                // Update the UI to reflect the new participant count
-                event.participants.push("newUser");
-                const newOpenSlots =
-                  event.numberOfPlayers - event.participants.length;
-                eventElement.querySelector(".event-slots").textContent =
-                  newOpenSlots;
+                  // Update the UI to reflect the new participant count
+                  event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                  const newOpenSlots = event.numberOfPlayers - event.participants.length;
+                  eventElement.querySelector(".event-slots").textContent = newOpenSlots;
 
                   console.log(event.participants);
 
-              } else if (response.status === 400) {
-                alert("You are already part of this event.");
-              } else if (response.status === 403) {
-                alert("This event is already full.");
-              } else {
-                alert("Failed to join the event.");
+                } else if (response.status === 400) {
+                  alert("You are already part of this event.");
+                } else if (response.status === 403) {
+                  alert("This event is already full.");
+                } else {
+                  alert("Failed to join the event.");
+                }
+              } catch (error) {
+                console.error("Error joining the event:", error);
+                alert("An error occurred while joining the event.");
               }
             });
           }
