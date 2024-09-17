@@ -6,7 +6,8 @@
     "latitude": "33.046341",
     "longitude": "-96.994171",
     "sportType": "basketball",
-    "numberOfPlayers": "10"
+    "numberOfPlayers": "10",
+    "created_by": "1"
   },
   {
     "name": "Pickleball Friendly Tournament",
@@ -15,7 +16,8 @@
     "latitude": "32.701553",
     "longitude": "-97.026181",
     "sportType": "pickleball",
-    "numberOfPlayers": "8"
+    "numberOfPlayers": "8",
+    "created_by": "1"
   },
   {
     "name": "Flag Football 4v4",
@@ -24,7 +26,8 @@
     "latitude": "32.790284",
     "longitude": "-96.802332",
     "sportType": "football",
-    "numberOfPlayers": "10"
+    "numberOfPlayers": "10",
+    "created_by": "1"
   },
   {
     "name": "Soccer Tourney",
@@ -33,7 +36,8 @@
     "latitude": "32.406205",
     "longitude": "-96.818484",
     "sportType": "soccer",
-    "numberOfPlayers": "12"
+    "numberOfPlayers": "12",
+    "created_by": "1"
   },
   {
     "name": "Quidditch",
@@ -42,7 +46,8 @@
     "latitude": "32.426118",
     "longitude": "-96.891322",
     "sportType": "pickleball",
-    "numberOfPlayers": "4"
+    "numberOfPlayers": "4",
+    "created_by": "1"
   },
   {
     "name": "7 v 7 Football",
@@ -51,7 +56,8 @@
     "latitude": "32.418443",
     "longitude": "-96.810790",
     "sportType": "football",
-    "numberOfPlayers": "16"
+    "numberOfPlayers": "16",
+    "created_by": "1"
   },
   {
     "name": "5 v 5 Soccer",
@@ -60,6 +66,7 @@
     "latitude": "32.935684",
     "longitude": "-96.849698",
     "sportType": "soccer",
-    "numberOfPlayers": "12"
+    "numberOfPlayers": "12",
+    "created_by": "1"
   }
 ]

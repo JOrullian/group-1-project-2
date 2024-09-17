@@ -20,17 +20,16 @@ router.post("/", async (req, res) => {
   try {
     const { location, latitude, longitude, time, name, sportType, numberOfPlayers } = req.body;
 
-    console.log(req.body);
-
+    // Use req.session.user_id to associate the event with the logged-in user
     const newEvent = await Event.create({
       location,
       latitude,
       longitude,
       time,
       name,
-      user_id: req.session.user_id,
       sportType,
       numberOfPlayers,
+      created_by: req.session.user_id, // Set the user id from the session
     });
 
     res.status(200).json(newEvent);
