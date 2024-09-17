@@ -380,82 +380,83 @@
     /* Login Popup Screen */
     
     .login-popup-container {
-    position: absolute;
-    z-index: 10000;
-    height: 100svh;
-    width: 100svw;
-    background-color: #454a53d2;
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        position: absolute;
+        z-index: 10000;
+        height: 100svh;
+        width: 100svw;
+        background-color: #454a53d2;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .login-popup-window {
-    background-color: white;
-    height: 30rem;
-    width: 50rem;
-    border-radius: 1rem;
-    display: flex;
-    overflow: hidden;
+        background-color: white;
+        height: 50%;
+        width: 95%;
+        border-radius: 1rem;
+        display: flex;
+        overflow: hidden;
     }
     
     .popup-login-side {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        position: relative;
     }
     
     .login-close-btn {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    height: 2.5rem;
-    cursor: pointer;
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        height: 2.5rem;
+        cursor: pointer;
     }
     
     .login-window {
-    height: 90%;
-    width: 80%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+        height: 90%;
+        width: 90%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
     }
     
     .login-form-title {
-    font-family: "Poppins";
-    font-size: 200%;
-    font-weight: 600;
-    color: #bdbbbb;
+        font-family: "Poppins";
+        font-size: 150%;
+        font-weight: 600;
+        color: #bdbbbb;
+        margin-top: 3rem;
     }
     
     .login-brand-name {
-    font-size: 130%;
-    color: var(--darkBlue);
+        font-size: 110%;
+        color: var(--darkBlue);
     }
     
     .login-form {
-    height: 70%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+        height: 70%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
     }
     
     .login-inputs {
-    font-family: "Poppins";
-    height: 2rem;
-    width: 80%;
-    border: none;
-    border-bottom: 2px solid #e7e7e7;
+        font-family: "Poppins";
+        height: 2rem;
+        width: 90%;
+        border: none;
+        border-bottom: 2px solid #e7e7e7;
     }
     
     .login-inputs:focus {
@@ -464,107 +465,107 @@
     }
     
     .login-button {
-    background-color: var(--primary);
-    color: white;
-    height: 2.5rem;
-    width: 7rem;
-    font-size: 130%;
-    font-weight: 700;
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    margin-top: 5rem;
+        background-color: var(--primary);
+        color: white;
+        height: 2.5rem;
+        width: 7rem;
+        font-size: 130%;
+        font-weight: 700;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+        margin-top: 4rem;
     }
     
     .login-button:hover {
-    background-color: var(--lightBlue);
+        background-color: var(--lightBlue);
     }
     
     .popup-signup-side {
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(-45deg, #243b6d, var(--primary));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(-45deg, #243b6d, var(--primary));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .signup-window {
-    height: 90%;
-    width: 80%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        height: 90%;
+        width: 80%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .signup-form-title {
-    font-family: "Poppins";
-    font-size: 200%;
-    font-weight: 600;
-    color: #ffffff;
+        font-family: "Poppins";
+        font-size: 200%;
+        font-weight: 600;
+        color: #ffffff;
     }
     
     .signup-button {
-    background-color: var(--primary);
-    color: white;
-    height: 2.5rem;
-    width: 8rem;
-    font-size: 130%;
-    font-weight: 700;
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    margin-top: 2rem;
-    box-shadow: -2px 2px 10px #2e4983;
+        background-color: var(--primary);
+        color: white;
+        height: 2.5rem;
+        width: 8rem;
+        font-size: 130%;
+        font-weight: 700;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+        margin-top: 2rem;
+        box-shadow: -2px 2px 10px #2e4983;
     }
     
     .signup-button:hover {
-    background-color: var(--lightBlue);
+        background-color: var(--lightBlue);
     }
     
     /* Signup Walkthrough Screens */
     
     .signup-main-container {
-    height: 100svh;
-    width: 100%;
-    overflow: hidden;
-    font-family: "Poppins";
-    background-color: #454a53d2;
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    position: absolute;
+        height: 100svh;
+        width: 100%;
+        overflow: hidden;
+        font-family: "Poppins";
+        background-color: #454a53d2;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        position: absolute;
     }
     
     .signup-pages {
-    width: 600%;
-    display: flex;
-    transition: transform 0.7s ease;
+        width: 600%;
+        display: flex;
+        transition: transform 0.7s ease;
     }
     
     .signup-page {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    transition: all 0.7s ease;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        transition: all 0.7s ease;
     }
     
     .signup-page-window {
-    height: 50%;
-    width: 20%;
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    box-shadow: -2px 2px 7px #b9b9b9;
+        height: 50%;
+        width: 90%;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        box-shadow: -2px 2px 7px #b9b9b9;
     }
     
     .signup-player-icon {
