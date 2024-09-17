@@ -39,8 +39,17 @@ document.addEventListener("DOMContentLoaded", async () => {
               const events = await eventsResponse.json();
               console.log("Nearby events:", events);
 
+              const yourEventsResponse = await fetch("/api/events/yourEvents", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+               const yourEvents = await yourEventsResponse.json();
+               console.log("Your Events:", yourEvents)
+
               // Store events in local storage
-              localStorage.setItem('nearbyEvents', JSON.stringify(events));
+              localStorage.setItem('yourEvents', JSON.stringify(yourEvents));
 
               function initMap() {
                 // The location for the center of the map (latitude and longitude)
@@ -69,6 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 displayEventsOnMap(map, events);
                 showLocalEventsList(events);
+                showYourEventsList(yourEvents);
               };
 
               initMap();
@@ -342,7 +352,7 @@ function showLocalEventsList(events) {
   });
 };
 
-function showYourEventsList(events) {
+function showYourEventsList(yourEvents) {
   const mapCont = $("#map-container");
 
   // Define sport type to icon mappings
@@ -359,13 +369,15 @@ function showYourEventsList(events) {
     hockey: "hockey-icon.svg",
   };
 
-  // Populate events in the .local-events-list container
-  const eventsContainer = document.querySelector(".local-events-list");
-  eventsContainer.innerHTML = ""; // Clear existing events
+  // Populate events in the .saved-events-list container
+  const yourEventsContainer = document.querySelector(".saved-events-list");
+  yourEventsContainer.innerHTML = ""; // Clear existing events
 
-  events.forEach((event) => {
-    const eventElement = document.createElement("div");
-    eventElement.classList.add("event-container");
+  yourEvents.forEach((event) => {
+    const yourEventElement = document.createElement("div");
+    yourEventElement.classList.add("event-container");
+
+    console.log(event);
 
     const dateTimeString = event.time;
     const dateObject = new Date(dateTimeString);
@@ -382,7 +394,7 @@ function showYourEventsList(events) {
     // Determine the icon based on sportType
     const iconFileName = sportIcons[event.sportType] || "default-icon.svg"; // Default to 'default-icon.svg' if sportType is not found
 
-    eventElement.innerHTML = `
+    yourEventElement.innerHTML = `
         <div class="event-icon-container">
           <img src="icons/${iconFileName}" class="event-icon">
         </div>
@@ -413,12 +425,12 @@ function showYourEventsList(events) {
       `;
 
     // Append each event to the container
-    eventsContainer.appendChild(eventElement);
+    yourEventsContainer.appendChild(yourEventElement);
 
     if ($(window).width() < 600) {
-      eventElement.addEventListener("click", () => {
+      yourEventElement.addEventListener("click", () => {
         // Check if the details div already exists, if so, remove it
-        const eventDetails = eventElement.querySelector(
+        const eventDetails = yourEventElement.querySelector(
           ".event-details-container"
         );
         if (eventDetails) {
@@ -466,7 +478,7 @@ function showYourEventsList(events) {
                 event.participants.push("newUser"); // Replace 'newUser' with the actual user data
                 const newOpenSlots =
                   event.numberOfPlayers - event.participants.length;
-                eventElement.querySelector(".event-slots").textContent =
+                yourEventElement.querySelector(".event-slots").textContent =
                   newOpenSlots;
 
                 console.log(event.participants);
@@ -485,11 +497,11 @@ function showYourEventsList(events) {
         }
       });
     } else {
-      const moreInfoBtn = eventElement.querySelector(".more-info-btn");
+      const moreInfoBtn = yourEventElement.querySelector(".more-info-btn");
 
       moreInfoBtn.addEventListener("click", async () => {
         // Check if the details div already exists, if so, remove it
-        const eventDetails = eventElement.querySelector(
+        const eventDetails = yourEventElement.querySelector(
           ".event-details-container"
         );
         if (eventDetails) {
@@ -537,7 +549,7 @@ function showYourEventsList(events) {
                 event.participants.push("newUser"); // Replace 'newUser' with the actual user data
                 const newOpenSlots =
                   event.numberOfPlayers - event.participants.length;
-                eventElement.querySelector(".event-slots").textContent =
+                yourEventElement.querySelector(".event-slots").textContent =
                   newOpenSlots;
 
                 console.log(event.participants);

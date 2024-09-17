@@ -80,6 +80,22 @@ router.post("/nearby", async (req, res) => {
   }
 });
 
+router.post("/yourEvents", async (req, res) => {
+  try {
+    const userEvents = await Event.findAll({
+      where: { created_by: req.session.user_id }
+    });
+
+    if (!userEvents.length) {
+      return res.status(404).json({ message: "No events found for this user." })
+    }
+
+    res.status(200).json(userEvents);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.put("/:id", async (req, res) => {
   // Update event location, time and/or name
   try {
