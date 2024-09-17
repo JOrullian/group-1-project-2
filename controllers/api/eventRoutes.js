@@ -20,17 +20,16 @@ router.post("/", async (req, res) => {
   try {
     const { location, latitude, longitude, time, name, sportType, numberOfPlayers } = req.body;
 
-    console.log(req.body);
-
+    // Use req.session.user_id to associate the event with the logged-in user
     const newEvent = await Event.create({
       location,
       latitude,
       longitude,
       time,
       name,
-      user_id: req.session.user_id,
       sportType,
       numberOfPlayers,
+      created_by: req.session.user_id, // Set the user id from the session
     });
 
     res.status(200).json(newEvent);
@@ -78,6 +77,22 @@ router.post("/nearby", async (req, res) => {
   } catch (err) {
     console.error("Error finding nearby events", err);
     res.status(500).json({ message: "Error finding nearby events", error: err.message });
+  }
+});
+
+router.post("/yourEvents", async (req, res) => {
+  try {
+    const userEvents = await Event.findAll({
+      where: { created_by: req.session.user_id }
+    });
+
+    if (!userEvents.length) {
+      return res.status(404).json({ message: "No events found for this user." })
+    }
+
+    res.status(200).json(userEvents);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
