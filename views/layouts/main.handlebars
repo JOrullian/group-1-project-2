@@ -21,10 +21,9 @@
 
 <body class="mode-toggle" data-logged-in="{{logged_in}}">
   <main id="main-container" class="main-container">
-    <div id="color-toggle">💡</div>
+    <a href="/"><img src="images/sports-players.jpg" alt="sport players" class="left-corner-image" /></a>
     <div class="navbar-container">
       <nav class="navbar">
-        <a href="/"><img src="images/sports-players.jpg" alt="sport players" class="left-corner-image" /></a>
         <div class="navbar-selections-container">
           <button id="nav-home" class="nav-selection">
             <img id="nav-home-icon" class="nav-icon" src="icons/home-nav.svg" />
@@ -46,16 +45,22 @@
           <button id="nav-logout" class="nav-selection">
             <img id="nav-logout-icon" class="nav-icon" src="icons/login-logout-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-        </div>
+            </button>
         {{/if}}
         {{#unless logged_in}}
         <button id="nav-login" class="nav-selection">
           <img id="nav-login-icon" class="nav-icon" src="icons/login-logout-nav.svg">
           <h1 id="nav-login-title" class="nav-title">Login</h1>
-    </div>
-    {{/unless}}
-    </div>
+          </button>
+         {{/unless}}
+          {{!-- <div id="color-toggle" class="nav-selection">💡</div> --}}
+          <button id="nav-mode" class="nav-selection">
+            <img id="nav-mode=icon" class="nav-icon" src="icons/lightbulb-icon.svg">
+            <h1 id="nav-mode-title" class="nav-title">Mode</h1>
+          </button>
+        </div>
     </nav>
+    <div class="dark-overlay"></div>
     </div>
     <section class="body-window">
       {{{body}}}
