@@ -46,8 +46,14 @@ function displayEventsOnMap(map, events) {
       map: map,
     });
 
+    document.querySelector('.but')
+
     const infoWindow = new google.maps.InfoWindow({
-      content: `<h3>${event.name}</h3><p>${event.description}</p>`,
+      content: `<h3>${event.name}</h3>
+      <p>${event.sportType}</p>
+      <p>${event.time}</p>
+      <p>${event.location}</p>
+      `,
     });
 
     marker.addListener("click", () => {
