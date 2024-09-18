@@ -1,4 +1,4 @@
-const themeToggle = document.querySelector('#nav-mode');
+const themeToggle = document.getElementById('dark-light-mode-btn');
 const bodyElement = document.querySelector('body'); // Correctly target the body element
 
 let mode = 'light';
