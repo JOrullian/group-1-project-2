@@ -17,11 +17,11 @@ if(windowWidth > 600) {
 const navbar = document.querySelector('.navbar');
 const body = document.querySelector('body');
 
-// Add event listeners for hover
-navbar.addEventListener('mouseenter', () => {
-  body.classList.add('navbar-hovered');
-});
+// // Add event listeners for hover
+// navbar.addEventListener('mouseenter', () => {
+//   body.classList.add('navbar-hovered');
+// });
 
-navbar.addEventListener('mouseleave', () => {
-  body.classList.remove('navbar-hovered');
-});
+// navbar.addEventListener('mouseleave', () => {
+//   body.classList.remove('navbar-hovered');
+// });
