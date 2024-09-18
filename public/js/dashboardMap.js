@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   "Content-Type": "application/json",
                 },
               });
-               const yourEvents = await yourEventsResponse.json();
-               console.log("Your Events:", yourEvents)
+              const yourEvents = await yourEventsResponse.json();
+              console.log("Your Events:", yourEvents)
 
               // Store events in local storage
               localStorage.setItem('yourEvents', JSON.stringify(yourEvents));
@@ -292,14 +292,19 @@ function showLocalEventsList(events) {
               <div id="event-details-container" class="event-details-container">
                 <img id="event-close-btn" class="event-close-btn" src="/icons/close-btn-icon.svg">
                 <div class="event-title-container">
-                  <h1 class="event-title">${event.name} - ${event.location}</h1>
+                  <h1 class="event-title">${event.name}</h1>
+                </div>
+                <div class="event-subtitletitle-container">
+                  <h2 class="event-subtitle">${event.location}</h2>
                 </div>
                 <div class="event-details-divider"></div>
                 <div class="event-details-info">
                   <div class="event-start-time-container">
                     <h3 class="event-start-time">Start Time: ${formattedTime}, ${formattedDate}</h3>
                   </div>
-                  <div class="event-join-container">
+                </div>
+                <div class="event-details-divider"></div>
+                <div class="event-join-container">
                     <button class="join-event-btn" data-event-id="${event.id}">Join Event</button>
                   </div>
                 </div>

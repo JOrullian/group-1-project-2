@@ -917,6 +917,17 @@
 .event-title {
   font-size: 130%;
   font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.event-subtitle {
+  margin-bottom: 10px;
+  font-style: italic
+}
+
+.event-details-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .event-details-divider {
@@ -931,4 +942,21 @@
   left: 0.5rem;
   height: 2.5rem;
   cursor: pointer;
+}
+
+.event-join-container {
+  width: 75%;
+}
+
+.join-event-btn {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 2rem;
+  width: 100%;
+  height: 2rem;
+  color: white;
+  font-family: "Poppins";
+  font-size: 90%;
+  cursor: pointer;
+  margin-top: 25px;
 }
