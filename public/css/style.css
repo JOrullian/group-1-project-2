@@ -297,9 +297,10 @@
 }
 
 .event-info-title {
-  font-size: 150%;
+  font-size: 130%;
   font-weight: 500;
   margin-bottom: 0.2rem;
+  text-align: center;
 }
 
 @media (max-width: 1502px) {
@@ -909,10 +910,9 @@
 }
 
 .contact-info-container {
-  width: 40%;
-  /* height: 70%; */
+  width: 45%;
+  height: 80%;
   background-color: white;
-  margin-left: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -925,6 +925,7 @@
   height: 3rem;
   width: 80%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
@@ -937,14 +938,12 @@
 
 .contact-info-line-data {
   color: #818181;
-  word-wrap: break-word; /* Allows words to break and wrap onto the next line */
-  word-break: break-word; /* Breaks long words if necessary */
-  white-space: normal; /* Ensures text doesn't stay on one line */
+  /* word-wrap: break-word; Allows words to break and wrap onto the next line
+  word-break: break-word; Breaks long words if necessary
+  white-space: normal; Ensures text doesn't stay on one line */
 }
 
 .logout-btn {
-  bottom: 7%;
-  left: 12%;
   background-color: var(--stopRed);
   border: none;
   border-radius: 2rem;
@@ -1038,12 +1037,66 @@
 }
 
 .dark {
-  background-color: #0b112d;
+  background-color: #292929;
   color: #0b112d;
+  transition: .4s;
 
   .events-title,
   .personal-info-location,
   .personal-info-name {
     color: white;
   }
+}
+
+.theme-switch {
+  position: relative;;
+  height: 2rem;
+  width: 4rem;
+  border-radius: 2rem;
+  z-index: 1000;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+input:checked + .slider {
+  background-color: var(--lightBlue);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--light-primary);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 3rem;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 3rem;
 }
