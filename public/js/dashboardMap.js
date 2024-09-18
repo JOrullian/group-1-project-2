@@ -247,35 +247,45 @@ function showLocalEventsList(events) {
           $(".join-event-btn").on("click", async function () {
             const eventId = $(this).data("event-id");
 
-            try {
-              const response = await fetch(`/api/events/${eventId}/join`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
+            const loginStatusResponse = await fetch("/api/users/check-login");
+            const { logged_in } = await loginStatusResponse.json();
 
-              if (response.ok) {
-                alert("You've successfully joined the event!");
+            console.log("logged in status:", logged_in);
 
-                // Update the UI to reflect the new participant count
-                event.participants.push("newUser"); // Replace 'newUser' with the actual user data
-                const newOpenSlots =
-                  event.numberOfPlayers - event.participants.length;
-                eventElement.querySelector(".event-slots").textContent =
-                  newOpenSlots;
-
-                console.log(event.participants);
-              } else if (response.status === 400) {
-                alert("You are already part of this event.");
-              } else if (response.status === 403) {
-                alert("This event is already full.");
-              } else {
-                alert("Failed to join the event.");
+            if (logged_in) {
+              try {
+                const response = await fetch(`/api/events/${eventId}/join`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+  
+                if (response.ok) {
+                  alert("You've successfully joined the event!");
+  
+                  // Update the UI to reflect the new participant count
+                  event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                  const newOpenSlots =
+                    event.numberOfPlayers - event.participants.length;
+                  eventElement.querySelector(".event-slots").textContent =
+                    newOpenSlots;
+  
+                  console.log(event.participants);
+                } else if (response.status === 400) {
+                  alert("You are already part of this event.");
+                } else if (response.status === 403) {
+                  alert("This event is already full.");
+                } else {
+                  alert("Failed to join the event.");
+                }
+              } catch (error) {
+                console.error("Error joining the event:", error);
+                alert("An error occurred while joining the event.");
               }
-            } catch (error) {
-              console.error("Error joining the event:", error);
-              alert("An error occurred while joining the event.");
+            } else {
+              alert("You must login to join an event");
+              return;
             }
           });
         }
@@ -319,40 +329,51 @@ function showLocalEventsList(events) {
             $("#event-details-container").remove(); // Close the popup
           });
 
-          // Handle the click on the "Join Event" button
-          $(".join-event-btn").on("click", async function () {
-            const eventId = $(this).data("event-id");
-
-            try {
-              const response = await fetch(`/api/events/${eventId}/join`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-
-              if (response.ok) {
-                alert("You've successfully joined the event!");
-
-                // Update the UI to reflect the new participant count
-                event.participants.push("newUser"); // Replace 'newUser' with the actual user data
-                const newOpenSlots =
-                  event.numberOfPlayers - event.participants.length;
-                eventElement.querySelector(".event-slots").textContent =
-                  newOpenSlots;
-
-              } else if (response.status === 400) {
-                alert("You are already part of this event.");
-              } else if (response.status === 403) {
-                alert("This event is already full.");
-              } else {
-                alert("Failed to join the event.");
-              }
-            } catch (error) {
-              console.error("Error joining the event:", error);
-              alert("An error occurred while joining the event.");
-            }
-          });
+                    // Handle the click on the "Join Event" button
+                    $(".join-event-btn").on("click", async function () {
+                      const eventId = $(this).data("event-id");
+          
+                      const loginStatusResponse = await fetch("/api/users/check-login");
+                      const { logged_in } = await loginStatusResponse.json();
+          
+                      console.log("logged in status:", logged_in);
+          
+                      if (logged_in) {
+                        try {
+                          const response = await fetch(`/api/events/${eventId}/join`, {
+                            method: "PUT",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                          });
+            
+                          if (response.ok) {
+                            alert("You've successfully joined the event!");
+            
+                            // Update the UI to reflect the new participant count
+                            event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                            const newOpenSlots =
+                              event.numberOfPlayers - event.participants.length;
+                            eventElement.querySelector(".event-slots").textContent =
+                              newOpenSlots;
+            
+                            console.log(event.participants);
+                          } else if (response.status === 400) {
+                            alert("You are already part of this event.");
+                          } else if (response.status === 403) {
+                            alert("This event is already full.");
+                          } else {
+                            alert("Failed to join the event.");
+                          }
+                        } catch (error) {
+                          console.error("Error joining the event:", error);
+                          alert("An error occurred while joining the event.");
+                        }
+                      } else {
+                        alert("You must login to join an event");
+                        return;
+                      }
+                    });
         }
       });
     }
@@ -471,41 +492,51 @@ function showYourEventsList(yourEvents) {
             $(".event-details-container").remove(); // Close the popup
           });
 
-          // Handle the click on the "Join Event" button
-          $(".join-event-btn").on("click", async function () {
-            const eventId = $(this).data("event-id");
-
-            try {
-              const response = await fetch(`/api/events/${eventId}/join`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-
-              if (response.ok) {
-                alert("You've successfully joined the event!");
-
-                // Update the UI to reflect the new participant count
-                event.participants.push("newUser"); // Replace 'newUser' with the actual user data
-                const newOpenSlots =
-                  event.numberOfPlayers - event.participants.length;
-                yourEventElement.querySelector(".event-slots").textContent =
-                  newOpenSlots;
-
-                console.log(event.participants);
-              } else if (response.status === 400) {
-                alert("You are already part of this event.");
-              } else if (response.status === 403) {
-                alert("This event is already full.");
-              } else {
-                alert("Failed to join the event.");
-              }
-            } catch (error) {
-              console.error("Error joining the event:", error);
-              alert("An error occurred while joining the event.");
-            }
-          });
+                 // Handle the click on the "Join Event" button
+                 $(".join-event-btn").on("click", async function () {
+                  const eventId = $(this).data("event-id");
+      
+                  const loginStatusResponse = await fetch("/api/users/check-login");
+                  const { logged_in } = await loginStatusResponse.json();
+      
+                  console.log("logged in status:", logged_in);
+      
+                  if (logged_in) {
+                    try {
+                      const response = await fetch(`/api/events/${eventId}/join`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      });
+        
+                      if (response.ok) {
+                        alert("You've successfully joined the event!");
+        
+                        // Update the UI to reflect the new participant count
+                        event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                        const newOpenSlots =
+                          event.numberOfPlayers - event.participants.length;
+                        eventElement.querySelector(".event-slots").textContent =
+                          newOpenSlots;
+        
+                        console.log(event.participants);
+                      } else if (response.status === 400) {
+                        alert("You are already part of this event.");
+                      } else if (response.status === 403) {
+                        alert("This event is already full.");
+                      } else {
+                        alert("Failed to join the event.");
+                      }
+                    } catch (error) {
+                      console.error("Error joining the event:", error);
+                      alert("An error occurred while joining the event.");
+                    }
+                  } else {
+                    alert("You must login to join an event");
+                    return;
+                  }
+                });
         }
       });
     } else {
@@ -547,41 +578,51 @@ function showYourEventsList(yourEvents) {
             $("#event-details-container").remove(); // Close the popup
           });
 
-          // Handle the click on the "Join Event" button
-          $(".join-event-btn").on("click", async function () {
-            const eventId = $(this).data("event-id");
-
-            try {
-              const response = await fetch(`/api/events/${eventId}/join`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-
-              if (response.ok) {
-                alert("You've successfully joined the event!");
-
-                // Update the UI to reflect the new participant count
-                event.participants.push("newUser"); // Replace 'newUser' with the actual user data
-                const newOpenSlots =
-                  event.numberOfPlayers - event.participants.length;
-                yourEventElement.querySelector(".event-slots").textContent =
-                  newOpenSlots;
-
-                console.log(event.participants);
-              } else if (response.status === 400) {
-                alert("You are already part of this event.");
-              } else if (response.status === 403) {
-                alert("This event is already full.");
-              } else {
-                alert("Failed to join the event.");
-              }
-            } catch (error) {
-              console.error("Error joining the event:", error);
-              alert("An error occurred while joining the event.");
-            }
-          });
+                 // Handle the click on the "Join Event" button
+                 $(".join-event-btn").on("click", async function () {
+                  const eventId = $(this).data("event-id");
+      
+                  const loginStatusResponse = await fetch("/api/users/check-login");
+                  const { logged_in } = await loginStatusResponse.json();
+      
+                  console.log("logged in status:", logged_in);
+      
+                  if (logged_in) {
+                    try {
+                      const response = await fetch(`/api/events/${eventId}/join`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      });
+        
+                      if (response.ok) {
+                        alert("You've successfully joined the event!");
+        
+                        // Update the UI to reflect the new participant count
+                        event.participants.push("newUser"); // Replace 'newUser' with the actual user data
+                        const newOpenSlots =
+                          event.numberOfPlayers - event.participants.length;
+                        eventElement.querySelector(".event-slots").textContent =
+                          newOpenSlots;
+        
+                        console.log(event.participants);
+                      } else if (response.status === 400) {
+                        alert("You are already part of this event.");
+                      } else if (response.status === 403) {
+                        alert("This event is already full.");
+                      } else {
+                        alert("Failed to join the event.");
+                      }
+                    } catch (error) {
+                      console.error("Error joining the event:", error);
+                      alert("An error occurred while joining the event.");
+                    }
+                  } else {
+                    alert("You must login to join an event");
+                    return;
+                  }
+                });
         }
       });
     }
