@@ -27,7 +27,9 @@
   left: 0;
   width: 150px;
   height: 5rem;
+  z-index: 10;
 }
+
 
 .main-container {
   width: 100svw;
@@ -134,6 +136,29 @@
 
 .navbar:hover {
   width: 12rem;
+  z-index: 10;
+}
+
+/* Darkening overlay */
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Darken the rest of the screen */
+  z-index: 5;
+  display: none;
+}
+
+/* Show dark overlay on navbar hover */
+.navbar:hover + .dark-overlay {
+  display: block;
+}
+
+/* Make sure the map-container and left-corner-image also darken */
+.map-container, .left-corner-image {
+  z-index: 1;
 }
 
 .dashboard-container {
@@ -882,7 +907,7 @@
 
 .contact-info-container {
   width: 40%;
-  height: 70%;
+  /* height: 70%; */
   background-color: white;
   margin-left: 2rem;
   display: flex;
@@ -930,6 +955,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 .logout-btn:hover {
