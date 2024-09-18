@@ -55,13 +55,14 @@ router.post("/nearby", async (req, res) => {
       return res.status(400).json({ message: "Invalid coordinates" });
     }
 
-    // Retrieve all events except those created by the logged-in user
+    // Prepare query condition: exclude logged-in user's events if the user is logged in
+    const queryCondition = req.session.user_id
+      ? { created_by: { [Op.ne]: req.session.user_id } }  // Exclude user's own events
+      : {};  // No condition if the user is not logged in
+
+    // Retrieve events with the condition
     const allEvents = await Event.findAll({
-      // where: {
-      //   created_by: {
-      //     [Op.ne]: req.session.user_id, // Exclude events created by the logged-in user
-      //   },
-      // },
+      where: queryCondition,
     });
 
     console.log("Here are all events:", allEvents);
@@ -100,7 +101,14 @@ router.post("/nearby", async (req, res) => {
   }
 });
 
+
 router.post("/yourEvents", async (req, res) => {
+  if (!req.session.user_id) {
+    return res
+      .status(401)
+      .json({ message: "Please log in to see your events." });
+  }
+
   try {
     const userEvents = await Event.findAll({
       where: { created_by: req.session.user_id },
