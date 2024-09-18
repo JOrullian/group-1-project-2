@@ -5,6 +5,7 @@ const homeNavBtn = $('#nav-home');
 const eventNavBtn = $('#nav-event');
 const exploreNavBtn = $('#nav-explore');
 const navProfileBtn = $('#nav-profile');
+const loginNavBtn = $('#nav-login');
 
 
 const showLoginPopup = () => {
@@ -167,7 +168,7 @@ const showLoginPopup = () => {
     loginExitBtn.on('click', () => {
         loginPopUpCont.remove();
     });
-    
+
     loginForm.on('submit', async (event) => {
         event.preventDefault();
 
@@ -187,55 +188,30 @@ const showLoginPopup = () => {
                 alert(response.statusText)
             }
         }
-
-        // try {
-        //     // Send a POST request to the login endpoint
-        //     const response = await fetch('/api/users/login', {
-        //         method: 'POST',
-        //         headers: { 'Content-Type': 'application/json' },
-        //         body: JSON.stringify({ username: usernameInput, password: passwordInput })
-        //     });
-
-        //     const data = await response.json();
-
-        //     console.log(response);
-        //     console.log(data);
-
-        //     if (response.ok) {
-        //         // If login is successful
-        //         // userLoggedIn = true;
-        //         console.alert('User logged in:', data);
-
-        //         localStorage.setItem('loggedInUserId', data.user.id);
-    
-        //         loginPopUpCont.remove();
-        //         document.location.replace("/dashboard")
-        //     } else {
-        //         // If login fails, show an error message
-        //         console.error('Login failed:', data.message);
-        //         alert('Login failed: ' + data.message);
-        //     }
-        // } catch (error) {
-        //     console.error('Error during login:', error);
-        //     alert('An error occurred during login. Please try again.');
-        // }
     });
 
-    // const signupSubmit = $('#signup-submit-btn'); // Last button to submit
 
     $(document).on('click', '#signup-submit-btn', async (event) => {
         event.preventDefault();
 
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        function removeHyphens(string) {
+            return string.replace(/-/g, ' ')
+        }
+
         const firstnameInput = $('#signup-firstname').val();
         const locationInput = $('#signup-location').val();
-        const sportsTypeInput = $('#signup-sportstype :selected').val();
-        const playFrequencyInput = $('#signup-play-frequency :selected').val();
+        const sportsTypeInput = $('#signup-sportstype').val()
+        const playFrequencyInput = $('#signup-play-frequency').val()
         const usernameInput = $('#signup-username').val();
         const emailInput = $('#signup-email').val();
         const passwordInput = $('#signup-password').val();
         const passwordConfirmInput = $('#signup-password-confirm').val();
 
-        console.log(playFrequencyInput, sportsTypeInput)
+        const sportsTypeUpdate = capitalizeFirstLetter(sportsTypeInput);
+        const playFrequencyUpdate = capitalizeFirstLetter(removeHyphens(playFrequencyInput))
 
         if (passwordInput === passwordConfirmInput) {
             try {
@@ -246,8 +222,8 @@ const showLoginPopup = () => {
                         username: usernameInput,
                         firstname: firstnameInput,
                         location: locationInput,
-                        preferredSport: sportsTypeInput,
-                        playFrequency: playFrequencyInput,
+                        preferred_sport: sportsTypeUpdate,
+                        play_frequency: playFrequencyUpdate,
                         password: passwordInput,
                         email: emailInput
                     }),
@@ -310,6 +286,15 @@ navProfileBtn.on('click', async () => {
 
     if (response.ok === true) {
         window.location.href = '/profile';
+    } else {
+        showLoginPopup();
+    }
+});
+loginNavBtn.on('click', async () => {
+    const response = await fetch('/api/users/check-login');
+
+    if (response.ok === true) {
+        window.location.href = '/dashboard';
     } else {
         showLoginPopup();
     }

@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const geolib = require("geolib");
 const { format_date } = require("../../utils/helpers");
+const { Op } = require("sequelize");
 
 const { Event } = require("../../models");
 
 router.get("/", async (req, res) => {
-    const allEvents = await Event.findAll();
-    res.json(allEvents);
+  const allEvents = await Event.findAll();
+  res.json(allEvents);
 });
 
 router.post("/", async (req, res) => {
@@ -18,18 +19,26 @@ router.post("/", async (req, res) => {
 
   // Create a new event
   try {
-    const { location, latitude, longitude, time, name, sportType } = req.body;
+    const {
+      location,
+      latitude,
+      longitude,
+      time,
+      name,
+      sportType,
+      numberOfPlayers,
+    } = req.body;
 
-    console.log(req.body);
-
+    // Use req.session.user_id to associate the event with the logged-in user
     const newEvent = await Event.create({
       location,
       latitude,
       longitude,
       time,
       name,
-      user_id: req.session.user_id,
       sportType,
+      numberOfPlayers,
+      created_by: req.session.user_id, // Set the user id from the session
     });
 
     res.status(200).json(newEvent);
@@ -42,11 +51,21 @@ router.post("/nearby", async (req, res) => {
   try {
     const { latitude, longitude } = req.body;
 
-    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+    if (typeof latitude !== "number" || typeof longitude !== "number") {
       return res.status(400).json({ message: "Invalid coordinates" });
     }
 
-    const allEvents = await Event.findAll();
+    // Prepare query condition: exclude logged-in user's events if the user is logged in
+    const queryCondition = req.session.user_id
+      ? { created_by: { [Op.ne]: req.session.user_id } }  // Exclude user's own events
+      : {};  // No condition if the user is not logged in
+
+    // Retrieve events with the condition
+    const allEvents = await Event.findAll({
+      where: queryCondition,
+    });
+
+    console.log("Here are all events:", allEvents);
 
     // Check if events are being retrieved
     if (!allEvents.length) {
@@ -76,7 +95,34 @@ router.post("/nearby", async (req, res) => {
     res.json(formattedEvents);
   } catch (err) {
     console.error("Error finding nearby events", err);
-    res.status(500).json({ message: "Error finding nearby events", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Error finding nearby events", error: err.message });
+  }
+});
+
+
+router.post("/yourEvents", async (req, res) => {
+  if (!req.session.user_id) {
+    return res
+      .status(401)
+      .json({ message: "Please log in to see your events." });
+  }
+
+  try {
+    const userEvents = await Event.findAll({
+      where: { created_by: req.session.user_id },
+    });
+
+    if (!userEvents.length) {
+      return res
+        .status(404)
+        .json({ message: "No events found for this user." });
+    }
+
+    res.status(200).json(userEvents);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

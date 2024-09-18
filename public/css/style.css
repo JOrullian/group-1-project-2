@@ -7,13 +7,29 @@
   --stopRed: #f44242;
 }
 
+/* #color-toggle {
+  position: static;
+  margin-top: 100px;
+} */
+
+
+/* .light {
+  background-color: #ffffff;
+} */
+
+/* .dark {
+  background-color: #24203d;
+} */
+
 .left-corner-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 150px;
   height: 5rem;
+  z-index: 0;
 }
+
 
 .main-container {
   width: 100svw;
@@ -41,7 +57,7 @@
 }
 
 .navbar {
-  margin-left: 2rem;
+  margin-left: 1rem;
   height: 70%;
   width: 4rem;
   background-color: var(--primary);
@@ -51,7 +67,7 @@
 }
 
 .navbar-selections-container {
-  height: 50%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -93,6 +109,18 @@
   margin-right: 0.3rem;
 }
 
+#nav-login-icon {
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+#nav-logout-icon {
+  height: 80%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
 .nav-title {
   font-family: "Poppins";
   color: #ffffff;
@@ -107,8 +135,31 @@
 }
 
 .navbar:hover {
-  width: 12rem;
+  width: 100%;
+  z-index: 10;
 }
+
+/*
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: none;
+}
+
+
+.navbar:hover + .dark-overlay {
+  display: block;
+}
+
+.map-container, .left-corner-image {
+  z-index: 1;
+}
+*/
 
 .dashboard-container {
   height: 100%;
@@ -165,6 +216,7 @@
 .saved-events-list {
   height: 75%;
   width: 90%;
+  overflow-y: scroll;
 }
 
 .local-events-container {
@@ -193,6 +245,11 @@
 }
 
 .local-events-list::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.saved-events-list::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
 }
@@ -243,6 +300,14 @@
   font-size: 150%;
   font-weight: 500;
   margin-bottom: 0.2rem;
+}
+
+@media (max-width: 1502px) {
+  .event-info-title {
+    font-size: 125%;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
 }
 
 .event-info-sport-type {
@@ -337,6 +402,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 1502px) {
+  .more-info-btn {
+    height: 3rem;
+  }
+}
+
 .more-info-btn:hover {
   background-color: var(--lightBlue);
 }
@@ -344,6 +415,15 @@
 .map-container {
   height: 90%;
   width: 45%;
+  background-color: #dedede;
+  border-radius: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.explore-map-container {
+  height: 90%;
+  width: 90%;
   background-color: #dedede;
   border-radius: 2rem;
   overflow: hidden;
@@ -661,7 +741,10 @@
   align-items: center;
   justify-content: space-evenly;
   font-family: "Poppins";
-  background: linear-gradient(-45deg, #243b6d, var(--primary));
+  background-image: url('/images/blue-gradient-bkg.jpg');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
 .create-event-window {
@@ -669,7 +752,7 @@
   width: 60%;
   background-color: white;
   border-radius: 2rem;
-  box-shadow: -2px 2px 10px #2e4983;
+  box-shadow: -2px 2px 10px #5a698a;
   font-family: "Poppins";
   display: flex;
   flex-direction: column;
@@ -826,8 +909,8 @@
 }
 
 .contact-info-container {
-  width: 30%;
-  height: 70%;
+  width: 40%;
+  /* height: 70%; */
   background-color: white;
   margin-left: 2rem;
   display: flex;
@@ -849,10 +932,14 @@
 .contact-info-line-title {
   color: var(--darkBlue);
   font-weight: 500;
+  padding-right: 1rem;
 }
 
 .contact-info-line-data {
   color: #818181;
+  word-wrap: break-word; /* Allows words to break and wrap onto the next line */
+  word-break: break-word; /* Breaks long words if necessary */
+  white-space: normal; /* Ensures text doesn't stay on one line */
 }
 
 .logout-btn {
@@ -871,6 +958,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 .logout-btn:hover {
@@ -905,6 +993,17 @@
 .event-title {
   font-size: 130%;
   font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.event-subtitle {
+  margin-bottom: 10px;
+  font-style: italic
+}
+
+.event-details-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .event-details-divider {
@@ -919,4 +1018,32 @@
   left: 0.5rem;
   height: 2.5rem;
   cursor: pointer;
+}
+
+.event-join-container {
+  width: 75%;
+}
+
+.join-event-btn {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 2rem;
+  width: 100%;
+  height: 2rem;
+  color: white;
+  font-family: "Poppins";
+  font-size: 90%;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.dark {
+  background-color: #0b112d;
+  color: #0b112d;
+
+  .events-title,
+  .personal-info-location,
+  .personal-info-name {
+    color: white;
+  }
 }

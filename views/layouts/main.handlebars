@@ -19,11 +19,11 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
-<body data-logged-in="{{logged_in}}">
+<body class="mode-toggle" data-logged-in="{{logged_in}}">
   <main id="main-container" class="main-container">
+    <a href="/"><img src="images/sports-players.jpg" alt="sport players" class="left-corner-image" /></a>
     <div class="navbar-container">
       <nav class="navbar">
-        <img src="images/sports-players.jpg" alt="sport players" class="left-corner-image"/>
         <div class="navbar-selections-container">
           <button id="nav-home" class="nav-selection">
             <img id="nav-home-icon" class="nav-icon" src="icons/home-nav.svg" />
@@ -41,13 +41,26 @@
             <img id="nav-profile-icon" class="nav-icon" src="icons/profile-nav.svg" />
             <h1 id="nav-profile-title" class="nav-title">Profile</h1>
           </button>
-          {{!--
-          <div id="nav-logout" class="nav-selection nav-logout">
-            <img id="nav-logout-icon" class="nav-icon" src="icons/profile-nav.svg">
+          {{#if logged_in}}
+          <button id="nav-logout" class="nav-selection">
+            <img id="nav-logout-icon" class="nav-icon" src="icons/login-logout-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-          </div> --}}
+            </button>
+        {{/if}}
+        {{#unless logged_in}}
+        <button id="nav-login" class="nav-selection">
+          <img id="nav-login-icon" class="nav-icon" src="icons/login-logout-nav.svg">
+          <h1 id="nav-login-title" class="nav-title">Login</h1>
+          </button>
+         {{/unless}}
+          {{!-- <div id="color-toggle" class="nav-selection">💡</div> --}}
+          <button id="nav-mode" class="nav-selection">
+            <img id="nav-mode-icon" class="nav-icon" src="icons/lightbulb-icon.svg">
+            <h1 id="nav-mode-title" class="nav-title">Mode</h1>
+          </button>
         </div>
-      </nav>
+    </nav>
+    {{!-- <div class="dark-overlay"></div> --}}
     </div>
     <section class="body-window">
       {{{body}}}
@@ -58,10 +71,9 @@
   {{/if}}
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="js/navbar.js"></script>
-  <script src="js/dashboardMap.js"></script>
   <script src="js/loginPopup.js"></script>
   <script src="js/createEvent.js"></script>
-  <script src="js/showLocalEventsList.js"></script>
+  <script src="js/themeSwitcher.js"></script>
 </body>
 
 </html>
