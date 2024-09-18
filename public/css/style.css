@@ -7,6 +7,20 @@
   --stopRed: #f44242;
 }
 
+#color-toggle {
+  position: static;
+  margin-top: 100px;
+}
+
+
+/* .light {
+  background-color: #ffffff;
+} */
+
+/* .dark {
+  background-color: #24203d;
+} */
+
 .left-corner-image {
   position: absolute;
   top: 0;
@@ -990,13 +1004,13 @@
   margin-top: 25px;
 }
 
-.light {
-  background-color: rgb(230, 231, 232);
-  color: rgb(10, 18, 77)
-}
-
 .dark {
-  background-color: rgb(11, 17, 45);
-  color: rgb(255, 252, 216);
+  background-color: #0b112d;
+  color: #0b112d;
 
+  .events-title,
+  .personal-info-location,
+  .personal-info-name {
+    color: white;
+  }
 }
