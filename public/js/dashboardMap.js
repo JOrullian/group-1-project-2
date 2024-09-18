@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   radius: 10000,
                 });
 
-                displayEventsOnMap(map, events);
+                displayEventsOnMap(map, events, yourEvents);
                 showLocalEventsList(events);
                 showYourEventsList(yourEvents);
               };
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function displayEventsOnMap(map, events) {
+function displayEventsOnMap(map, events, yourEvents) {
   if (!Array.isArray(events)) {
     console.error("Events data is not an array:", events);
     return;
@@ -125,13 +125,28 @@ function displayEventsOnMap(map, events) {
       map: map,
     });
 
-    const infoWindow = new google.maps.InfoWindow({
-      content: `<h3>${event.name}</h3><p>${event.time}</p>`,
+    // const infoWindow = new google.maps.InfoWindow({
+    //   content: `<h3>${event.name}</h3><p>${event.time}</p>`,
+    // });
+
+    // marker.addListener("click", () => {
+    //   infoWindow.open(map, marker);
+    // });
+  });
+
+  yourEvents.forEach((event) => {
+    const marker = new google.maps.Marker({
+      position: { lat: event.latitude, lng: event.longitude },
+      map: map,
     });
 
-    marker.addListener("click", () => {
-      infoWindow.open(map, marker);
-    });
+    // const infoWindow = new google.maps.InfoWindow({
+    //   content: `<h3>${event.name}</h3><p>${event.time}</p>`,
+    // });
+
+    // marker.addListener("click", () => {
+    //   infoWindow.open(map, marker);
+    // });
   });
 }
 
