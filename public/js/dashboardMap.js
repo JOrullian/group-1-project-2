@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   "Content-Type": "application/json",
                 },
               });
+              console.log(yourEventsResponse);
               const yourEvents = await yourEventsResponse.json();
               console.log("Your Events:", yourEvents)
 

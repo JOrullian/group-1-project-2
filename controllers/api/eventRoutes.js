@@ -57,14 +57,14 @@ router.post("/nearby", async (req, res) => {
 
     // Retrieve all events except those created by the logged-in user
     const allEvents = await Event.findAll({
-      where: {
-        created_by: {
-          [Op.ne]: req.session.user_id, // Exclude events created by the logged-in user
-        },
-      },
+      // where: {
+      //   created_by: {
+      //     [Op.ne]: req.session.user_id, // Exclude events created by the logged-in user
+      //   },
+      // },
     });
 
-    console.log(allEvents);
+    console.log("Here are all events:", allEvents);
 
     // Check if events are being retrieved
     if (!allEvents.length) {
