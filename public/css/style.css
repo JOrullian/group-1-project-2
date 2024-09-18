@@ -177,6 +177,7 @@
 .saved-events-list {
   height: 75%;
   width: 90%;
+  overflow-y: scroll;
 }
 
 .local-events-container {
@@ -205,6 +206,11 @@
 }
 
 .local-events-list::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.saved-events-list::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
 }
@@ -356,6 +362,15 @@
 .map-container {
   height: 90%;
   width: 45%;
+  background-color: #dedede;
+  border-radius: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.explore-map-container {
+  height: 90%;
+  width: 90%;
   background-color: #dedede;
   border-radius: 2rem;
   overflow: hidden;
