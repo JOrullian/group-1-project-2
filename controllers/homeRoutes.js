@@ -39,7 +39,7 @@ router.get("/signup-walkthrough", async (req, res) => {
 // Explore route, protected by withAuth middleware
 router.get("/explore", withAuth, async (req, res) => {
   try {
-    res.render("explore", { logged_in: req.session.logged_in });
+    res.render("explore", { logged_in: req.session.logged_in, isExplorePage: true });
   } catch (error) {
     res.status(500).json(error);
   }
