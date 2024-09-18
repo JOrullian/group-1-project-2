@@ -77,7 +77,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const yourEvents = await yourEventsResponse.json();
                 console.log("Your Events:", yourEvents);
                 if (yourEvents.length > 0) {
-
+                  displayEventsOnMap(map, yourEvents);
+                  showYourEventsList(yourEvents);
                 } else {
                   console.log("No events found for this user.");
                 }
