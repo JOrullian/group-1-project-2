@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", async () => {
               }
       
               initMap();
+
+              showLocalEventsList(events);
+
       
               if (logged_in) {
                 const yourEventsResponse = await fetch("/api/events/yourEvents", {
@@ -73,13 +76,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
                 const yourEvents = await yourEventsResponse.json();
                 console.log("Your Events:", yourEvents);
-      
-                // Display user-specific events on the map
-                displayYourEventsOnMap(map, yourEvents);
-                showYourEventsList(yourEvents);
+                if (yourEvents.length > 0) {
+
+                } else {
+                  console.log("No events found for this user.");
+                }
+
               }
       
-              showLocalEventsList(events);
             },
             (error) => {
               switch (error.code) {
@@ -202,7 +206,6 @@ function showLocalEventsList(events) {
           </div>
         </div>
       `;
-
     // Append each event to the container
     eventsContainer.appendChild(eventElement);
 
