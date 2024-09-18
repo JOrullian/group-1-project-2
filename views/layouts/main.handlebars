@@ -21,7 +21,6 @@
 
 <body class="mode-toggle" data-logged-in="{{logged_in}}">
   <main id="main-container" class="main-container">
-    <div id="color-toggle">💡</div>
     <div class="navbar-container">
       <nav class="navbar">
         <a href="/"><img src="images/sports-players.jpg" alt="sport players" class="left-corner-image" /></a>
@@ -46,15 +45,16 @@
           <button id="nav-logout" class="nav-selection">
             <img id="nav-logout-icon" class="nav-icon" src="icons/login-logout-nav.svg">
             <h1 id="nav-logout-title" class="nav-title">Logout</h1>
-        </div>
+            </button>
         {{/if}}
         {{#unless logged_in}}
         <button id="nav-login" class="nav-selection">
           <img id="nav-login-icon" class="nav-icon" src="icons/login-logout-nav.svg">
           <h1 id="nav-login-title" class="nav-title">Login</h1>
-    </div>
-    {{/unless}}
-    </div>
+          </button>
+         {{/unless}}
+          <div id="color-toggle" class="nav-selection">💡</div>
+        </div>
     </nav>
     </div>
     <section class="body-window">

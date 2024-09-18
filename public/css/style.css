@@ -7,10 +7,10 @@
   --stopRed: #f44242;
 }
 
-#color-toggle {
+/* #color-toggle {
   position: static;
   margin-top: 100px;
-}
+} */
 
 
 /* .light {
@@ -65,7 +65,7 @@
 }
 
 .navbar-selections-container {
-  height: 50%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -881,7 +881,7 @@
 }
 
 .contact-info-container {
-  width: 30%;
+  width: 40%;
   height: 70%;
   background-color: white;
   margin-left: 2rem;
@@ -904,10 +904,14 @@
 .contact-info-line-title {
   color: var(--darkBlue);
   font-weight: 500;
+  padding-right: 1rem;
 }
 
 .contact-info-line-data {
   color: #818181;
+  word-wrap: break-word; /* Allows words to break and wrap onto the next line */
+  word-break: break-word; /* Breaks long words if necessary */
+  white-space: normal; /* Ensures text doesn't stay on one line */
 }
 
 .logout-btn {
