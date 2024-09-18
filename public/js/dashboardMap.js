@@ -18,16 +18,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     script.onload = () => {
       async function getLocation() {
         if (navigator.geolocation) {
-          // Get the current position of the user
           navigator.geolocation.getCurrentPosition(
             async (position) => {
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
-
-              // Display the coordinates
+      
               console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-              console.log("Location found!");
-
+      
               const eventsResponse = await fetch("/api/events/nearby", {
                 method: "POST",
                 headers: {
@@ -35,37 +32,22 @@ document.addEventListener("DOMContentLoaded", async () => {
                 },
                 body: JSON.stringify({ latitude, longitude }),
               });
-
+      
               const events = await eventsResponse.json();
               console.log("Nearby events:", events);
-
-              const yourEventsResponse = await fetch("/api/events/yourEvents", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-              console.log(yourEventsResponse);
-              const yourEvents = await yourEventsResponse.json();
-              console.log("Your Events:", yourEvents)
-
-              // Store events in local storage
-              localStorage.setItem('yourEvents', JSON.stringify(yourEvents));
-
+      
+              const loginStatusResponse = await fetch("/api/users/check-login");
+              const { logged_in } = await loginStatusResponse.json();
+      
+              let map;
               function initMap() {
-                // The location for the center of the map (latitude and longitude)
                 let location = { lat: latitude, lng: longitude };
-
-                // The map, centered at the location
-                const map = new google.maps.Map(
-                  document.getElementById("map"),
-                  {
-                    zoom: 11,
-                    center: location,
-                    disableDefaultUI: true,
-                  }
-                );
-
+                map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 11,
+                  center: location,
+                  disableDefaultUI: true,
+                });
+      
                 const cityCircle = new google.maps.Circle({
                   strokeColor: "#4285f4",
                   strokeOpacity: 0.8,
@@ -76,16 +58,30 @@ document.addEventListener("DOMContentLoaded", async () => {
                   center: location,
                   radius: 10000,
                 });
-
-                displayEventsOnMap(map, events, yourEvents);
-                showLocalEventsList(events);
-                showYourEventsList(yourEvents);
-              };
-
+      
+                displayEventsOnMap(map, events);
+              }
+      
               initMap();
+      
+              if (logged_in) {
+                const yourEventsResponse = await fetch("/api/events/yourEvents", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+                const yourEvents = await yourEventsResponse.json();
+                console.log("Your Events:", yourEvents);
+      
+                // Display user-specific events on the map
+                displayYourEventsOnMap(map, yourEvents);
+                showYourEventsList(yourEvents);
+              }
+      
+              showLocalEventsList(events);
             },
             (error) => {
-              // Handle any errors that occur
               switch (error.code) {
                 case error.PERMISSION_DENIED:
                   console.log("User denied the request for Geolocation.");
@@ -103,10 +99,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
           );
         } else {
-          // If the browser does not support geolocation
           console.log("Geolocation is not supported by this browser.");
         }
       }
+      
       getLocation();
     };
   } catch (error) {
@@ -114,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function displayEventsOnMap(map, events, yourEvents) {
+function displayEventsOnMap(map, events) {
   if (!Array.isArray(events)) {
     console.error("Events data is not an array:", events);
     return;
@@ -125,29 +121,15 @@ function displayEventsOnMap(map, events, yourEvents) {
       position: { lat: event.latitude, lng: event.longitude },
       map: map,
     });
-
-    // const infoWindow = new google.maps.InfoWindow({
-    //   content: `<h3>${event.name}</h3><p>${event.time}</p>`,
-    // });
-
-    // marker.addListener("click", () => {
-    //   infoWindow.open(map, marker);
-    // });
   });
+}
 
+function displayYourEventsOnMap(map, yourEvents) {
   yourEvents.forEach((event) => {
     const marker = new google.maps.Marker({
       position: { lat: event.latitude, lng: event.longitude },
       map: map,
     });
-
-    // const infoWindow = new google.maps.InfoWindow({
-    //   content: `<h3>${event.name}</h3><p>${event.time}</p>`,
-    // });
-
-    // marker.addListener("click", () => {
-    //   infoWindow.open(map, marker);
-    // });
   });
 }
 
@@ -402,8 +384,6 @@ function showYourEventsList(yourEvents) {
   yourEvents.forEach((event) => {
     const yourEventElement = document.createElement("div");
     yourEventElement.classList.add("event-container");
-
-    console.log(event);
 
     const dateTimeString = event.time;
     const dateObject = new Date(dateTimeString);
