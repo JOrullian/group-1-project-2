@@ -1,4 +1,4 @@
-### Quick Match
+## Quick Match
 
 ## Description
 
@@ -14,7 +14,7 @@ GitHub Repository: https://github.com/JOrullian/group-1-project-2
 
 Deploy: https://quickmatch.onrender.com/
 
-![Quick Match Website Link](image.png)
+![Quick Match Application Image](image.png)
 
 ## Credits
 
